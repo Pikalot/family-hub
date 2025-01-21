@@ -15,27 +15,34 @@ const Footer = async () => {
 
     return (
         <footer className={styles.footer}>
-            <nav className={styles["footer-link"]}>
-                <Link href="/" className="link link-hover">
-                    Home
-                </Link>
-                <Link href="" className="link link-hover">
-                    Games
-                </Link>
- 
-            </nav>
-            <div className={styles["social-icon"]}>
-                <a href="https://linkedin.com/in/Pikalot">
-                    <FontAwesomeIcon icon={faLinkedin} />
-                </a>
+            <div className={styles["footer-container"]}>
+                <nav className={styles["footer-link"]}>
+                    <Link href="/">
+                        Home
+                    </Link>
+                    <Link href="">
+                        About Us
+                    </Link>
+                    <Link href="">
+                        Contact Us
+                    </Link>
+                </nav>
 
-                <a href="https://github.com/Pikalot">
-                    <FontAwesomeIcon icon={faGithub} />
-                </a>
+                <div className={styles["social-icon"]}>
+                    <a href="https://linkedin.com/in/Pikalot">
+                        <FontAwesomeIcon icon={faLinkedin} />
+                    </a>
+
+                    <a href="https://github.com/Pikalot">
+                        <FontAwesomeIcon icon={faGithub} />
+                    </a>
+                </div>
             </div>
-            <aside>
+
+            <aside className={styles["footer-copyright"]}>
                 <p>Copyright © {new Date().getFullYear()} - All right reserved by Tuan-Anh Ho</p>
             </aside>
+            
         </footer>
     );
 }

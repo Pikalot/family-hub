@@ -1,0 +1,130 @@
+import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
+import LinkedInProvider from "next-auth/providers/linkedin";
+import AppleProvider from "next-auth/providers/apple";
+import { findMemberByEmail } from "@/database/queries/user/findMemberByEmail";
+import { findMemberByPassword } from "@/database/queries/user/findMemberByPassword";
+
+export const authOptions = {
+  session: {
+    strategy: "jwt",
+    maxAge: 2 * 24 * 60 * 60, // 2 Days
+  },
+  providers: [
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_ID,
+    //   clientSecret: process.env.GOOGLE_SECRET,
+    // }),
+    // AppleProvider({
+    //   clientId: process.env.APPLE_ID,
+    //   clientSecret: process.env.APPLE_SECRET,
+    // }),
+    // GitHubProvider({
+    //   clientId: process.env.GITHUB_ID,
+    //   clientSecret: process.env.GITHUB_SECRET,
+    // }),
+    // LinkedInProvider({
+    //   clientId: process.env.LINKEDIN_ID,
+    //   clientSecret: process.env.LINKED_SECRET,
+    // }),
+    CredentialsProvider({
+      credentials: {
+        email: {
+          label: "E-Mail",
+          type: "email",
+          placeholder: "Enter your email",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "Enter your password",
+        },
+      },
+      async authorize(credentials) {
+        if (!credentials) return null;
+        const { email, password } = credentials;
+        const user = await findMemberByPassword(email, password);
+
+        if (user && user.length > 0) {
+          return {
+            mid: user[0].mid,
+            username: user[0].username,
+            email: user[0].email,
+            first_name: user[0].first_name,
+            last_name: user[0].last_name,
+            dob: user[0].dob,
+            role: user[0].role,
+          };
+        } else {
+          return null;
+        }
+      },
+    }),
+  ],
+  callbacks: {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update" && session?.user) {
+        // Manually update token fields during session updates
+        token.username = session.user.username;
+        token.email = session.user.email;
+        token.first_name = session.user.first_name;
+        token.last_name = session.user.last_name;
+      }
+
+      if (user) {
+        // On login, set the token fields
+        token.mid = user.mid;
+        token.username = user.username;
+        token.email = user.email;
+        token.first_name = user.first_name;
+        token.last_name = user.last_name;
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // Map token fields to the session object
+      session.user = {
+        mid: token.mid,
+        username: token.username,
+        email: token.email,
+        first_name: token.first_name,
+        last_name: token.last_name,
+        role: token.role,
+      };
+      return session;
+    },
+    async signIn({ user, account }) {
+      if (
+        account?.provider !== "google" &&
+        account?.provider !== "apple" &&
+        account?.provider !== "github" &&
+        account?.provider !== "linkedin" &&
+        user.email
+      ) {
+        return true;
+      } else {
+        const existingUser = await findMemberByEmail(user.email);
+
+        // If the user exists, proceed with the sign-in process
+        if (existingUser.length > 0) {
+          user.mid = existingUser[0].mid;
+          user.username = existingUser[0].username;
+          user.email = existingUser[0].email;
+          user.firs_tname = existingUser[0].first_name;
+          user.last_name = existingUser[0].last_name;
+          user.role = existingUser[0].role;
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+  },
+  pages: {
+    signIn: "/login",
+    error: "/signup",
+  },
+};
+

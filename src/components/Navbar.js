@@ -1,4 +1,9 @@
-import styles from "./Components.module.css";
+import styles from "./Navbar.module.css";
+import Link from 'next/link';
+import Image from 'next/image';
+import LogoIcon from '@/public/icons/Logo.png';
+import NavButton from "@/ui/components/NavButton";
+import HamburgerMenu from "./HamburgerMenu";
 
 export default function Navbar() {
     // const session = await getServerSession(authOptions);
@@ -10,20 +15,13 @@ export default function Navbar() {
 
     return (
         <div className={styles["navbar"]}>
-            {/* <div> */}
+            <div>
                 {/* Top Header Section */}
-                {/* <div> */}
+                <div className={styles["navbar"]}>
                     {/* Logo */}
-                    {/* <div> */}
-                        Navbar
-                        {/* <Link href='/'>
-                            <div
-                                className="avatar flex items-center justify-center"
-                                style={{
-                                    width: `${"4em"}`,
-                                    aspectRatio: '1 / 1',
-                                }}
-                            >
+                    <div>
+                        <Link href='/'>
+                            <div className={styles["logo"]}>
                                 <Image
                                     src={LogoIcon}
                                     alt="Game Trees Logo"
@@ -33,21 +31,26 @@ export default function Navbar() {
                                     className="rounded-full object-cover"
                                     priority
                                 />
+                                <div className={styles["text-container"]}>
+                                    <p> Firstname long super </p>
+                                    <p> Lastname </p>
+                                </div>
                             </div>
-                        </Link> */}
-                    {/* </div> */}
+                        </Link>
+                    </div>
+                    
 
                     {/* Search Bar */}
                     {/* <div className="hidden min-[1200px]:flex flex-1 mx-4 max-w-full">
                         <SearchBar actionUrl={""} />
                     </div> */}
 
-                    {/* <div> */}
+                    <div>
                         {/* Desktop Navigation */}
-                        {/* <div> */}
-                            {/* <NavButton page="Home" route="/" className='self-center hidden min-[430px]:block text-[1em]' />
-                            <NavButton page="Games" route="/temp/all-games" className='self-center hidden min-[530px]:block text-[1em]' />
-                            {session?.user.role === "customer" && (
+                        <div>
+                            <NavButton page="Home" route="/" className={styles["nav-button"]} />
+                            <NavButton page="Feeds" route="" className={styles["nav-button"]} />
+                            {/* {session?.user.role === "customer" && (
                                 <NavButton page="Wishlist" route={`/users/${session?.user?.username}/wishlist`} className='flex-shrink-0 hidden min-[830px]:block text-[1em]' />
                             )}
                             {session?.user.role === "admin" && (
@@ -80,19 +83,19 @@ export default function Navbar() {
                                     <SignUpButton className='flex-shrink-0 hidden min-[750px]:block text-[1em]' />
                                 </>
                             )} */}
-                        {/* </div> */}
+                        </div>
 
                         {/* Hamburger Menu Button (Client-Side Dropdown) */}
-                        {/* <HamburgerMenu /> */}
-                    {/* </div> */}
+                        <HamburgerMenu />
+                    </div>
 
-                {/* </div> */}
+                </div>
 
                 {/* Search Bar (Visible Only on Mobile) */}
                 {/* <div className="block min-[1200px]:hidden w-full px-4 pt-1 pb-8 text-[1em]">
                     <SearchBar actionUrl={""} />
                 </div> */}
-            {/* </div> */}
+            </div>
         </div >
     );
 }
