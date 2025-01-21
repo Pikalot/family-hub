@@ -1,39 +1,38 @@
 import mysql from "mysql2/promise";
 
-type Query = string;
-type Data = unknown[];
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  connectionLimit: 10,
+});
 
-const createDatabaseConnection = async () => {
-  const sslCA = process.env.DB_SSL_CA_BASE64
-    ? Buffer.from(process.env.DB_SSL_CA_BASE64, "base64").toString("utf-8")
-    : null;
-
-  const connectionOptions: mysql.ConnectionOptions = {
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    connectionLimit: 10, // Adjust based on server resources
-  };
-
-  if (sslCA) {
-    connectionOptions.ssl = { ca: sslCA };
-  }
-
-  return mysql.createConnection(connectionOptions);
-};
-
-const executeQuery = async (query: Query, data: Data) => {
+export const executeQuery = async (query, data) => {
   try {
-    const db = await createDatabaseConnection();
-    const [result] = await db.execute(query, data);
-    await db.end();
+    const [result] = await pool.execute(query, data);
     return result;
   } catch (error) {
-    console.error(error);
-    return error;
+    console.error("Query Error:", error.message);
+    throw error;
   }
 };
 
-export default executeQuery;
+export const executeTransaction = async (queries) => {
+  const connection = await pool.getConnection();
+  try {
+    await connection.beginTransaction();
+    for (const { query, data } of queries) {
+      await connection.execute(query, data);
+    }
+    await connection.commit();
+    return { success: true };
+  } catch (error) {
+    await connection.rollback();
+    console.error("Transaction Error:", error.message);
+    return { success: false, error };
+  } finally {
+    connection.release();
+  }
+};
