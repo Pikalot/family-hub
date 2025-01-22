@@ -1,22 +1,21 @@
 .nav-button {
-    /* Tailwind equivalent styles */
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    flex-shrink: 0; /* Prevent the button from shrinking in a flex container */
-    padding: 1rem 0.75rem; 
-    border-radius: 0.5rem; /* Matches Tailwind's rounded-lg */
-    transition: all 0.2s ease-in-out; /* Matches hover:ease-in and duration-100 */
-  }
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-shrink: 0; /* Prevent the button from shrinking in a flex container */
+  padding: 1rem 0.75rem; 
+  border-radius: 0.5rem; /* Matches Tailwind's rounded-lg */
+  transition: all 0.2s ease-in-out; /* Matches hover:ease-in and duration-100 */
+}
   
-  .nav-button:hover {
-    transform: scale(1.1); /* Enlarge the button to 110% of its original size */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Adds a pop-up shadow effect */
-  }
+.nav-button:hover {
+  transform: scale(1.1); /* Enlarge the button to 110% of its original size */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Adds a pop-up shadow effect */
+}
     
 .btn-ghost {
-    background: transparent; /* Matches a ghost style button */
-    border: none; 
-    color: inherit; 
-  }
+  background: transparent; 
+  border: none; 
+  color: inherit; 
+}
   

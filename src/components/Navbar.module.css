@@ -12,6 +12,20 @@
     color: white;
     background: transparent; /* Transparent over hero */
   }
+
+/* Tablet screen */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+}
+
+/* Phone screen */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem; /* Minimal padding for mobile */
+  }
+}
   
 .navbar a {
   color: white;
@@ -48,12 +62,7 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-  /* styles.module.css */
-.nav-button {
-  align-self: center; 
-  display: none; 
-  font-size: 1em;
-}
+
 
 /* Buttons panel */
 .btn-panel {
@@ -72,23 +81,81 @@
   margin-left: 1rem;
 }
 
+/* styles.module.css */
+.nav-button {
+  align-self: center; 
+  display: none; 
+  font-size: 1em;
+}
+
 @media (min-width: 430px) {
   .nav-button {
     display: block; 
   }
 }
 
-.self-center-hidden {
-  align-self: center; /* Equivalent to `self-center` */
-  display: none; /* Equivalent to `hidden` */
+/* Hamburger styling, dropdown Container */
+.dropdown {
+  position: relative; 
+  display: inline-block; /* Allows the dropdown trigger to align inline */
 }
 
-@media (min-width: 430px) {
-  .self-center-hidden {
-    display: block; /* Equivalent to `min-[430px]:block` */
-  }
+/* Dropdown Content (Default Styles) */
+.dropdown-content {
+  position: absolute; 
+  top: 100%; /* Place below the trigger */
+  left: 0; /* Align to the left by default */
+  min-width: 150px; 
+  background-color: #34495E ;
+  color: inherit; /* Inherit text color */
+  border-radius: 0.5rem; 
+  margin-top: 0.75rem;
+  padding: 0.75rem; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  z-index: 100; /* Keep above other elements */
 }
 
-.self-center-hidden {
-  font-size: 1em; /* Equivalent to `text-[1em]` */
+.block {
+  display: block; /* Shows dropdown */
 }
+
+.hidden {
+  display: none; /* Hides dropdown */
+}
+
+/* Right-Aligned Dropdown (Dropdown End) */
+.dropdown-end .dropdown-content {
+  right: 0; 
+  left: auto; /* Override default left alignment */
+}
+
+/* Dark Mode Support */
+.dark .dropdown-content {
+  background-color: #192035; 
+  color: #ffffff; 
+}
+
+/* Portfolio section */
+.portfolio-button {
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-shrink: 0; /* Prevent the button from shrinking in a flex container */
+  padding: 1rem 0.75rem; 
+  border-radius: 0.5rem; /* Matches Tailwind's rounded-lg */
+  transition: all 0.2s ease-in-out; /* Matches hover:ease-in and duration-100 */
+  font-weight: bold;
+}
+
+.portfolio-button:hover {
+transform: scale(1.1); /* Enlarge the button to 110% of its original size */
+box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Adds a pop-up shadow effect */
+}
+  
+.btn-ghost {
+  background: transparent; 
+  border: none; 
+  color: inherit; 
+}
+
+

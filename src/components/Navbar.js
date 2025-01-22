@@ -4,6 +4,7 @@ import Image from 'next/image';
 import LogoIcon from '@/public/icons/Logo.png';
 import NavButton from "@/ui/components/NavButton";
 import HamburgerMenu from "./HamburgerMenu";
+import Portfolio from "./Portfolio";
 
 export default function Navbar() {
     // const session = await getServerSession(authOptions);
@@ -48,8 +49,9 @@ export default function Navbar() {
                     <div className={styles["btn-panel"]}>
                         {/* Desktop Navigation */}
                         <div className={styles["btn-container"]}>
-                            <NavButton page="Home" route="/" className={styles["self-center-hidden"]} />
-                            <NavButton page="Feeds" route="" className={styles["self-center-hidden"]} />
+                            <NavButton page="Home" route="/" className={styles["nav-button"]} />
+                            <NavButton page="Feeds" route="" className={styles["nav-button"]} />
+                            <Portfolio />
                             {/* {session?.user.role === "customer" && (
                                 <NavButton page="Wishlist" route={`/users/${session?.user?.username}/wishlist`} className='flex-shrink-0 hidden min-[830px]:block text-[1em]' />
                             )}

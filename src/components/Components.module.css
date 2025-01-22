@@ -2,45 +2,87 @@
 @media (max-width: 768px) {
   .container,
   .navbar,
-  .hero,
   .content,
   .footer {
     padding: 1rem;
   }
 }
 
+@media (max-width: 768px) {
+  .hero {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .imageContainer,
+  .profileImage {
+    display: none;
+  }
+}
+
 /* Phone screen */
 @media (max-width: 480px) {
   .container,
-  .hero,
   .navbar,
   .content,
   .footer {
-    padding: 0.5rem; /* Minimal padding for mobile */
+    padding: 0.5rem; 
+  }
+}
+
+/* Phone screen */
+@media (max-width: 480px) {
+  .hero {
+    padding-left: 0.25rem; 
+    padding-right: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .imageContainer,
+  .profileImage {
+    display: none;
   }
 }
 
 /* Hero Section */
 .hero {
-  height: 75dvh; /* Viewport height */
-  background: linear-gradient(180deg, #0059b3, #87ceeb); /* Gradient blue */
+  height: clamp(35rem, 65dvh, 65dvh); 
+  background: linear-gradient(180deg, #0059b3, #87ceeb);
+  /* background: url('/images/portrait.JPG'); */
   color: white;
   text-align: center;
-  padding: 2rem 20vw;
+  padding-top: 5rem;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  overflow: hidden; /* Prevent content from overflowing */
+  position: relative;
+}
+
+.hero-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap; 
+  max-width: 40%;
+  transform: translateX(150px);
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 5vw, 3rem);
   margin: 0;
 }
 
 .hero p {
-  font-size: 1.25rem;
-  margin: 1rem 0;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  margin: 1rem;
 }
 
 .hero .buttons {
@@ -62,11 +104,26 @@
   background: #003060;
 }
 
+/* Image Section */
+.hero .imageContainer {
+  flex: 1; /* Take up equal space */
+  display: flex;
+  justify-content: center;
+  align-self: flex-end; /* Align the image at the bottom */
+}
+
+.hero .profileImage {
+  max-width: 100%;
+  object-fit: contain;
+  height: auto;
+}
+
 /* Content Section */
 .content {
   background: white;
   padding: 4rem 20vw;
   text-align: center;
+  min-height: 23dvh;
 }
 
 .content h2 {
@@ -107,14 +164,13 @@
   background: #f9f9f9;
   color: #555;
   border-top: 1px solid #ddd;
+  height: clamp(5rem, 10vh, 8rem); 
 }
 
 .footer-container {
   font-size: 18px;
   display: flex;
   justify-content: space-between; 
-  /* align-items: center; Vertically center items */
-  /* padding: 1rem 2rem; Add padding */
   flex-wrap: wrap; /* Wrap items on smaller screens */
 }
 
