@@ -1,14 +1,15 @@
 "use client";
 
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import React from "react";
 import NavButton from "@/ui/components/NavButton";
 // import SignUpButton from "@/app/ui/components/auth/SignUpButton";
-// import LoginButton from "@/app/ui/components/auth/LoginButton";
-// import SignOutButton from "@/app/ui/components/auth/SignOutButton";
+import LoginButton from "@/ui/components/auth/LoginButton";
+import SignOutButton from "@/ui/components/auth/SignOutButton";
+import styles from "@/components/Navbar.module.css";
 
 export default function HamburgerMenu() {
-    // const { data: session } = useSession();
+    const { data: session } = useSession();
 
     return (
         <div className="dropdown dropdown-end">
@@ -35,7 +36,7 @@ export default function HamburgerMenu() {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-slate-300 dark:bg-[#192035] text-base-content rounded-box z-[1] mt-3 w-64 p-3 shadow"
             >
-                {/* {session && session.user ? (
+                {session && session.user ? (
                     <>
                         <li>
                             <SignOutButton className="btn btn-ghost w-full text-center text-[1em]" />
@@ -48,14 +49,14 @@ export default function HamburgerMenu() {
                             <LoginButton className="btn btn-ghost w-full text-center text-[1em]" />
                         </li>
                         <hr className="opacity-25 my-2 border-base-content" />
-                        <li>
+                        {/* <li>
                             <SignUpButton className="btn btn-ghost w-full text-center text-[1em]" />
-                        </li>
-                        <hr className="opacity-25 my-2 border-base-content" />
+                        </li> */}
+                        {/* <hr className="opacity-25 my-2 border-base-content" /> */}
                     </>
                 )}
                 <li>
-                    <NavButton page="Games" route="/temp/all-games" className="btn btn-ghost w-full text-center text-[1em]" />
+                    <NavButton page="Feeds" route="/" className={styles["nav-button"]} />
                 </li>
                 <hr className="opacity-25 my-2 border-base-content" />
                 {session && (
@@ -85,7 +86,7 @@ export default function HamburgerMenu() {
                         </li>
                         <hr className="opacity-25 my-2 border-base-content" />
                     </>
-                )} */}
+                )}
             </ul>
         </div>
     );

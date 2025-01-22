@@ -45,11 +45,11 @@ export default function Navbar() {
                         <SearchBar actionUrl={""} />
                     </div> */}
 
-                    <div>
+                    <div className={styles["btn-panel"]}>
                         {/* Desktop Navigation */}
-                        <div>
-                            <NavButton page="Home" route="/" className={styles["nav-button"]} />
-                            <NavButton page="Feeds" route="" className={styles["nav-button"]} />
+                        <div className={styles["btn-container"]}>
+                            <NavButton page="Home" route="/" className={styles["self-center-hidden"]} />
+                            <NavButton page="Feeds" route="" className={styles["self-center-hidden"]} />
                             {/* {session?.user.role === "customer" && (
                                 <NavButton page="Wishlist" route={`/users/${session?.user?.username}/wishlist`} className='flex-shrink-0 hidden min-[830px]:block text-[1em]' />
                             )}

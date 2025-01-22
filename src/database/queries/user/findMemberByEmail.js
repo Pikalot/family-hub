@@ -1,4 +1,4 @@
-import executeQuery from "@/database/MySQLDriver";
+import { executeQuery } from "@/database/MySQLDriver";
 
 // Check if a user exists based on email (for Google sign-in)
 export const findMemberByEmail = async (email) => {
