@@ -1,0 +1,83 @@
+.content {
+    margin: 2rem;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    position: relative;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 2px solid #ddd;
+    position: relative;
+  }
+  
+  .tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+  }
+  
+  .tab.active {
+    border-color: #007bff #007bff #fff #007bff; /* Highlight active tab */
+    color: #007bff;
+  }
+  
+  .tab-content {
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+    margin-top: 1rem;
+    min-height: 100px;
+  }
+  
+  .skill-bar {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .skill-bar-label {
+    flex: 1;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .skill-bar-percentage {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  .skill-bar-track {
+    flex: 5;
+    background: #eee;
+    border-radius: 0.5rem;
+    height: 0.75rem;
+    overflow: hidden;
+    margin: 0 1rem;
+  }
+  
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+  }
+  
+  /* Phone screen */
+@media (max-width: 480px) {
+  .content {
+    padding: 0.2rem; 
+  }
+}
+
+  /* Phone screen */
+  @media (max-width: 768px) {
+    .content {
+      padding: 0.2rem; 
+    }
+  }
+  

@@ -12,20 +12,6 @@
     color: white;
     background: transparent; /* Transparent over hero */
   }
-
-/* Tablet screen */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem;
-  }
-}
-
-/* Phone screen */
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.5rem; /* Minimal padding for mobile */
-  }
-}
   
 .navbar a {
   color: white;
@@ -40,9 +26,7 @@
 
 .logo {
   display: flex; 
-  /* align-items: center; */
   gap: 0.5em;
-  /* aspect-ratio: unset; */
   width: 4em; 
 }
 
@@ -61,8 +45,6 @@
   transform: scale(1.1); /* Enlarge the button to 110% of its original size */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
-
-
 
 /* Buttons panel */
 .btn-panel {
@@ -86,12 +68,6 @@
   align-self: center; 
   display: none; 
   font-size: 1em;
-}
-
-@media (min-width: 430px) {
-  .nav-button {
-    display: block; 
-  }
 }
 
 /* Hamburger styling, dropdown Container */
@@ -158,4 +134,22 @@ box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Adds a pop-up shadow effect */
   color: inherit; 
 }
 
+/* Tablet screen */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+}
 
+/* Phone screen */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem; /* Minimal padding for mobile */
+  }
+}
+
+@media (min-width: 430px) {
+  .nav-button {
+    display: block; 
+  }
+}

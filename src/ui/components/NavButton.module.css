@@ -4,7 +4,7 @@
   justify-content: center; 
   flex-shrink: 0; /* Prevent the button from shrinking in a flex container */
   padding: 1rem 0.75rem; 
-  border-radius: 0.5rem; /* Matches Tailwind's rounded-lg */
+  border-radius: 0.5rem; 
   transition: all 0.2s ease-in-out; /* Matches hover:ease-in and duration-100 */
 }
   

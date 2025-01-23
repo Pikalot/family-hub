@@ -1,52 +1,3 @@
-/* Tablet screen */
-@media (max-width: 768px) {
-  .container,
-  .navbar,
-  .content,
-  .footer {
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .imageContainer,
-  .profileImage {
-    display: none;
-  }
-}
-
-/* Phone screen */
-@media (max-width: 480px) {
-  .container,
-  .navbar,
-  .content,
-  .footer {
-    padding: 0.5rem; 
-  }
-}
-
-/* Phone screen */
-@media (max-width: 480px) {
-  .hero {
-    padding-left: 0.25rem; 
-    padding-right: 0.25rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .imageContainer,
-  .profileImage {
-    display: none;
-  }
-}
-
 /* Hero Section */
 .hero {
   height: clamp(35rem, 65dvh, 65dvh); 
@@ -118,45 +69,6 @@
   height: auto;
 }
 
-/* Content Section */
-.content {
-  background: white;
-  padding: 4rem 20vw;
-  text-align: center;
-  min-height: 23dvh;
-}
-
-.content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.content p {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 2rem;
-}
-
-.content .skills {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.content .skills div {
-  padding: 1rem;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  width: 150px;
-  text-align: center;
-}
-
-.content .skills div:hover {
-  background: #f1f1f1;
-}
-
 /* Footer */
 .footer {
   text-align: center;
@@ -203,4 +115,51 @@
 .footer-copyright {
   padding: 1rem;
   font-size: 16px;
+}
+
+/* Phone screen */
+@media (max-width: 480px) {
+  .container,
+  .content,
+  .footer {
+    padding: 0.5rem; 
+  }
+}
+
+/* Phone screen */
+@media (max-width: 480px) {
+  .hero {
+    padding-left: 0.5rem; 
+    padding-right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .imageContainer,
+  .profileImage {
+    display: none;
+  }
+}
+
+/* Tablet screen */
+@media (max-width: 768px) {
+  .container,
+  .content,
+  .footer {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .imageContainer,
+  .profileImage {
+    display: none;
+  }
 }

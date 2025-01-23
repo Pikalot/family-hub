@@ -18,10 +18,10 @@ export default function Hero() {
       </div>
       <div className={styles["imageContainer"]}>
         <Image
-          src="/images/crop-portrait.png"
+          src="/images/crop-portrait_enhanced.png"
           alt="Keannu Ford"
-          width={900}
-          height={900}
+          width={700}
+          height={700}
           className={styles.profileImage}
         />
       </div>

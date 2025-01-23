@@ -50,6 +50,8 @@ export default function Navbar() {
                         {/* Desktop Navigation */}
                         <div className={styles["btn-container"]}>
                             <NavButton page="Home" route="/" className={styles["nav-button"]} />
+                            <NavButton page="About" route="#content" className={styles["nav-button"]} />
+                            <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
                             <NavButton page="Feeds" route="" className={styles["nav-button"]} />
                             <Portfolio />
                             {/* {session?.user.role === "customer" && (
