@@ -7,7 +7,7 @@
 /* Container for the projects */
 .projects-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Responsive grid */
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* Responsive grid */
   gap: 1rem; 
 }
 
@@ -30,7 +30,7 @@
 /* Image inside each block */
 .project-block img {
   width: 100%;
-  height: 500px;
+  height: 420px;
   width: auto-fit;
   object-fit: cover;
   display: block;
@@ -61,7 +61,7 @@
   font-weight: bold;
   margin: 1rem;
   display: inline;
-  color: navy;
+  color: #004080;
 }
 
 .project-title {
@@ -97,7 +97,7 @@
   .project-block,
   .projects-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 420px;
     align-self: center;
     display: block;
   }

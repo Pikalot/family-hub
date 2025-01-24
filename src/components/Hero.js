@@ -1,11 +1,15 @@
+"use client";
 import styles from './Components.module.css';
 import Image from 'next/image';
 
-export default function Hero() {
+export default function Hero({member}) {
+  console.log('new member', member);
+  console.log('Photo name is', member.first_name);
+
   return (
     <div className={styles.hero}>
       <div className = {styles["hero-content"]}>
-        <h1>I am Keannu Ford</h1>
+        <h1>{member[0].first_name}</h1>
         <p>A Web Designer</p>
         <p>
           Far far away, behind the word mountains, far from the countries
@@ -18,7 +22,7 @@ export default function Hero() {
       </div>
       <div className={styles["imageContainer"]}>
         <Image
-          src="/images/crop-portrait_enhanced.png"
+          src={member[0].photo}
           alt="Keannu Ford"
           width={700}
           height={700}

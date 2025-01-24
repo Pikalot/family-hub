@@ -2,14 +2,12 @@
     margin: 2rem;
     padding-left: 20vw;
     padding-right: 20vw;
-    position: relative;
   }
   
   .tabs {
     display: flex;
-    gap: 1rem;
+    gap: 1rem;  
     border-bottom: 2px solid #ddd;
-    position: relative;
   }
   
   .tab {

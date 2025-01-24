@@ -4,7 +4,7 @@ import React , { useState } from "react";
 import NavButton from "@/ui/components/NavButton";
 import styles from "@/components/Navbar.module.css";
 
-export default function Portfolio() {
+export default function Portfolio({members, onSelectMember}) {
     const [ isOpen, setIsOpen ] = useState(false);
 
     const toggleDropdown = () => {
@@ -33,14 +33,17 @@ export default function Portfolio() {
                 tabIndex={0}
                 className={`${styles["dropdown-content"]} ${isOpen ? "block" : "hidden"}`}
             >
-                <li>
-                    <NavButton page="Member A" route ="" className={styles["nav-button"]} />
-                </li>
-                <hr className="opacity-25 my-2 border-base-content" />
-                <li>
-                    <NavButton page="Member B" route ="" className={styles["nav-button"]} />
-                </li>
-                <hr className="opacity-25 my-2 border-base-content" />
+                {members && members.map((member, index) => (
+                    <li key={index}>
+                        <NavButton 
+                            page={member.first_name} // Dynamically display member's first name
+                            className={styles["nav-button"]}
+                            route="/" 
+                            onClick={() => onSelectMember(member)} // Pass selected member to Navbar 
+                        />
+                        <hr className="opacity-25 my-2 border-base-content" />
+                    </li>
+                ))}
             </ul>
         </div>
     );

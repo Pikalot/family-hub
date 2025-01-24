@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WrappedSessionProvider from "@/auth/WrappedSessionProvider"
+import { findAllMembers } from "@/database/queries/Navbar/findAllMembers";
 
 export const metadata = {
   title: "Family Hub",
@@ -9,13 +10,14 @@ export const metadata = {
   icon: '/favicon.ico?v=1',
 };
 
-export default  function RootLayout({ children }) {
-  
+export default async function RootLayout({ children }) {
+  const userList = await findAllMembers();
+
   return (
     <html lang="en">
       <body>
         <WrappedSessionProvider>
-          <Navbar />
+          <Navbar userList={userList}/>
           <main>
             {children}
           </main>

@@ -1,3 +1,6 @@
+"use client";
+
+import {useState} from 'react';
 import styles from "./Navbar.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
@@ -6,13 +9,12 @@ import NavButton from "@/ui/components/NavButton";
 import HamburgerMenu from "./HamburgerMenu";
 import Portfolio from "./Portfolio";
 
-export default function Navbar() {
-    // const session = await getServerSession(authOptions);
+export default function Navbar({ userList }) {
+    const [selectedMember, setSelectedMember] = useState(userList[0]);
 
-    // let profileImage: string | null = null;
-    // if (session?.user?.username) {
-    //     profileImage = await getUserAccountImage(session.user.id as unknown as number);
-    // }
+    const handleSelectMember = (member) => {
+        setSelectedMember(member);
+    }
 
     return (
         <div className={styles["navbar"]}>
@@ -33,13 +35,12 @@ export default function Navbar() {
                                     priority
                                 />
                                 <div className={styles["text-container"]}>
-                                    <p> Firstname long super </p>
-                                    <p> Lastname </p>
+                                    <p> {selectedMember.first_name} </p>
+                                    <p> {selectedMember.last_name} </p>
                                 </div>
                             </div>
                         </Link>
                     </div>
-                    
 
                     {/* Search Bar */}
                     {/* <div className="hidden min-[1200px]:flex flex-1 mx-4 max-w-full">
@@ -53,7 +54,7 @@ export default function Navbar() {
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
                             <NavButton page="Feeds" route="" className={styles["nav-button"]} />
-                            <Portfolio />
+                            <Portfolio members={userList} onSelectMember={handleSelectMember} />
                             {/* {session?.user.role === "customer" && (
                                 <NavButton page="Wishlist" route={`/users/${session?.user?.username}/wishlist`} className='flex-shrink-0 hidden min-[830px]:block text-[1em]' />
                             )}
