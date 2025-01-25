@@ -11,7 +11,7 @@ export default function Skills() {
   ];
 
   return (
-    <div>
+    <div className={styles["skill-container"]}>
       <h2>My Skills</h2>
       {skills.map((skill) => (
         <div className={styles["skill-bar"]} key={skill.name}>

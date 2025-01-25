@@ -4,11 +4,11 @@ import { useState } from "react";
 import styles from "./Content.module.css";
 import Skills from "./Skills";
 
-export default function Content() {
+export default function Content({member}) {
   const [activeTab, setActiveTab] = useState("About Me");
 
   const tabContent = {
-    "About Me": "This is the About Me section. Share your story here.",
+    "About Me": member[0].description,
     Skills: <Skills />,
     Experience: "This is the Experience section. Showcase your professional background.",
   };

@@ -8,7 +8,7 @@ const NavButton = ({ className, route, page, onClick = () => {}}) => {
             <a
                 className={`${styles["nav-button"]} ${styles["btn-ghost"]} ${className}`}
                 onClick={(e) => {
-                    e.preventDefault(); // Prevent default navigation
+                    // e.preventDefault(); // Prevent default navigation
                     onClick(); // Safely call onClick handler
                 }}
             >

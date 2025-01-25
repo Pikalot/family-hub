@@ -2,7 +2,6 @@
 .hero {
   height: clamp(35rem, 65dvh, 65dvh); 
   background: linear-gradient(180deg, #0059b3, #87ceeb);
-  /* background: url('/images/portrait.JPG'); */
   color: white;
   text-align: center;
   padding-top: 5rem;
@@ -10,7 +9,6 @@
   padding-right: 20vw;
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
   align-items: center;
   overflow: hidden; /* Prevent content from overflowing */
   position: relative;
@@ -29,11 +27,84 @@
 .hero h1 {
   font-size: clamp(1.5rem, 5vw, 3rem);
   margin: 0;
+  align-self: right;
+}
+
+.hero h2 {
+  font-size: clamp(1rem, 3.5vw, 1.85rem); /* Greeting font size */
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+  font-weight: normal;
+  color: #d1d5db; /* Lighter shade for greeting */
+}
+
+.dialogue-box {
+  max-width: 600px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  color: #111827;
+  text-align: center;
+  position: relative; /* Required for pseudo-element positioning */
+  margin-bottom: 1rem; /* Add space above the name */
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+.dialogue-box::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; /* Position the arrow just below the box */
+  left: 35%; /* Center the arrow horizontally */
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent; /* Create the left side of the arrow */
+  border-right: 10px solid transparent; /* Create the right side of the arrow */
+  border-top: 10px solid #ffffff; /* Create the top part of the arrow (box color) */
+}
+
+.dialogue-box:hover {
+  animation: vibrate 0.2s ease-in-out infinite;
+}
+
+/* Keyframes for Vibrating Effect */
+@keyframes vibrate {
+  0% { transform: translate(1px, 1px); }
+  25% { transform: translate(-1px, -1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, 1px); }
+  100% { transform: translate(1px, 1px); }
+}
+
+.dialogue-box h1 {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  margin: 0.5rem 0;
+}
+
+.dialogue-box h2 {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-style: italic;
+  color: #6b7280; 
+  margin: 0;
 }
 
 .hero p {
   font-size: clamp(1rem, 3vw, 1.25rem);
-  margin: 1rem;
+  margin: 0.5rem;
+  align-self: center;
+  text-align: right; 
+  /* Line clamp for p */
+  display: -webkit-box;
+  display: box; 
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  box-orient: vertical; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hero .buttons {
@@ -49,10 +120,13 @@
   border-radius: 0.5rem;
   text-decoration: none;
   font-weight: bold;
+  transition: all 0.2s ease-in-out; /* Matches hover:ease-in and duration-100 */
 }
 
 .hero .buttons a:hover {
   background: #003060;
+  transform: scale(1.1); /* Enlarge the button to 110% of its original size */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Adds a pop-up shadow effect */
 }
 
 /* Image Section */

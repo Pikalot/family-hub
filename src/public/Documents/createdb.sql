@@ -7,6 +7,8 @@ CREATE TABLE Members ( -- 1
     password VARCHAR(30) NOT NULL CHECK (CHAR_LENGTH(password) >= 8),
     role ENUM('admin', 'user'),
     dob DATE,
+    ocupation VARCHAR(255),
+    description TEXT,
     pid BIGINT
 );
 
@@ -133,7 +135,7 @@ CREATE TABLE Contents (     -- 11
     mid INT NOT NULL,
     created_date DATE NOT NULL,
     text TEXT,
-    Short_video VARCHAR(255),
+    short_video VARCHAR(255),
     FOREIGN KEY (mid) REFERENCES Members(mid)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -166,13 +168,53 @@ CREATE TABLE Personal_URLs (    -- 14
         ON UPDATE CASCADE
 );
 
+CREATE TABLE Skills (   -- 15
+    sid INTEGER PRIMARY KEY AUTO_INCREMENT,
+    skill VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE has_skills (     -- 16
+    mid INTEGER,
+    sid INTEGER,
+    proficiency INTEGER CHECK (proficiency >= 0 AND proficiency <= 100),
+    PRIMARY KEY (mid, sid),
+    FOREIGN KEY (mid) REFERENCES Members(mid)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (sid) REFERENCES Skills(sid)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
 -- POPULATE TEST DATABASE
 
-INSERT INTO Members(first_name, last_name, username, password, role) VALUES	        -- 17
-	('John', 'Doe', 'admin1', 'Admin@123', 'admin'),
-	('Jane', 'Doe', 'user1', 'User@123', 'user');
+INSERT INTO Members(first_name, last_name, username, password, role, ocupation, description) VALUES	        -- 17
+	('John', 'Doe', 'admin1', 'Admin@123', 'admin', 'Software Engineering Student', 
+        'Passionating about financial technology while exploring how machine learning can enhance security in digital transactions, he aims to develop software solutions for multi-platform transactions. He is an indoor enthusiast since he spends the second-largest amount of time on video games and resting. As a great fan of the RPG genre, Tuan-Anh has completed some Final Fantasy series and Xenogears over four times, spending 100+ hours on each run. His love for video games and anime has greatly influenced the ideas of his projects.'),
+	('Jane', 'Doe', 'user1', 'User@123', 'user','Student','I love Toca Boca');
 
+INSERT INTO Skills VALUES
+    (1, 'Java'),
+    (2, 'CSS'),
+    (3, 'HTML'),
+    (4, 'Python'),
+    (5, 'NodeJs'),
+    (6, 'NextJs'),
+    (7, 'MariaDB'),
+    (8, 'MySQL'),
+    (9, 'Git'),
+    (10, 'Jenkins'),
+    (11, 'IntelliJ'),
+    (12, 'PyCharm');
+
+INSERT INTO SkillSet VALUES
+    (1, 1, 95),
+    (1, 2, 80),
+    (1, 3, 71),
+    (1, 4, 79),
+    (1, 6, 70),
+    (1, 8, 92),
+    (1, 11, 95);
 
 INSERT INTO Employers(name, city, state, country) VALUES	-- 18
 	('Metropolitan Bank', 'San Jose', 'CA','USA'),
@@ -215,18 +257,18 @@ INSERT INTO Courses VALUES
 	
 	
 INSERT INTO takes_course VALUES	
-	(1, 'CMPE 102',1, 'A+'),
-	(1, 'CS 146',1, 'A'),
-	(1, 'ISE 130',1, 'A'),
-	(1, 'CS 157A',1, 'A'),
-	(1, 'CS 151',1, 'A'),
-	(1, 'CMPE 131',1, 'A-'),
-	(1, 'COMSC 076',2, 'A'),
-	(1, 'COMSC 077',2, 'A');
+	(1, 'CMPE 102', 1, 'A+'),
+	(1, 'CS 146', 1, 'A'),
+	(1, 'ISE 130', 1, 'A'),
+	(1, 'CS 157A', 1, 'A'),
+	(1, 'CS 151', 1, 'A'),
+	(1, 'CMPE 131', 1, 'A-'),
+	(1, 'COMSC 076', 2, 'A'),
+	(1, 'COMSC 077', 2, 'A');
 	
 	
 INSERT INTO Projects VALUES	
-	('p001', 'GameTrees', 'https://github.com/Pikalot/GameTrees'),
+	('p001', 'GameTrees', 'https://github.com/KingSand08/GameTrees'),
 	('p002', 'EVMax', 'https://github.com/Pikalot/EVMax'),
 	('p003', 'Job Posts Site', 'https://github.com/Pikalot/CMPE-131-Job-Posts'),
 	('p004', 'Math Practice for Sora', 'https://github.com/Pikalot/SoraMathPratice');

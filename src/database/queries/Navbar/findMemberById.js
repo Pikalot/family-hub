@@ -12,6 +12,7 @@ export const findMemberById = async (mid) => {
     `;
     try {
         const result = await executeQuery(query, [mid]); 
+        console.log("query member:", result);
         if (!result.length) {
             throw new Error(`No member found with id ${mid}`);
         }

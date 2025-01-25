@@ -7,3 +7,11 @@ INSERT INTO Photos
 VALUES 
     (1, 'https://res.cloudinary.com/dqbzjuq9u/image/upload/v1737705960/crop-portrait_enhanced_qbrjpn.png'),
     (2, 'https://res.cloudinary.com/dqbzjuq9u/image/upload/v1737707459/Sora-removebg-preview_enhanced_j7tipm.png');
+
+UPDATE Members
+SET pid = 1
+WHERE mid = 1;
+    
+UPDATE Members
+SET pid = 2
+WHERE mid = 2;

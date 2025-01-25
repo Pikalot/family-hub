@@ -1,34 +1,81 @@
 "use client";
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import styles from './Components.module.css';
 import Image from 'next/image';
+import fadeInVariant from '@/utilities/fadeInVariant';
+import { useEffect } from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {
+//   faFacebookSquare,
+//   faLinkedin,
+//   faGithub,
+//   faTwitter,
+// } from "@fortawesome/free-brands-svg-icons";
+
 
 export default function Hero({member}) {
-  console.log('new member', member);
-  console.log('Photo name is', member.first_name);
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
+  // const socialLinks = [
+  //   { platform: "linkedin", url: "https://linkedin.com/in/Pikalot", color: "#0a66c2", icon: faLinkedin },
+  //   { platform: "github", url: "https://github.com/Pikalot", color: "#171515", icon: faGithub },
+  //   { platform: "twitter", url: null, color: "#1DA1F2", icon: faTwitter }, // Not available
+  // ];
+  
+  
 
   return (
     <div className={styles.hero}>
       <div className = {styles["hero-content"]}>
-        <h1>{member[0].first_name}</h1>
-        <p>A Web Designer</p>
-        <p>
-          Far far away, behind the word mountains, far from the countries
-          Vokalia and Consonantia, there live the blind texts.
-        </p>
+        <div className={styles["dialogue-box"]}>
+          <h2>Hi! You’ve found</h2>
+        </div>
+        <div className={styles["social-icon"]}>
+
+          <h1>{member[0].first_name} {member[0].last_name}
+            {/* {socialLinks.map(
+              (social) =>
+                social.url && ( // Only render if URL exists
+                  <a href={social.url} key={social.platform} target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon icon={social.icon} style={{ color: social.color }} />
+                  </a>
+                )
+            )} */}
+          </h1>
+        </div>
+
+        <p>{member[0].ocupation}</p>
+        <p>{member[0].description}</p>
         <div className={styles.buttons}>
-          <a href="#hire-me">Hire Me</a>
-          <a href="#portfolio">View Portfolio</a>
+          <a href="mailto:thepikalot@yahoo.com?subject=Hiring Inquiry&body=Hi, I think you might be interested in this role:">Hire Me</a>
+          <a href="#project">Projects</a>
         </div>
       </div>
-      <div className={styles["imageContainer"]}>
+
+      <motion.div
+       className={styles["imageContainer"]}
+       variants={fadeInVariant}
+       initial="hidden"
+       animate={control}      
+       ref={ref}>
         <Image
           src={member[0].photo}
-          alt="Keannu Ford"
+          alt={member[0].last_name}
           width={700}
           height={700}
           className={styles.profileImage}
         />
-      </div>
+      </motion.div>
     </div>
   );
 }
