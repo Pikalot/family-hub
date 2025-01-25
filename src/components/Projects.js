@@ -6,34 +6,6 @@ import { useInView } from "react-intersection-observer";
 import fadeInVariant from "../utilities/fadeInVariant";
 import { useEffect, useState } from "react";
 
-// const projects = [
-//   {
-//     title: "Project 1",
-//     description: "Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 1 Description of Project 20",
-//     image: "/images/portrait.JPG",
-//   },
-//   {
-//     title: "Project 2",
-//     description: "Description of Project 2",
-//     image: "/images/project2.jpg",
-//   },
-//   {
-//     title: "Project 3",
-//     description: "Description of Project 3",
-//     image: "/images/project3.jpg",
-//   },
-//   {
-//     title: "Project 4",
-//     description: "Description of Project 4",
-//     image: "/images/project4.jpg",
-//   },
-//   {
-//     title: "GameTrees",
-//     description: "Game Trees",
-//     image: "/images/projects/GameTree.png"
-//   }
-// ];
-
 export default function Project({projects}) {
   const control = useAnimation();
   const [ref, inView] = useInView();

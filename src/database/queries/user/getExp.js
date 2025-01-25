@@ -5,7 +5,8 @@ export const getExp = async(memberId) => {
         SELECT 
             E.*,
             W.from_date,
-            W.to_date
+            W.to_date,
+            W.title
         FROM works_at W
         LEFT JOIN Employers E
         ON E.eid = W.eid
