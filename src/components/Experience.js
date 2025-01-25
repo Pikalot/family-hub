@@ -15,11 +15,9 @@ export default function Experience({exp}) {
                     </li>
                 ))}
             </ul>
-
             
             <h1>Education</h1>
             <ul>
-                
                     <h2>School Name</h2>
                     <h3>Major</h3>
                     <li>from To</li>

@@ -54,6 +54,7 @@
   padding-top: 1rem; /* Equivalent to `py-4` (top and bottom padding 1rem) */
   padding-bottom: 1rem;
   max-height: 80px; /* Equivalent to `max-h-[80px]` */
+
 }
 
 .btn-container {
