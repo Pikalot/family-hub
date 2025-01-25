@@ -5,14 +5,6 @@ import styles from './Components.module.css';
 import Image from 'next/image';
 import fadeInVariant from '@/utilities/fadeInVariant';
 import { useEffect } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {
-//   faFacebookSquare,
-//   faLinkedin,
-//   faGithub,
-//   faTwitter,
-// } from "@fortawesome/free-brands-svg-icons";
-
 
 export default function Hero({member}) {
   const control = useAnimation();
@@ -26,14 +18,6 @@ export default function Hero({member}) {
     }
   }, [control, inView]);
 
-  // const socialLinks = [
-  //   { platform: "linkedin", url: "https://linkedin.com/in/Pikalot", color: "#0a66c2", icon: faLinkedin },
-  //   { platform: "github", url: "https://github.com/Pikalot", color: "#171515", icon: faGithub },
-  //   { platform: "twitter", url: null, color: "#1DA1F2", icon: faTwitter }, // Not available
-  // ];
-  
-  
-
   return (
     <div className={styles.hero}>
       <div className = {styles["hero-content"]}>
@@ -42,16 +26,7 @@ export default function Hero({member}) {
         </div>
         <div className={styles["social-icon"]}>
 
-          <h1>{member[0].first_name} {member[0].last_name}
-            {/* {socialLinks.map(
-              (social) =>
-                social.url && ( // Only render if URL exists
-                  <a href={social.url} key={social.platform} target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon icon={social.icon} style={{ color: social.color }} />
-                  </a>
-                )
-            )} */}
-          </h1>
+          <h1>{member[0].first_name} {member[0].last_name}</h1>
         </div>
 
         <p>{member[0].ocupation}</p>

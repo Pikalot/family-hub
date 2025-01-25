@@ -150,7 +150,7 @@
   background: #f9f9f9;
   color: #555;
   border-top: 1px solid #ddd;
-  height: clamp(5rem, 10vh, 8rem); 
+  height: clamp(5rem, 14vh, 12rem); 
 }
 
 .footer-container {
@@ -158,6 +158,11 @@
   display: flex;
   justify-content: space-between; 
   flex-wrap: wrap; /* Wrap items on smaller screens */
+}
+
+.footer-copyright {
+  padding: 1rem;
+  font-size: 16px;
 }
 
 .footer-link {
@@ -184,11 +189,6 @@
 }
 .social-icon a:hover {
   opacity: 0.60;
-}
-
-.footer-copyright {
-  padding: 1rem;
-  font-size: 16px;
 }
 
 /* Phone screen */

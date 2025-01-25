@@ -4,13 +4,20 @@ import Link from "next/link";
 import styles from "@/components/Components.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFacebookSquare,
+  faFacebook,
   faLinkedin,
   faGithub,
-  faXTwitter,
+  faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
-const Footer = async () => {
+const Footer = ({github, facebook, twitter, linkedin}) => {
+    const socialLinks = [
+    { platform: linkedin?.name || '', url: linkedin?.url || null, color: "#0a66c2", icon: faLinkedin },
+    { platform: github.name || '', url: github?.url || null, color: "#171515", icon: faGithub },
+    { platform: twitter?.name || '', url: twitter?.url || null, color: "#1DA1F2", icon: faTwitter },
+    { platform: facebook?.name || '', url: facebook?.url || null, color: "#1877F2", icon: faFacebook }
+  ];
+  
     // const session = await getServerSession(authOptions);
 
     return (
@@ -20,29 +27,28 @@ const Footer = async () => {
                     <Link href="/">
                         Home
                     </Link>
-                    <Link href="">
+                    <Link href="#content">
                         About Us
                     </Link>
-                    <Link href="">
+                    <Link href="mailto:thepikalot@yahoo.com?subject=Contact Inquiry&body=Hi Tuan-Anh,">
                         Contact Us
                     </Link>
                 </nav>
 
                 <div className={styles["social-icon"]}>
-                    <a href="https://linkedin.com/in/Pikalot">
-                        <FontAwesomeIcon icon={faLinkedin} />
-                    </a>
-
-                    <a href="https://github.com/Pikalot">
-                        <FontAwesomeIcon icon={faGithub} />
-                    </a>
+                    {socialLinks.map((social) =>
+                        social.url && ( // Only render if URL exists
+                        <a href={social.url} key={social.platform} target="_blank" rel="noopener noreferrer">
+                            <FontAwesomeIcon icon={social.icon} style={{ color: social.color }} />
+                        </a>
+                        )
+                    )}
                 </div>
             </div>
 
             <aside className={styles["footer-copyright"]}>
                 <p>Copyright © {new Date().getFullYear()} - All right reserved by Tuan-Anh Ho</p>
             </aside>
-            
         </footer>
     );
 }

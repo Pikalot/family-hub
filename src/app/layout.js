@@ -21,7 +21,7 @@ export default async function RootLayout({ children }) {
           <main>
             {children}
           </main>
-          <Footer />
+          {/* <Footer /> */}
         </WrappedSessionProvider>
       </body>
     </html>
