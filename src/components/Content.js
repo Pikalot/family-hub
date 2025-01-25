@@ -1,15 +1,13 @@
 "use client";
-
 import { useState } from "react";
 import styles from "./Content.module.css";
 import Skills from "./Skills";
 
-export default function Content({member}) {
+export default function Content({member, skills, exp}) {
   const [activeTab, setActiveTab] = useState("About Me");
-
   const tabContent = {
     "About Me": member[0].description,
-    Skills: <Skills />,
+    Skills: <Skills skills={skills} />,
     Experience: "This is the Experience section. Showcase your professional background.",
   };
 

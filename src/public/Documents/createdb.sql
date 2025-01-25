@@ -27,6 +27,7 @@ CREATE TABLE works_at ( -- 3
     eid INTEGER,
     from_date VARCHAR(20) NOT NULL,
     to_date VARCHAR(20),
+    title VARCHAR(255),
     PRIMARY KEY (mid, eid),
     FOREIGN KEY (mid) REFERENCES Members(mid)
         ON DELETE CASCADE
@@ -111,9 +112,11 @@ CREATE TABLE takes_course ( -- 8
 
 
 CREATE TABLE Projects ( -- 9
-    pid CHAR(4) PRIMARY KEY,
+    id CHAR(4) PRIMARY KEY,
     name VARCHAR(255),
-    repository VARCHAR(255) UNIQUE
+    repository VARCHAR(255) UNIQUE,
+    description TEXT,
+    pid BIGINT
 );
 
 
@@ -124,7 +127,7 @@ CREATE TABLE owns_project (     -- 10
     FOREIGN KEY (mid) REFERENCES Members(mid)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    FOREIGN KEY (pid) REFERENCES Projects(pid)
+    FOREIGN KEY (pid) REFERENCES Projects(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
@@ -188,12 +191,12 @@ CREATE TABLE has_skills (     -- 16
 
 -- POPULATE TEST DATABASE
 
-INSERT INTO Members(first_name, last_name, username, password, role, ocupation, description) VALUES	        -- 17
-	('John', 'Doe', 'admin1', 'Admin@123', 'admin', 'Software Engineering Student', 
+INSERT INTO Members(first_name, last_name, email, username, password, role, ocupation, description) VALUES	        -- 17
+	('Tuan-Anh', 'Ho', 'thepikalot@yahoo.com', 'admin1', 'Admin@123', 'admin', 'Software Engineering Student', 
         'Passionating about financial technology while exploring how machine learning can enhance security in digital transactions, he aims to develop software solutions for multi-platform transactions. He is an indoor enthusiast since he spends the second-largest amount of time on video games and resting. As a great fan of the RPG genre, Tuan-Anh has completed some Final Fantasy series and Xenogears over four times, spending 100+ hours on each run. His love for video games and anime has greatly influenced the ideas of his projects.'),
-	('Jane', 'Doe', 'user1', 'User@123', 'user','Student','I love Toca Boca');
+	('Jane', 'Doe', NULL, 'user1', 'User@123', 'user','Student','I love Toca Boca');
 
-INSERT INTO Skills VALUES
+INSERT INTO Skills VALUES   -- 18
     (1, 'Java'),
     (2, 'CSS'),
     (3, 'HTML'),
@@ -207,7 +210,7 @@ INSERT INTO Skills VALUES
     (11, 'IntelliJ'),
     (12, 'PyCharm');
 
-INSERT INTO SkillSet VALUES
+INSERT INTO has_skills VALUES -- 19
     (1, 1, 95),
     (1, 2, 80),
     (1, 3, 71),
@@ -216,16 +219,16 @@ INSERT INTO SkillSet VALUES
     (1, 8, 92),
     (1, 11, 95);
 
-INSERT INTO Employers(name, city, state, country) VALUES	-- 18
+INSERT INTO Employers(name, city, state, country) VALUES	-- 20
 	('Metropolitan Bank', 'San Jose', 'CA','USA'),
 	('Cathay Bank', 'San Jose', 'CA','USA'),
 	('San Jose State University', 'San Jose', 'CA','USA');
 	
 	
-INSERT INTO works_at VALUES	        -- 19
-	(1, 1, '10/2019', '12/2024'),
-	(1, 2, '1/2018', '9/2019'),
-	(1, 3, '5/2024', 'Current');
+INSERT INTO works_at VALUES	-- 19
+	(1, 3, '5/2024', 'Current', 'Intern'),
+	(1, 1, '10/2019', '2/2025', 'Branch Operations Officer'),
+	(1, 2, '1/2018', '9/2019', 'Relationship Banker');
 		
 	
 INSERT INTO Schools(name, city, state, country) VALUES	        -- 20
@@ -267,11 +270,11 @@ INSERT INTO takes_course VALUES
 	(1, 'COMSC 077', 2, 'A');
 	
 	
-INSERT INTO Projects VALUES	
-	('p001', 'GameTrees', 'https://github.com/KingSand08/GameTrees'),
-	('p002', 'EVMax', 'https://github.com/Pikalot/EVMax'),
-	('p003', 'Job Posts Site', 'https://github.com/Pikalot/CMPE-131-Job-Posts'),
-	('p004', 'Math Practice for Sora', 'https://github.com/Pikalot/SoraMathPratice');
+INSERT INTO Projects (id, name, repository, description) VALUES
+	('p001', 'GameTrees', 'https://github.com/Pikalot/GameTrees', 'A website that allows users to search the cheapest games from any registered store on the platform, write reviews, create a cross-store wishlist, import cross platform user stats, and more! Utilizes APIs and a MySQL DB to maintain platform data, and is modularized as to be easy to read and expandable.'),
+	('p002', 'EVMax', 'https://github.com/Pikalot/EVMax', NULL),
+	('p003', 'SJSU AI Research', NULL, NULL),
+	('p004', 'Math Practice for Sora', 'https://github.com/Pikalot/SoraMathPratice', 'This is a simple project to inspire a passion in Math for Sora.');
 	
 	
 INSERT INTO owns_project VALUES	
