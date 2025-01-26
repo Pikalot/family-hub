@@ -147,7 +147,7 @@
 .footer {
   text-align: center;
   padding: 2rem 20vw;
-  background: #f9f9f9;
+  background: #e5e6e8;
   color: #555;
   border-top: 1px solid #ddd;
   height: clamp(5rem, 14vh, 12rem); 
@@ -233,11 +233,10 @@
 }
 
 /* Tablet screen */
-@media (max-width: 768px) {
+@media (max-width: 1366px) and (orientation: landscape) {
   .container,
-  .content,
-  .footer {
-    padding: 1rem;
+  .content {
+    padding: 1vw;
   }
 
   .hero {
@@ -245,8 +244,19 @@
     padding-right: 1rem;
   }
 
-  .imageContainer,
-  .profileImage {
+  .imageContainer {
+    height: clamp(30rem, 60vh, 35rem);
+  }
+}
+
+@media (max-width: 1366px) and (orientation: portrait) {
+  .hero {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: clamp(35rem, 50dvh, 45rem); 
+  }
+
+  .imageContainer {
     display: none;
   }
 }

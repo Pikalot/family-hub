@@ -80,10 +80,16 @@
   }
 }
 
-  /* Phone screen */
-  @media (max-width: 768px) {
-    .content {
-      padding: 0.2rem; 
-    }
+@media (max-width: 1366px) and (orientation: landscape) {
+  .content {
+    padding-left: 10vw;
+    padding-right: 10vw;
   }
-  
+}
+
+/* Tablet screen */
+@media (max-width: 1366px) and (orientation: portrait) {
+  .content {
+    padding: 0.5rem;
+  }
+}

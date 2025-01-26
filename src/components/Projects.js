@@ -17,7 +17,7 @@ export default function Project({projects}) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsPhoneScreen(window.innerWidth <= 480); 
+      setIsPhoneScreen(window.innerWidth <= 1194); 
     };
 
     handleResize(); // Run on mount
