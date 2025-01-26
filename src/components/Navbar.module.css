@@ -10,7 +10,7 @@
     align-items: center;
     z-index: 10;
     color: white;
-    background: transparent; /* Transparent over hero */
+    background: transparent;
   }
 
 .navbar.shrink {
@@ -62,7 +62,6 @@
   padding-top: 1rem; /* Equivalent to `py-4` (top and bottom padding 1rem) */
   padding-bottom: 1rem;
   max-height: 80px; /* Equivalent to `max-h-[80px]` */
-
 }
 
 .btn-container {
@@ -72,7 +71,6 @@
   margin-left: 1rem;
 }
 
-/* styles.module.css */
 .nav-button {
   align-self: center; 
   display: none; 
@@ -155,10 +153,26 @@ box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Adds a pop-up shadow effect */
   .navbar {
     padding: 0.5rem; /* Minimal padding for mobile */
   }
-}
 
-@media (min-width: 430px) {
+  .navbar.shrink {
+    height: 30vw;
+  }
+
   .nav-button {
-    display: block; 
+    display: block;
+  }
+
+  .btn-container {
+    display: none;
+  }
+
+    /* Hamburger styling, dropdown Container */
+  .dropdown {
+    position: relative; 
+  }
+
+  /* Dropdown Content (Default Styles) */
+  .dropdown-content {
+    transform: translateX(-70%); 
   }
 }

@@ -3,8 +3,8 @@
 import { useSession } from "next-auth/react";
 import React , { useState } from "react";
 import NavButton from "@/ui/components/NavButton";
-import LoginButton from "@/ui/components/auth/LoginButton";
-import SignOutButton from "@/ui/components/auth/SignOutButton";
+// import LoginButton from "@/ui/components/auth/LoginButton";
+// import SignOutButton from "@/ui/components/auth/SignOutButton";
 import styles from "@/components/Navbar.module.css";
 
 export default function HamburgerMenu() {

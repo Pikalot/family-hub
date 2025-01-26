@@ -1,6 +1,6 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import WrappedSessionProvider from "@/auth/WrappedSessionProvider"
 import { findAllMembers } from "@/database/queries/Navbar/findAllMembers";
 
@@ -14,7 +14,7 @@ export default async function RootLayout({ children }) {
   const userList = await findAllMembers();
 
   return (
-    <html lang="en">
+    <html lang="en" data-lt-installed data-theme="dark">
       <body>
         <WrappedSessionProvider>
           <Navbar userList={userList}/>

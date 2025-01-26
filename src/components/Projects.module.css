@@ -24,7 +24,7 @@
 
 .project-block:hover {
   transform: translateY(-5px); /* Slight lift on hover */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); 
 }
 
 /* Image inside each block */
@@ -72,7 +72,7 @@
 
 .project-description {
   font-size: 0.875rem;
-  color: #555; /* Subtle text color */
+  color: #555; 
 }
 
 
@@ -104,12 +104,9 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+  
   .project-block {
-    display: flex; 
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center content */
     padding: 1rem; 
-    width: 100%; 
     max-height: 90vh;
   }
 
@@ -123,7 +120,7 @@
     position: static;
     width: 100%;
     height: auto;
-    max-height: 25vh; /* Limit the height initially */
+    max-height: 25vh; 
     overflow: hidden; /* Hide overflowing content */
     display: block;
     background: none;

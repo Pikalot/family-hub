@@ -198,20 +198,37 @@
   .footer {
     padding: 0.5rem; 
   }
-}
 
-/* Phone screen */
-@media (max-width: 480px) {
   .hero {
-    padding-left: 0.5rem; 
-    padding-right: 0.5rem;
+    padding-top: 25vw;
+    margin: 0;
+    justify-content: start;
+    height: fit-content;
   }
-}
 
-@media (max-width: 480px) {
-  .imageContainer,
-  .profileImage {
-    display: none;
+  body.dar-kmode .hero {
+    background: linear-gradient(180deg, #ffa07a, #000a4c);
+  }
+
+  .hero-content {
+    max-width: 100%;
+    transform: translateX(0px);
+  }
+  
+  .dialogue-box::after {
+    left: 70%; /* Center the arrow horizontally */
+  }
+    
+  .dialogue-box h2 {
+    color: #6b7280; 
+  }
+  
+  .hero p {
+    text-align: left;
+  }
+  
+  .hero .buttons {
+    align-self: center;
   }
 }
 
@@ -222,16 +239,12 @@
   .footer {
     padding: 1rem;
   }
-}
 
-@media (max-width: 768px) {
   .hero {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-}
 
-@media (max-width: 768px) {
   .imageContainer,
   .profileImage {
     display: none;

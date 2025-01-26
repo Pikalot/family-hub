@@ -10,17 +10,31 @@ export default function Project({projects}) {
   const control = useAnimation();
   const [ref, inView] = useInView();
   const [expandedIndex, setExpandedIndex] = useState(null);
+  const [isPhoneScreen, setIsPhoneScreen] = useState(false);
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   useEffect(() => {
-    if (inView) {
+    const handleResize = () => {
+      setIsPhoneScreen(window.innerWidth <= 480); 
+    };
+
+    handleResize(); // Run on mount
+    window.addEventListener("resize", handleResize); // Update on resize
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+ 
+  useEffect(() => {
+    if (isPhoneScreen) {
+      control.start("visible"); // Skip animation for phone screens
+    } else if (inView) {
       control.start("visible");
     } else {
       control.start("hidden");
     }
-  }, [control, inView]);
+  }, [control, inView, isPhoneScreen]);
 
   return (
     <section id="project" className={styles["project"]}>

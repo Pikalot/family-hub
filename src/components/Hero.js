@@ -24,11 +24,7 @@ export default function Hero({member, resume}) {
         <div className={styles["dialogue-box"]}>
           <h2>Hi! You’ve found</h2>
         </div>
-        <div className={styles["social-icon"]}>
-
-          <h1>{member[0].first_name} {member[0].last_name}</h1>
-        </div>
-
+        <h1>{member[0].first_name} {member[0].last_name}</h1>
         <p>{member[0].ocupation}</p>
         <p>{member[0].description}</p>
         <div className={styles.buttons}>
