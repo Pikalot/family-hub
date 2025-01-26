@@ -19,7 +19,28 @@ export const getProjects = async (memberId) => {
         }
         return result; 
     } catch (error) {
-        console.error("Error in getSkills:", error.message, error);
+        console.error("Error in getProjects:", error.message, error);
+        throw error;
+    }
+}
+
+export const getResumes = async(memberId) => {
+    const query = `
+        SELECT R.* 
+        FROM Resumes R
+        WHERE R.mid = ?
+        ORDER BY R.date_created DESC;
+    `;
+
+    try {
+        const result = await executeQuery(query, [memberId]);
+        if (!result.length) {
+            return null;
+        }
+        return result;
+    }
+    catch (error) {
+        console.error("Error in getResumes:", error.message, error);
         throw error;
     }
 }

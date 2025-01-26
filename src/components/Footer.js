@@ -1,5 +1,3 @@
-// import { authOptions } from "@/nextauth/NextAuthOptions";
-// import { getServerSession } from "next-auth";
 import Link from "next/link";
 import styles from "@/components/Components.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +8,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
-const Footer = ({github, facebook, twitter, linkedin}) => {
+const Footer = ({member, github, facebook, twitter, linkedin}) => {
     const socialLinks = [
     { platform: linkedin?.name || '', url: linkedin?.url || null, color: "#0a66c2", icon: faLinkedin },
     { platform: github.name || '', url: github?.url || null, color: "#171515", icon: faGithub },
@@ -18,8 +16,6 @@ const Footer = ({github, facebook, twitter, linkedin}) => {
     { platform: facebook?.name || '', url: facebook?.url || null, color: "#1877F2", icon: faFacebook }
   ];
   
-    // const session = await getServerSession(authOptions);
-
     return (
         <footer className={styles.footer}>
             <div className={styles["footer-container"]}>
@@ -30,7 +26,7 @@ const Footer = ({github, facebook, twitter, linkedin}) => {
                     <Link href="#content">
                         About Us
                     </Link>
-                    <Link href="mailto:thepikalot@yahoo.com?subject=Contact Inquiry&body=Hi Tuan-Anh,">
+                    <Link href={`mailto:${member.email}?subject=Contact Inquiry&body=Hi Tuan-Anh,`}>
                         Contact Us
                     </Link>
                 </nav>

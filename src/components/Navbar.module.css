@@ -1,6 +1,6 @@
 /* Navbar */
 .navbar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -12,6 +12,14 @@
     color: white;
     background: transparent; /* Transparent over hero */
   }
+
+.navbar.shrink {
+  padding: 0.8rem;
+  background-color: gray;
+  opacity: 0.9;
+  height: 10rem;
+  backdrop-filter: blur(5px); 
+}
   
 .navbar a {
   color: white;

@@ -51,7 +51,7 @@ export default function HamburgerMenu() {
                 tabIndex={0}
                 className={`${styles["dropdown-content"]} ${isOpen ? "block" : "hidden"}`}
             >
-                {session && session.user ? (
+                {/* {session && session.user ? (
                     <>
                         <li>
                             <SignOutButton className="btn btn-ghost w-full text-center text-[1em]" />
@@ -64,14 +64,18 @@ export default function HamburgerMenu() {
                             <LoginButton className="btn btn-ghost w-full text-center text-[1em]" />
                         </li>
                         <hr className="opacity-25 my-2 border-base-content" />
-                        {/* <li>
+                        <li>
                             <SignUpButton className="btn btn-ghost w-full text-center text-[1em]" />
-                        </li> */}
-                        {/* <hr className="opacity-25 my-2 border-base-content" /> */}
+                        </li>
+                        <hr className="opacity-25 my-2 border-base-content" />
                     </>
-                )}
+                )} */}
                 <li>
-                    <NavButton page="Feeds" route="/" className={styles["nav-button"]} />
+                    <NavButton page="Introduction" route="#content" className={styles["nav-button"]} />
+                </li>
+                <hr className="opacity-25 my-2 border-base-content" />
+                <li>
+                    <NavButton page="Projects" route="#content" className={styles["nav-button"]} />
                 </li>
                 <hr className="opacity-25 my-2 border-base-content" />
                 {session && (

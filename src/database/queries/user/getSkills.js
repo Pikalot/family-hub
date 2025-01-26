@@ -8,7 +8,8 @@ export const getSkills = async (memberId) => {
         FROM has_skills H
         LEFT JOIN Skills S
         ON H.sid = S.sid
-        WHERE H.mid = ?;
+        WHERE H.mid = ?
+        ORDER BY proficiency DESC;
     `;
     try {
         const result = await executeQuery(query, [memberId]); 

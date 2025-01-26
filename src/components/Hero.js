@@ -6,7 +6,7 @@ import Image from 'next/image';
 import fadeInVariant from '@/utilities/fadeInVariant';
 import { useEffect } from 'react';
 
-export default function Hero({member}) {
+export default function Hero({member, resume}) {
   const control = useAnimation();
   const [ref, inView] = useInView();
 
@@ -32,7 +32,12 @@ export default function Hero({member}) {
         <p>{member[0].ocupation}</p>
         <p>{member[0].description}</p>
         <div className={styles.buttons}>
-          <a href="mailto:thepikalot@yahoo.com?subject=Hiring Inquiry&body=Hi, I think you might be interested in this role:">Hire Me</a>
+          {resume && (
+            <a href={resume.url}>Resume</a>
+          )}
+          {member[0].email && 
+            (<a href={`mailto:${member[0]?.email}?subject=Hiring Inquiry&body=Hi, I think you might be interested in this role:`}>Hire Me</a>)
+          }
           <a href="#project">Projects</a>
         </div>
       </div>

@@ -1,23 +1,31 @@
 "use client";
 
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import styles from "./Navbar.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
 import LogoIcon from '@/public/icons/Logo.png';
 import NavButton from "@/ui/components/NavButton";
 import HamburgerMenu from "./HamburgerMenu";
-import Portfolio from "./Portfolio";
+// import Portfolio from "./Portfolio";
 
 export default function Navbar({ userList }) {
     const [selectedMember, setSelectedMember] = useState(userList[0]);
+    const [isShrink, setIsShrink] = useState(false);
+    
+    // const handleSelectMember = (member) => {
+    //     setSelectedMember(member);
+    // }
 
-    const handleSelectMember = (member) => {
-        setSelectedMember(member);
-    }
+    useEffect(() => {
+        if (typeof window !== undefined) {
+            window.addEventListener("scroll", () =>
+                setIsShrink(window.scrollY > 100));
+        }
+    }, [])
 
     return (
-        <div className={styles["navbar"]}>
+        <header className={`${styles["navbar"]} ${isShrink ? styles["shrink"] : ''}`}>
             <div>
                 {/* Top Header Section */}
                 <div className={styles["navbar"]}>
@@ -53,41 +61,6 @@ export default function Navbar({ userList }) {
                             <NavButton page="Home" route="/" className={styles["nav-button"]} />
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
-                            <NavButton page="Feeds" route="" className={styles["nav-button"]} />
-                            <Portfolio members={userList} onSelectMember={handleSelectMember} />
-                            {/* {session?.user.role === "customer" && (
-                                <NavButton page="Wishlist" route={`/users/${session?.user?.username}/wishlist`} className='flex-shrink-0 hidden min-[830px]:block text-[1em]' />
-                            )}
-                            {session?.user.role === "admin" && (
-                                <>
-                                    <NavButton page="Admin User View" route="/admin/user-view" className='flex-shrink-0 hidden min-[780px]:block text-[1em]' />
-                                </>
-                            )}
-                            {session?.user.role === "manager" && (
-                                <NavButton page="Inventory" route={`/users/${session?.user?.username}/inventory`} className='flex-shrink-0 hidden min-[830px]:block text-[1em]' />
-                            )} */}
-
-                            {/* Conditional Rendering based on session */}
-                            {/* {session?.user ? (
-                                <>
-                                    <Link href={"/account-settings"} className='cursor-pointer'>
-                                        <ProfileButton
-                                            avatarClassName="ring-offset-2 ring-offset-slate-500 dark:ring-offset-slate-800"
-                                            className="hidden min-[330px]:flex h-[80px]"
-                                            username={session.user.username}
-                                            firstname={session.user.firstname}
-                                            lastname={session.user.lastname}
-                                            image={profileImage ?? undefined}
-                                        />
-                                    </Link>
-                                    <SignOutButton className='flex-shrink-0 hidden min-[1200px]:block px-3 py-2 text-[1em]' />
-                                </>
-                            ) : (
-                                <>
-                                    <LoginButton className='flex-shrink-0 text-[1em]' />
-                                    <SignUpButton className='flex-shrink-0 hidden min-[750px]:block text-[1em]' />
-                                </>
-                            )} */}
                         </div>
 
                         {/* Hamburger Menu Button (Client-Side Dropdown) */}
@@ -101,6 +74,6 @@ export default function Navbar({ userList }) {
                     <SearchBar actionUrl={""} />
                 </div> */}
             </div>
-        </div >
+        </header >
     );
 }

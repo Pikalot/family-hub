@@ -1,13 +1,12 @@
 import styles from "./Experience.module.css";
 
-export default function Experience({exp}) {
-    console.log('exp is:', exp);
+export default function Experience({exp, education}) {
     return (
         <div className={styles["experience"]}>
             <h1>Experience</h1>
             <ul>
-                {exp && exp.map((job) => (
-                    <li key={job.id}>
+                {exp && exp.map((job, index) => (
+                    <li key={index}>
                         <h2>{job.title}</h2>
                         <h3>{job.name}</h3>
                         <p>{job.from_date} {job.to_date}</p>
@@ -18,19 +17,15 @@ export default function Experience({exp}) {
             
             <h1>Education</h1>
             <ul>
-                    <h2>School Name</h2>
-                    <h3>Major</h3>
-                    <li>from To</li>
-                    <li>GPA</li>
-                    <li>address</li>
-                
-                <li>
-                    <h2>School Name</h2>
-                    <h3>Major</h3>
-                    <p>from To</p>
-                    <p>Grades:</p>
-                    <p>address</p>
-                </li>
+                {education && education.map((school, index) => (
+                    <li key={index}>
+                    <h2>{school.name}</h2>
+                    <h3>{school?.degree + ", "}{school.major}</h3>
+                    <p>Graduation Year (Completed/Expected): {school?.grad_year}</p>
+                    <p>Grades: {school?.gpa}</p>
+                    <p>{school?.city + ', '}{school?.state + ', '}{school?.country}</p>
+                    </li>
+                ))}
             </ul>
         </div>
     )

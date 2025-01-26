@@ -4,12 +4,12 @@ import styles from "./Content.module.css";
 import Skills from "./Skills";
 import Experience from "./Experience";
 
-export default function Content({member, skills, exp}) {
+export default function Content({member, skills, exp, education}) {
   const [activeTab, setActiveTab] = useState("About Me");
   const tabContent = {
     "About Me": member[0].description,
     Skills: <Skills skills={skills} />,
-    Experience: <Experience exp={exp}/>,
+    Experience: <Experience exp={exp} education={education}/>,
   };
 
   return (
