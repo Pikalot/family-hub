@@ -61,9 +61,8 @@ export default function Navbar({ userList }) {
                             <NavButton page="Home" route="/" className={styles["nav-button"]} />
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
-                            <Selecter members={userList} onSelectMember={handleSelectMember} />
                         </div>
-
+                        <Selecter members={userList} onSelectMember={handleSelectMember} />
                         {/* Hamburger Menu Button (Client-Side Dropdown) */}
                         <HamburgerMenu />
                     </div>
