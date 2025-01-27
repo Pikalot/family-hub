@@ -22,3 +22,27 @@ export const findMemberById = async (mid) => {
         throw error;
     }
 };
+
+export const findMemberByUsername = async (username) => {
+    const query = `
+        SELECT 
+            M.*,
+            P.source AS photo
+        FROM Members M
+        LEFT JOIN Photos P
+        ON P.pid = M.pid
+        WHERE username = ?;
+    `;
+    try {
+        const result = await executeQuery(query, [username]); 
+        if (!result.length) {
+            throw new Error(`No member found with username ${username}`);
+        }
+
+        return result; // Return the first member
+    } catch (error) {
+        console.error("Error in findMemberByUsername:", error.message, error);
+        throw error;
+    }
+};
+

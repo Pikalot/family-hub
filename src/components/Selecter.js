@@ -4,7 +4,7 @@ import React , { useState } from "react";
 import NavButton from "@/ui/components/NavButton";
 import styles from "@/components/Navbar.module.css";
 
-export default function Portfolio({members, onSelectMember}) {
+export default function Selecter({members, onSelectMember}) {
     const [ isOpen, setIsOpen ] = useState(false);
 
     const toggleDropdown = () => {
@@ -26,7 +26,7 @@ export default function Portfolio({members, onSelectMember}) {
                 className="btn btn-ghost mx-5"
                 onClick={toggleDropdown}
                 aria-expanded={isOpen}
-            > Portfolio
+            > Member
             </button>
             
             <ul
@@ -38,7 +38,7 @@ export default function Portfolio({members, onSelectMember}) {
                         <NavButton 
                             page={member.first_name} // Dynamically display member's first name
                             className={styles["nav-button"]}
-                            route="/" 
+                            route={`/${member.username}`} 
                             onClick={() => onSelectMember(member)} // Pass selected member to Navbar 
                         />
                         <hr className="opacity-25 my-2 border-base-content" />

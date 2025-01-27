@@ -4,7 +4,7 @@ import "./globals.css"
 export default function App() {
   return (
     <div>
-      <Home/>
+      <Home username="admin1"/>
     </div>
   ); 
 }

@@ -135,6 +135,7 @@
   display: flex;
   justify-content: center;
   align-self: flex-end; /* Align the image at the bottom */
+  height: clamp(30rem, 60vh, 35rem);
 }
 
 .hero .profileImage {

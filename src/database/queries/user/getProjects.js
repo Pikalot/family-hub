@@ -10,7 +10,9 @@ export const getProjects = async (memberId) => {
         ON O.pid = P.id
         LEFT JOIN Photos PH
         ON P.pid = PH.pid
-        WHERE O.mid = ?;
+        WHERE O.mid = ?
+        ORDER BY O.owned_date
+        LIMIT 4;
     `;
     try {
         const result = await executeQuery(query, [memberId]); 

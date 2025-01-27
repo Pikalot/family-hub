@@ -7,15 +7,15 @@ import Image from 'next/image';
 import LogoIcon from '@/public/icons/Logo.png';
 import NavButton from "@/ui/components/NavButton";
 import HamburgerMenu from "./HamburgerMenu";
-// import Portfolio from "./Portfolio";
+import Selecter from './Selecter';
 
 export default function Navbar({ userList }) {
     const [selectedMember, setSelectedMember] = useState(userList[0]);
     const [isShrink, setIsShrink] = useState(false);
     
-    // const handleSelectMember = (member) => {
-    //     setSelectedMember(member);
-    // }
+    const handleSelectMember = (member) => {
+        setSelectedMember(member);
+    }
 
     useEffect(() => {
         if (typeof window !== undefined) {
@@ -61,6 +61,7 @@ export default function Navbar({ userList }) {
                             <NavButton page="Home" route="/" className={styles["nav-button"]} />
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
+                            <Selecter members={userList} onSelectMember={handleSelectMember} />
                         </div>
 
                         {/* Hamburger Menu Button (Client-Side Dropdown) */}

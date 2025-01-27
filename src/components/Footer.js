@@ -11,7 +11,7 @@ import {
 const Footer = ({member, github, facebook, twitter, linkedin}) => {
     const socialLinks = [
     { platform: linkedin?.name || '', url: linkedin?.url || null, color: "#0a66c2", icon: faLinkedin },
-    { platform: github.name || '', url: github?.url || null, color: "#171515", icon: faGithub },
+    { platform: github?.name || '', url: github?.url || null, color: "#171515", icon: faGithub },
     { platform: twitter?.name || '', url: twitter?.url || null, color: "#1DA1F2", icon: faTwitter },
     { platform: facebook?.name || '', url: facebook?.url || null, color: "#1877F2", icon: faFacebook }
   ];
@@ -26,7 +26,7 @@ const Footer = ({member, github, facebook, twitter, linkedin}) => {
                     <Link href="#content">
                         About Us
                     </Link>
-                    <Link href={`mailto:${member.email}?subject=Contact Inquiry&body=Hi Tuan-Anh,`}>
+                    <Link href={member?.email ? `mailto:${member.email}?subject=Contact Inquiry&body=Hi Tuan-Anh, `: ""}>
                         Contact Us
                     </Link>
                 </nav>
