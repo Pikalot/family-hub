@@ -231,6 +231,10 @@
   .hero .buttons {
     align-self: center;
   }
+
+  .profileImage {
+    display: none;
+  }
 }
 
 /* Tablet screen */
