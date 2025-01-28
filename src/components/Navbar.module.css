@@ -11,6 +11,7 @@
     z-index: 10;
     color: white;
     background: transparent;
+    visibility: visible;
   }
 
 .navbar.shrink {
@@ -19,6 +20,11 @@
   opacity: 0.9;
   height: 10rem;
   backdrop-filter: blur(5px); 
+}
+
+.navbar.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
   
 .navbar a {

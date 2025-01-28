@@ -12,20 +12,44 @@ import Selecter from './Selecter';
 export default function Navbar({ userList }) {
     const [selectedMember, setSelectedMember] = useState(userList[0]);
     const [isShrink, setIsShrink] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const hideTimeoutRef = useState(null);
     
     const handleSelectMember = (member) => {
         setSelectedMember(member);
     }
 
+    const resetVisibility = () => {
+        setIsVisible(true);
+        if (hideTimeoutRef.current) {
+            clearTimeout(hideTimeoutRef.current);
+        }
+        hideTimeoutRef.current = setTimeout(() => {
+            setIsVisible(false);
+        }, 3000); 
+    };
+
     useEffect(() => {
         if (typeof window !== undefined) {
-            window.addEventListener("scroll", () =>
-                setIsShrink(window.scrollY > 100));
+            const handleScroll = () => {
+                setIsShrink(window.scrollY > 100);
+                resetVisibility();
+            };
+
+            window.addEventListener("scroll", handleScroll);
+            return () => {
+                window.removeEventListener("scroll", handleScroll);
+                clearTimeout(hideTimeoutRef.current);
+            };
         }
-    }, [])
+    });
 
     return (
-        <header className={`${styles["navbar"]} ${isShrink ? styles["shrink"] : ''}`}>
+        <header
+        className={`${styles["navbar"]} ${isShrink ? styles["shrink"] : ''} ${!isVisible ? styles["hidden"] : ''}`}
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => resetVisibility()}
+        >
             <div>
                 {/* Top Header Section */}
                 <div className={styles["navbar"]}>

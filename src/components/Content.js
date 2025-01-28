@@ -9,7 +9,7 @@ export default function Content({member, skills, exp, education}) {
   const tabContent = {
     "About Me": member[0].description,
     Skills: <Skills skills={skills} />,
-    Experience: <Experience exp={exp} education={education}/>,
+    Experience: <Experience member={member} exp={exp} education={education}/>,
   };
 
   return (
