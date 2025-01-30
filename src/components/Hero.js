@@ -38,20 +38,22 @@ export default function Hero({member, resume}) {
         </div>
       </div>
 
-      <motion.div
-       className={styles["imageContainer"]}
-       variants={fadeInVariant}
-       initial="hidden"
-       animate={control}      
-       ref={ref}>
-        <Image
-          src={member[0].photo}
-          alt={member[0].last_name}
-          width={700}
-          height={700}
-          className={styles.profileImage}
-        />
-      </motion.div>
+      {member[0].photo && (
+        <motion.div
+          className={styles["imageContainer"]}
+          variants={fadeInVariant}
+          initial="hidden"
+          animate={control}      
+          ref={ref}>
+          <Image
+            src={member[0].photo}
+            alt={member[0].last_name}
+            width={700}
+            height={700}
+            className={styles.profileImage}
+          />
+        </motion.div>
+      )}
     </div>
   );
 }

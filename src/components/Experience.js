@@ -32,7 +32,7 @@ export default function Experience({member, exp, education}) {
                         `Graduation Year (Completed/Expected): ${school?.grad_year}`
                     ) : (
                         `${member[0].first_name}’s journey is just beginning—excited to see what’s next`
-                    )};
+                    )}
                     </p>
                     <p>{school?.gpa && (`Grades: ${school?.gpa}`)}</p>
                     <p>{school?.city ? school?.city + ', ' : ""}
