@@ -55,7 +55,7 @@ export default function Navbar({ userList }) {
                 <div className={styles["navbar"]}>
                     {/* Logo */}
                     <div>
-                        <Link href='/'>
+                        <Link href='#Hero' onSelectMember="admin1">
                             <div className={styles["logo"]}>
                                 <Image
                                     src={LogoIcon}
@@ -82,7 +82,7 @@ export default function Navbar({ userList }) {
                     <div className={styles["btn-panel"]}>
                         {/* Desktop Navigation */}
                         <div className={styles["btn-container"]}>
-                            <NavButton page="Home" route="/" className={styles["nav-button"]} />
+                            <NavButton page="Home" route="/" className={styles["nav-button"]} onClick={() => setSelectedMember(userList[0])} />
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
                         </div>
