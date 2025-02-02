@@ -41,7 +41,7 @@
 }
 
 /* Success text */
-.success-message p {
+.success-msg p {
     color: white; 
     font-size: 16px;
     margin-right: 10px; 
@@ -128,5 +128,12 @@
     .button-container {
         flex-direction: row; 
         gap: 16px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .login {
+        margin-right: auto;
     }
 }

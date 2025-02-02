@@ -55,7 +55,10 @@ export default function HamburgerMenu() {
                 {session && session.user ? (
                     <>
                         <li>
-                            <NavButton page="Logout" route="" className={styles["nav-button"]} 
+                            <NavButton 
+                                page="Logout" 
+                                route="" 
+                                className={styles["nav-button"]} 
                                 onClick={() => signOut({ callbackUrl: '/login' })}
                             />
                         </li>
@@ -74,14 +77,6 @@ export default function HamburgerMenu() {
                     </>
                 )}
 
-                <li>
-                    <NavButton page="Introduction" route="#content" className={styles["nav-button"]} />
-                </li>
-                <hr className="opacity-25 my-2 border-base-content" />
-                <li>
-                    <NavButton page="Projects" route="#content" className={styles["nav-button"]} />
-                </li>
-                <hr className="opacity-25 my-2 border-base-content" />
                 {session && (
                     <>
                         <li>
@@ -90,6 +85,16 @@ export default function HamburgerMenu() {
                         <hr className="opacity-25 my-2 border-base-content" />
                     </>
                 )}
+
+                <li>
+                    <NavButton page="Introduction" route="#content" className={styles["nav-button"]} />
+                </li>
+                <hr className="opacity-25 my-2 border-base-content" />
+                <li>
+                    <NavButton page="Projects" route="#content" className={styles["nav-button"]} />
+                </li>
+                <hr className="opacity-25 my-2 border-base-content" />
+                
                 {/* {session?.user?.role === "customer" && (
                     <>
                         <li>

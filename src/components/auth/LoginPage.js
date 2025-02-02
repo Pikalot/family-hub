@@ -61,9 +61,9 @@ const Signin = (props) => {
 
             {/* Success Message */}
             {successMsg ? (
-                <div className="success-msg">
+                <div className={styles["success-msg"]}>
                     <p id="success-text">{successMsg}</p>
-                    <span className="loading-spinner"/>
+                    <span className={styles["loading-spinner"]} />
                 </div>
             ) : null}
 

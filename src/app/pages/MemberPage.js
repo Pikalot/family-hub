@@ -24,9 +24,9 @@ export default function MemberPage({ members }) {
                         <th>Select</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>Date of Birth</th>
+                        <th className={styles["invisible-column"]}>Email</th>
+                        <th className={styles["invisible-column"]}>Username</th>
+                        <th className={styles["invisible-column"]}>Date of Birth</th>
                         <th>Role</th>
                     </tr>
                 </thead>
@@ -42,9 +42,9 @@ export default function MemberPage({ members }) {
                             </td>
                             <td>{member.first_name}</td>
                             <td>{member.last_name}</td>
-                            <td>{member.email}</td>
-                            <td>{member.username}</td>
-                            <td>{member.dob ? new Date(member.dob).toLocaleDateString() : ""}</td>
+                            <td className={styles["invisible-column"]}>{member.email}</td>
+                            <td className={styles["invisible-column"]}>{member.username}</td>
+                            <td className={styles["invisible-column"]}>{member.dob ? new Date(member.dob).toLocaleDateString() : ""}</td>
                             <td>{member.role}</td>
                         </tr>
                     ))}
