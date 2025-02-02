@@ -14,11 +14,11 @@ export default async function ViewPage({params}) {
     const facebook = await getSocialMedia(userId, 'Facebook');
     const twitter = await getSocialMedia(userId, 'Twitter');
     const linkedin = await getSocialMedia(userId, 'LinkedIn');
-    // const members = await findAllMembers();
+    const members = await findAllMembers();
 
     return (
         <div>
-            {/* <MemberPage members={members} /> */}
+            <MemberPage members={members} />
             <Footer 
                       member={member[0]} 
                       github={github? github[0] : ''} 
