@@ -14,6 +14,10 @@
   position: relative;
 }
 
+body.dark-mode .hero {
+  background: linear-gradient(180deg, #ffa07a, #000a4c);
+}
+
 .hero-content {
   display: flex;
   flex-direction: column;
@@ -192,6 +196,19 @@
   opacity: 0.60;
 }
 
+.signin {
+  background: url('./Photo/Love.png') no-repeat center center;
+  background-size: contain; /* Shrinks image to fit within screen */
+  background-position: left;
+  background-repeat: no-repeat;
+  height: 100vh; 
+  width: 100vw; 
+  position: fixed; 
+  top: 0;
+  left: 0;
+}
+
+
 /* Phone screen */
 @media (max-width: 480px) {
   .container,
@@ -205,10 +222,6 @@
     margin: 0;
     justify-content: start;
     height: fit-content;
-  }
-
-  body.dar-kmode .hero {
-    background: linear-gradient(180deg, #ffa07a, #000a4c);
   }
 
   .hero-content {

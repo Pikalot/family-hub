@@ -53,7 +53,6 @@ export const authOptions = {
             email: user[0].email,
             first_name: user[0].first_name,
             last_name: user[0].last_name,
-            dob: user[0].dob,
             role: user[0].role,
           };
         } else {
@@ -64,25 +63,30 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token, user, trigger, session }) {
-      if (trigger === "update" && session?.user) {
-        // Manually update token fields during session updates
-        token.username = session.user.username;
-        token.email = session.user.email;
-        token.first_name = session.user.first_name;
-        token.last_name = session.user.last_name;
+      if (user) { // Runs on first login
+          token = {
+              mid: user.mid,
+              username: user.username,
+              email: user.email,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              role: user.role
+          };
       }
-
-      if (user) {
-        // On login, set the token fields
-        token.mid = user.mid;
-        token.username = user.username;
-        token.email = user.email;
-        token.first_name = user.first_name;
-        token.last_name = user.last_name;
-        token.role = user.role;
+  
+      if (trigger === "update" && session?.user) { // Runs when session updates
+          token = {
+              mid: session.user.mid,
+              username: session.user.username,
+              email: session.user.email,
+              first_name: session.user.first_name,
+              last_name: session.user.last_name,
+              role: session.user.role
+          };
       }
-      return token;
-    },
+  
+      return token; // Return the updated JWT
+  },
     async session({ session, token }) {
       // Map token fields to the session object
       session.user = {
@@ -112,7 +116,7 @@ export const authOptions = {
           user.mid = existingUser[0].mid;
           user.username = existingUser[0].username;
           user.email = existingUser[0].email;
-          user.firs_tname = existingUser[0].first_name;
+          user.first_name = existingUser[0].first_name;
           user.last_name = existingUser[0].last_name;
           user.role = existingUser[0].role;
           return true;

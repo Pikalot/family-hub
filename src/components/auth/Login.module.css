@@ -1,0 +1,132 @@
+.login {
+    max-width: 640px;  
+    margin-left: auto;  
+    margin-right: 1.5rem;
+    padding-top: 1.5rem;  
+    padding-bottom: 1.5rem;  
+    padding-top: 10rem;
+    background: gray;
+    height: 100dvh;
+    opacity: 0.8;
+}
+
+.login h1 {
+    color: white; 
+    text-align: center;
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    border-radius: 0.375rem; 
+}
+
+.login h2 {
+    color: white; 
+    text-align: center;
+    font-size: 1.4rem; 
+    font-weight: bold;
+    font-style: italic;
+    border-radius: 0.375rem; 
+}
+
+/* Success message container */
+.success-msg {
+    display: flex;
+    align-items: center;  
+    justify-content: center; 
+    background-color: #16a34a; 
+    border-radius: 8px; 
+    padding: 10px 16px; 
+    opacity: 0.75; 
+    margin-top: 10rem; 
+    width: 100%;
+}
+
+/* Success text */
+.success-message p {
+    color: white; 
+    font-size: 16px;
+    margin-right: 10px; 
+}
+
+.error-msg {
+    background-color: #dc2626; 
+    color: white; 
+    text-align: center;
+    border-radius: 8px;
+    padding: 8px 16px; 
+    margin-top: 16px;
+}
+
+
+/* Loading spinner */
+.loading-spinner {
+    width: 16px; 
+    height: 16px;
+    border: 2px solid white; 
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Loading animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.login form {
+    padding: 8px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+}
+
+.field {
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+}
+
+.field label {
+    font-size: 1rem; 
+    font-weight: 500;
+    color: white;
+}
+
+.input-container {
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    width: 100%; 
+    background-color: #e2e8f0; 
+    border-radius: 8px; 
+    padding: 4px; 
+}
+
+.input-container input {
+    background-color: transparent; 
+    color: black; 
+    padding: 8px; 
+    width: 100%; 
+    outline: none; 
+}
+
+/* Placeholder Text */
+.input-container input::placeholder {
+    color: #4b5563; 
+}
+
+.button-container {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    gap: 8px; 
+    margin-top: 12px; 
+}
+
+/* Responsive: Change layout on small screens (sm) */
+@media (min-width: 640px) { 
+    .button-container {
+        flex-direction: row; 
+        gap: 16px;
+    }
+}

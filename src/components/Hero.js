@@ -19,7 +19,7 @@ export default function Hero({member, resume}) {
   }, [control, inView]);
 
   return (
-    <div className={styles.hero}>
+    <div id="hero" className={styles.hero}>
       <div className = {styles["hero-content"]}>
         <div className={styles["dialogue-box"]}>
           <h2>Hi! You’ve found</h2>

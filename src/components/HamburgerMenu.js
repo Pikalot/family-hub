@@ -2,10 +2,11 @@
 
 import { useSession } from "next-auth/react";
 import React , { useState } from "react";
-import NavButton from "@/ui/components/NavButton";
+import NavButton from "@/ui/components/buttons/NavButton";
 // import LoginButton from "@/ui/components/auth/LoginButton";
 // import SignOutButton from "@/ui/components/auth/SignOutButton";
 import styles from "@/components/Navbar.module.css";
+import { signOut } from "next-auth/react";
 
 export default function HamburgerMenu() {
     const { data: session } = useSession();
@@ -51,25 +52,28 @@ export default function HamburgerMenu() {
                 tabIndex={0}
                 className={`${styles["dropdown-content"]} ${isOpen ? "block" : "hidden"}`}
             >
-                {/* {session && session.user ? (
+                {session && session.user ? (
                     <>
                         <li>
-                            <SignOutButton className="btn btn-ghost w-full text-center text-[1em]" />
+                            <NavButton page="Logout" route="" className={styles["nav-button"]} 
+                                onClick={() => signOut({ callbackUrl: '/login' })}
+                            />
                         </li>
                         <hr className="opacity-25 my-2 border-base-content" />
                     </>
                 ) : (
                     <>
                         <li>
-                            <LoginButton className="btn btn-ghost w-full text-center text-[1em]" />
+                            <NavButton page="Login" route="/login" className={styles["nav-button"]} />
                         </li>
                         <hr className="opacity-25 my-2 border-base-content" />
-                        <li>
+                        {/* <li>
                             <SignUpButton className="btn btn-ghost w-full text-center text-[1em]" />
                         </li>
-                        <hr className="opacity-25 my-2 border-base-content" />
+                        <hr className="opacity-25 my-2 border-base-content" /> */}
                     </>
-                )} */}
+                )}
+
                 <li>
                     <NavButton page="Introduction" route="#content" className={styles["nav-button"]} />
                 </li>
@@ -81,27 +85,23 @@ export default function HamburgerMenu() {
                 {session && (
                     <>
                         <li>
-                            <NavButton page="Account Settings" route="/account-settings" className="btn btn-ghost w-full text-center text-[1em]" />
+                            <NavButton page="Account Settings" route="/account-settings" className={styles["nav-button"]} />
                         </li>
                         <hr className="opacity-25 my-2 border-base-content" />
                     </>
                 )}
-                {session?.user?.role === "customer" && (
+                {/* {session?.user?.role === "customer" && (
                     <>
                         <li>
                             <NavButton page="WishList" route={`/users/${session.user.username}/wishlist`} className="btn btn-ghost w-full text-center text-[1em]" />
                         </li>
                         <hr className="opacity-25 my-2 border-base-content" />
                     </>
-                )}
+                )} */}
                 {session?.user?.role === "admin" && (
                     <>
                         <li>
-                            <NavButton page="Admin User View" route="/admin/user-view" className="btn btn-ghost w-full text-center text-[1em]" />
-                        </li>
-                        <hr className="opacity-25 my-2 border-base-content" />
-                        <li>
-                            <NavButton page="Admin: Add New Game" route="/admin/add-game" className="btn btn-ghost w-full text-center text-[1em]" />
+                            <NavButton page="Manage Member" route={`/${session?.user?.username}/view`} className={styles["nav-button"]} />
                         </li>
                         <hr className="opacity-25 my-2 border-base-content" />
                     </>

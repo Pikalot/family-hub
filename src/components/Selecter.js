@@ -1,7 +1,7 @@
 "use client";
 
 import React , { useState } from "react";
-import NavButton from "@/ui/components/NavButton";
+import NavButton from "@/ui/components/buttons/NavButton";
 import styles from "@/components/Navbar.module.css";
 
 export default function Selecter({members, onSelectMember}) {

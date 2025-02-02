@@ -1,15 +1,17 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useSession } from "next-auth/react";
 import styles from "./Navbar.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
 import LogoIcon from '@/public/icons/Logo.png';
-import NavButton from "@/ui/components/NavButton";
+import NavButton from "@/ui/components/buttons/NavButton";
 import HamburgerMenu from "./HamburgerMenu";
 import Selecter from './Selecter';
 
 export default function Navbar({ userList }) {
+    const { data: session } = useSession();
     const [selectedMember, setSelectedMember] = useState(userList[0]);
     const [isShrink, setIsShrink] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
@@ -17,16 +19,18 @@ export default function Navbar({ userList }) {
     
     const handleSelectMember = (member) => {
         setSelectedMember(member);
-    }
+    };
 
     const resetVisibility = () => {
         setIsVisible(true);
         if (hideTimeoutRef.current) {
             clearTimeout(hideTimeoutRef.current);
-        }
-        hideTimeoutRef.current = setTimeout(() => {
-            setIsVisible(false);
-        }, 3000); 
+        };
+        if (window.scrollY > 100) {
+            hideTimeoutRef.current = setTimeout(() => {
+                setIsVisible(false);
+            }, 3000); 
+        };
     };
 
     useEffect(() => {
@@ -55,7 +59,7 @@ export default function Navbar({ userList }) {
                 <div className={styles["navbar"]}>
                     {/* Logo */}
                     <div>
-                        <Link href='#Hero' onSelectMember="admin1">
+                        <Link href="#hero">
                             <div className={styles["logo"]}>
                                 <Image
                                     src={LogoIcon}
@@ -85,6 +89,9 @@ export default function Navbar({ userList }) {
                             <NavButton page="Home" route="/" className={styles["nav-button"]} onClick={() => setSelectedMember(userList[0])} />
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
+                            {session?.user?.role === "admin" && (
+                               <NavButton page="Manage Member" route={`/${session?.user?.username}/view`} className={styles["nav-button"]} />
+                            )}
                         </div>
                         <Selecter members={userList} onSelectMember={handleSelectMember} />
                         {/* Hamburger Menu Button (Client-Side Dropdown) */}

@@ -17,7 +17,7 @@ const Footer = ({member, github, facebook, twitter, linkedin}) => {
   ];
   
     return (
-        <footer className={styles.footer}>
+        <footer id="footer" className={styles.footer}>
             <div className={styles["footer-container"]}>
                 <nav className={styles["footer-link"]}>
                     <Link href="/">
