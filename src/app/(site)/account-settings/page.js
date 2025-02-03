@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import styles from "./AccountSetting.module.css";
 import WrapperPage from "./WrapperPage";
 import { getSocialMedia } from "@/database/queries/user/getSocialMedia";
-import Starfield from "@/components/Starfield";
+import DeepStarfield from "@/components/DeepStarfield";
 // import Avatar from "@/app/ui/components/auth/Avatar";
 // import AccountSettingsPageWrapper from "./AccountSettingsWrapper";
 // import SignOutButton from "@/ui/components/auth/SignOutButton";
@@ -33,7 +33,7 @@ export default async function AccountSettingsPage() {
     return (
         <div>
             <div className={styles["account-setting"]}>
-                <Starfield />
+                <DeepStarfield />
                 <div className={styles["container"]}>
                     <div className={styles["title"]}>
                         <h1>
