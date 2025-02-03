@@ -5,6 +5,7 @@ import styles from './Components.module.css';
 import Image from 'next/image';
 import fadeInVariant from '@/utilities/fadeInVariant';
 import { useEffect } from 'react';
+import Starfield from './Starfield';
 
 export default function Hero({member, resume}) {
   const control = useAnimation();
@@ -20,6 +21,7 @@ export default function Hero({member, resume}) {
 
   return (
     <div id="hero" className={styles.hero}>
+      <Starfield />
       <div className = {styles["hero-content"]}>
         <div className={styles["dialogue-box"]}>
           <h2>Hi! You’ve found</h2>
