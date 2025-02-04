@@ -14,8 +14,15 @@
   position: relative;
 }
 
-body.dark-mode .hero {
-  background: linear-gradient(180deg, #ffa07a, #000a4c);
+[data-theme="dark"] .hero {
+  /* Brighter dawn */
+  /* background: linear-gradient(180deg, #000a4c, #ffa07a); */
+
+  /* Night time dark */
+  background: linear-gradient(180deg, #332941, #000a4c); 
+
+  /* Sunset or dawn time */
+  /* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42); */
 }
 
 .hero-content {
@@ -156,6 +163,11 @@ body.dark-mode .hero {
   color: #555;
   border-top: 1px solid #ddd;
   height: clamp(5rem, 14vh, 12rem); 
+}
+
+[data-theme="dark"] .footer {
+  background: linear-gradient(180deg, #534f5a, #181818);
+  color: white;
 }
 
 .footer-container {

@@ -104,6 +104,10 @@
   z-index: 100; /* Keep above other elements */
 }
 
+[data-theme="dark"] .dropdown-content {
+  background-color: rgb(81, 79, 79);
+}
+
 .block {
   display: block; /* Shows dropdown */
 }

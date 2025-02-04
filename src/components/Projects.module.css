@@ -155,6 +155,25 @@
   }
 }
 
+/* [data-theme="dark"] .project h1 {
+  color: rgb(229, 171, 124);
+} */
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .project {
+    /* background: #060f50; */
+    background: #111010;
+  }  
+
+  .project h1 {
+    color: rgb(229, 171, 124);
+  }
+
+  .project-title {
+    color: darkblue;
+  }
+}
 
 
 

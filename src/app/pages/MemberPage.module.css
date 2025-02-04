@@ -81,3 +81,27 @@
         margin-right: auto;
     }
 }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .member {
+        background: linear-gradient(180deg, #332941, #000a4c); 
+          /* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42); */
+    }
+
+    .member-table th {
+        background: rgb(6, 6, 129);;
+    }
+
+    .member-table {
+        background: rgb(0, 0, 34);
+    }
+
+    .member-table tr:nth-child(even) {
+        background: rgb(15, 15, 29);;
+    }
+
+    .member h2 {
+        color: rgb(229, 171, 124); 
+    }
+}

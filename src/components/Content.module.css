@@ -5,11 +5,19 @@
     background: white;
   }
 
+[data-theme="dark"] .content {
+    background: #010734;
+}
+
 .skill-container h2 {
   color: #003060;
   font-weight: bold;
   font-size: large;
   text-align: center;
+}
+
+[data-theme = "dark"] .skill-container h2 {
+  color: rgb(229, 171, 124);
 }
   
 .tabs {
@@ -38,6 +46,10 @@
   background: #f9f9f9;
   margin-top: 1rem;
   min-height: 100px;
+}
+
+[data-theme="dark"] .tab-content {
+  background: #000522;
 }
 
 .skill-bar {
