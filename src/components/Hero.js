@@ -5,12 +5,15 @@ import styles from './Components.module.css';
 import Image from 'next/image';
 import fadeInVariant from '@/utilities/fadeInVariant';
 import { useEffect } from 'react';
-import DeepStarfield from './DeepStarfield';
-import CherryBlossomField from './CherryBlossomField';
+import CherryBlossomField from './visual-effect/CherryBlossomField';
+import AutumnLeaves from './visual-effect/AutmnLeaves';
+import DeepStarfield from './visual-effect/DeepStarfield';
+import SummerBreeze from './visual-effect/SummerBreeze';
 
 export default function Hero({member, resume}) {
   const control = useAnimation();
   const [ref, inView] = useInView();
+  const season = 7; //new Date().getMonth();
 
   useEffect(() => {
     if (inView) {
@@ -22,7 +25,11 @@ export default function Hero({member, resume}) {
 
   return (
     <div id="hero" className={styles.hero}>
-      <CherryBlossomField />
+      {/* Background effect by season */}
+      {(season > 1 && season <= 4) && <CherryBlossomField />}
+      {(season > 4 && season <= 7) && <SummerBreeze />} 
+      {(season > 7 && season <= 10) && <AutumnLeaves />}
+      {(season > 10 || season <= 1) && <DeepStarfield />}
       <div className = {styles["hero-content"]}>
         <div className={styles["dialogue-box"]}>
           <h2>Hi! You’ve found</h2>
