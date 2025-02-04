@@ -8,7 +8,7 @@ import { getSocialMedia } from "@/database/queries/user/getSocialMedia";
 import DeepStarfield from "@/components/visual-effect/DeepStarfield";
 import CherryBlossomField from "@/components/visual-effect/CherryBlossomField";
 import SummerBreeze from "@/components/visual-effect/SummerBreeze";
-import AutumnLeaves from "@/components/visual-effect/AutmnLeaves";
+import AutumnLeaves from "@/components/visual-effect/AutumnLeaves";
 // import Avatar from "@/app/ui/components/auth/Avatar";
 // import AccountSettingsPageWrapper from "./AccountSettingsWrapper";
 // import SignOutButton from "@/ui/components/auth/SignOutButton";
@@ -16,6 +16,7 @@ import AutumnLeaves from "@/components/visual-effect/AutmnLeaves";
 
 export default async function AccountSettingsPage() {
     const session = await getServerSession(authOptions);   
+    const season = new Date().getMonth();
 
     if (!session?.user) {
         return (

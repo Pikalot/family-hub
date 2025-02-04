@@ -6,14 +6,14 @@ import Image from 'next/image';
 import fadeInVariant from '@/utilities/fadeInVariant';
 import { useEffect } from 'react';
 import CherryBlossomField from './visual-effect/CherryBlossomField';
-import AutumnLeaves from './visual-effect/AutmnLeaves';
+import AutumnLeaves from './visual-effect/AutumnLeaves';
 import DeepStarfield from './visual-effect/DeepStarfield';
 import SummerBreeze from './visual-effect/SummerBreeze';
 
 export default function Hero({member, resume}) {
   const control = useAnimation();
   const [ref, inView] = useInView();
-  const season = 7; //new Date().getMonth();
+  const season = new Date().getMonth();
 
   useEffect(() => {
     if (inView) {
