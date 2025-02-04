@@ -27,7 +27,7 @@ export default function Hero({member, resume}) {
     <div id="hero" className={styles.hero}>
       {/* Background effect by season */}
       {(season > 1 && season <= 4) && <CherryBlossomField />}
-      {(season > 4 && season <= 7) && <SummerBreeze />} 
+      {/* {(season > 4 && season <= 7) && <SummerBreeze />}  */}
       {(season > 7 && season <= 10) && <AutumnLeaves />}
       {(season > 10 || season <= 1) && <DeepStarfield />}
       <div className = {styles["hero-content"]}>

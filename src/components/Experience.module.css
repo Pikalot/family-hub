@@ -4,8 +4,10 @@
     font-size: large;
 }
 
-[data-theme = "dark"] .experience h1 {
-    color: rgb(229, 171, 124);
+@media (prefers-color-scheme: dark) {
+    .experience h1 {
+        color: rgb(229, 171, 124);
+    }
 }
 
 .experience h2{

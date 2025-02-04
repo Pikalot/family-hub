@@ -5,9 +5,9 @@
     background: white;
   }
 
-[data-theme="dark"] .content {
+/* [data-theme="dark"] .content {
     background: #010734;
-}
+} */
 
 .skill-container h2 {
   color: #003060;
@@ -16,9 +16,9 @@
   text-align: center;
 }
 
-[data-theme = "dark"] .skill-container h2 {
+/* [data-theme = "dark"] .skill-container h2 {
   color: rgb(229, 171, 124);
-}
+} */
   
 .tabs {
   display: flex;
@@ -48,9 +48,9 @@
   min-height: 100px;
 }
 
-[data-theme="dark"] .tab-content {
+/* [data-theme="dark"] .tab-content {
   background: #000522;
-}
+} */
 
 .skill-bar {
   margin: 1rem 0;
@@ -103,5 +103,19 @@
 @media (max-width: 1366px) and (orientation: portrait) {
   .content {
     padding: 0.5rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .content{
+    background: #010734;
+  }
+
+  .skill-container h2 {
+    color: rgb(229, 171, 124);
+  }
+
+  .tab-content {
+    background: #000522;
   }
 }
