@@ -104,9 +104,9 @@
   z-index: 100; /* Keep above other elements */
 }
 
-[data-theme="dark"] .dropdown-content {
+/* [data-theme="dark"] .dropdown-content {
   background-color: rgb(81, 79, 79);
-}
+} */
 
 .block {
   display: block; /* Shows dropdown */
@@ -209,4 +209,10 @@ box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Adds a pop-up shadow effect */
   .dropdown-content {
     transform: translateX(-70%); 
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropdown-content {
+    background-color: rgb(81, 79, 79);
+  } 
 }
