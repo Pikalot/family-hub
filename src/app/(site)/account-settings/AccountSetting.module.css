@@ -13,10 +13,10 @@
     position: relative;
 }
 
-[data-theme="dark"] .account-setting {
+/* [data-theme="dark"] .account-setting { */
     /* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42) */
-    background: linear-gradient(180deg, #332941, #000a4c); 
-}
+    /* background: linear-gradient(180deg, #332941, #000a4c); 
+} */
 
 
 .container {
@@ -242,4 +242,9 @@
     .field::placeholder {
         color: rgb(10, 2, 62);; 
     }
+
+    .account-setting { 
+        /* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42) */
+        background: linear-gradient(180deg, #332941, #000a4c); 
+    } 
 }

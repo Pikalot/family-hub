@@ -14,16 +14,16 @@
   position: relative;
 }
 
-[data-theme="dark"] .hero {
+/* [data-theme="dark"] .hero { */
   /* Brighter dawn */
   /* background: linear-gradient(180deg, #000a4c, #ffa07a); */
 
   /* Night time dark */
-  background: linear-gradient(180deg, #332941, #000a4c); 
+  /* background: linear-gradient(180deg, #332941, #000a4c);  */
 
   /* Sunset or dawn time */
   /* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42); */
-}
+/* } */
 
 .hero-content {
   display: flex;
@@ -165,10 +165,11 @@
   height: clamp(5rem, 14vh, 12rem); 
 }
 
+/* 
 [data-theme="dark"] .footer {
   background: linear-gradient(180deg, #534f5a, #181818);
   color: white;
-}
+} */
 
 .footer-container {
   font-size: 18px;
@@ -288,5 +289,16 @@
 
   .imageContainer {
     display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero {
+    background: linear-gradient(180deg, #332941, #000a4c);
+  }
+
+  .footer {
+    background: linear-gradient(180deg, #534f5a, #181818);
+    color: white;
   }
 }
