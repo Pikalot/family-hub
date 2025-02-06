@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import CherryBlossomField from './visual-effect/CherryBlossomField';
 import AutumnLeaves from './visual-effect/AutumnLeaves';
 import DeepStarfield from './visual-effect/DeepStarfield';
-import SummerBreeze from './visual-effect/SummerBreeze';
+// import SummerBreeze from './visual-effect/SummerBreeze';
 
 export default function Hero({member, resume}) {
   const control = useAnimation();
