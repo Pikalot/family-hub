@@ -209,7 +209,7 @@
 }
 
 .signin {
-  background: url('./Photo/Love.png') no-repeat center center;
+  background: url('./Photo/Love.jpg') no-repeat center center;
   background-size: contain; /* Shrinks image to fit within screen */
   background-position: left;
   background-repeat: no-repeat;
