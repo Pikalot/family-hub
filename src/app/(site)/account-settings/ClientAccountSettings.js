@@ -9,22 +9,25 @@ export default function ClientAccountSettings() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [dob, setDob] = useState("");
-    // const [phone, setPhone] = useState("");
+    const [phone, setPhone] = useState("");
     const [first_name, setfirst_name] = useState("");
     const [last_name, setlast_name] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmedPassword, setConfirmedPassword] = useState("");
+    const [description, setDescription] = useState("");
     // const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [errorMsg, setErrorMsg] = useState("");
 
     const [showPassword, setShowPassword] = useState(false)
 
-    const [isEditingUsername, setIsEditingUsername] = useState(false);
-    const [isEditingEmail, setIsEditingEmail] = useState(false);
-    // const [isEditingPhone, setIsEditingPhone] = useState(false);
-    const [isEditingDob, setIsEditingDob] = useState(false);
-    const [isEditingName, setIsEditingName] = useState(false);
-    const [isEditinglast_name, setIsEditinglast_name] = useState(false);
-    const [isEditingPassword, setIsEditingPassword] = useState(false);
+    const [isEditingUsername] = useState(false);
+    const [isEditingEmail] = useState(false);
+    const [isEditingPhone] = useState(false);
+    const [isEditingDob] = useState(false);
+    const [isEditingName] = useState(false);
+    const [isEditinglast_name] = useState(false);
+    const [isEditingPassword] = useState(false);
+    const [isEditingDesc] = useState(false);
     // const [isEditingPhoto, setIsEditingPhoto] = useState(false);
 
     const [isUpdating, setUpdating] = useState(false);
@@ -35,9 +38,9 @@ export default function ClientAccountSettings() {
         first_name !== "" ||
         last_name !== "" ||
         password !== "" ||
-        dob !== "";
-        //  ||
-        // phone !== "" ||
+        dob !== "" ||
+        phone !== "" ||
+        description !== "";
         // selectedFile !== null;
 
     const handleFileChange = (event) => {
@@ -57,9 +60,11 @@ export default function ClientAccountSettings() {
         if (first_name) formData.append("first_name", first_name);
         if (last_name) formData.append("last_name", last_name);
         if (password) formData.append("password", password);
+        if (confirmedPassword) formData.append("confirmedPassword", confirmedPassword);
         // if (selectedFile) formData.append("file", selectedFile);
         if (dob) formData.append("dob", dob);
-        // if (phone) formData.append("phone", phone);
+        if (phone) formData.append("phone", phone);
+        if (description) formData.append("description", description);
 
         try {
             const response = await fetch("/api/member/update", {
@@ -79,7 +84,8 @@ export default function ClientAccountSettings() {
                             first_name: first_name || session?.user.first_name,
                             last_name: last_name || session?.user.last_name,
                             dob: dob,
-                            // phone: phone,
+                            phone: phone,
+                            description: description,
                         },
                     });
                     await new Promise((resolve) => setTimeout(resolve, 1200));
@@ -135,20 +141,13 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
-                                        disabled={!isEditingUsername}
+                                        // disabled={!isEditingUsername}
                                         placeholder={session?.user.username}
                                         className={`${styles["field"]} 
                                             ${isEditingUsername ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
-                                <button
-                                    type="button"
-                                    onClick={() => setIsEditingUsername(!isEditingUsername)}
-                                    className={styles["editor-button"]}
-                                >
-                                    {isEditingUsername ? "Lock" : "Edit"}
-                                </button>
                             </div>
                         </div>
 
@@ -174,20 +173,21 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={first_name}
                                         onChange={(e) => setfirst_name(e.target.value)}
-                                        disabled={!isEditingName}
+                                        // disabled={!isEditingName}
                                         placeholder={session?.user.first_name}
                                         className={`${styles["field"]} 
                                             ${isEditingName ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
-                                <button
+                                
+                                {/* <button
                                     type="button"
                                     onClick={() => setIsEditingName(!isEditingName)}
                                     className={styles["editor-button"]}
                                 >
                                     {isEditingName ? "Lock" : "Edit"}   
-                                </button>
+                                </button> */}
                             </div>
                         </div>
 
@@ -213,21 +213,13 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={last_name}
                                         onChange={(e) => setlast_name(e.target.value)}
-                                        disabled={!isEditinglast_name}
+                                        // disabled={!isEditinglast_name}
                                         placeholder={session?.user.last_name}
                                         className={`${styles["field"]} 
                                             ${isEditinglast_name ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
-
-                                <button
-                                    type="button"
-                                    onClick={() => setIsEditinglast_name(!isEditinglast_name)}
-                                    className={styles["editor-button"]}
-                                >
-                                    {isEditinglast_name ? "Lock" : "Edit"}
-                                </button>
                             </div>
                         </div>
 
@@ -248,25 +240,18 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        disabled={!isEditingEmail}
+                                        // disabled={!isEditingEmail}
                                         placeholder={session?.user.email}
                                         className={`${styles["field"]} 
                                             ${isEditingEmail ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
-                                <button
-                                    type="button"
-                                    onClick={() => setIsEditingEmail(!isEditingEmail)}
-                                    className={styles["editor-button"]}
-                                >
-                                    {isEditingEmail ? "Lock" : "Edit"}
-                                </button>
                             </div>
                         </div>
 
                         {/* Phone Input */}
-                        {/* <div className={styles["editor-block"]}>
+                        <div className={styles["editor-block"]}>
                             <label>Phone</label>
                             <div className={styles["block-container"]}>
                                 <div className={styles["field-input"]}>
@@ -283,24 +268,15 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={phone}
                                         onChange={(e) => setPhone(e.target.value)}
-                                        disabled={!isEditingPhone}
+                                        // disabled={!isEditingPhone}
                                         placeholder="(000) 000-0000"
                                         className={`${styles["field"]} 
                                             ${isEditingPhone ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
-                                <button
-                                    type="button"
-                                    onClick={() => setIsEditingPhone(!isEditingPhone)}
-                                    className={styles["editor-button"]}
-                                >
-                                    <p>
-                                        {isEditingEmail ? "Lock" : "Edit"}
-                                    </p>
-                                </button>
                             </div>
-                        </div> */}
+                        </div>
 
                         {/* DOB Input */}
                         <div className={styles["editor-block"]}>
@@ -326,20 +302,45 @@ export default function ClientAccountSettings() {
                                         type="date" // Native date picker
                                         value={dob}
                                         onChange={(e) => setDob(e.target.value)}
-                                        disabled={!isEditingDob}
+                                        // disabled={!isEditingDob}
                                         placeholder="YYYY-MM-DD"
                                         className={`${styles["field"]} 
                                             ${isEditingDob ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
-                                <button
-                                    type="button"
-                                    onClick={() => setIsEditingDob(!isEditingDob)}
-                                    className={styles["editor-button"]}
-                                >
-                                    {isEditingDob ? "Lock" : "Edit"}
-                                </button>
+                            </div>
+                        </div>
+
+                        {/* Bio Input */}
+                        <div className={styles["editor-block"]}>
+                            <label>Biography</label>
+                            <div className={styles["block-container"]}>
+                                <div className={styles["field-input"]}>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5 opacity-70 stroke-black dark:stroke-current"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                                                    
+                                    <textarea
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        placeholder="Write something about yourself"
+                                        className={`${styles["field"]} 
+                                            ${isEditingDesc ? "text-white" : "text-black"}`}
+                                        autoComplete="off"
+                                        rows={5}
+                                    />
+                                </div>
                             </div>
                         </div>
 
@@ -363,25 +364,45 @@ export default function ClientAccountSettings() {
                                         type={showPassword ? "text" : "password"}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        disabled={!isEditingPassword}
+                                        // disabled={!isEditingPassword}
                                         placeholder={"Enter new password"}
                                         className={`${styles["field"]}
                                                 ${isEditingPassword ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
-                                <button
-                                    type="button"
-                                    onClick={() => setIsEditingPassword(!isEditingPassword)}
-                                    className={styles["editor-button"]}
-                                >
-                                    {isEditingPassword ? "Lock" : "Edit"}
-                                </button>
                             </div>
+
+                            <div className={styles["block-container"]}>
+                                <div className={styles["field-input"]}>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 16 16"
+                                        className="h-4 w-4 opacity-70 fill-black dark:fill-current"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                  
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        value={confirmedPassword}
+                                        onChange={(e) => setConfirmedPassword(e.target.value)}
+                                        placeholder={"Re-enter the password"}
+                                        className={`${styles["field"]}
+                                                ${isEditingPassword ? "text-white" : "text-black"}`}
+                                        autoComplete="off"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Show password */}
                             <div className="pt-2 w-full">
                                 <button
                                     type="button"
-                                    disabled={!isEditingPassword}
                                     className={`${isEditingPassword ? "bg-opacity-45 hover:text-white hover:bg-opacity-55" : "cursor-not-allowed bg-opacity-25"} bg-black w-full text-white dark:text-slate-200 text-md px-7 py-3 rounded-xl`}
                                     onClick={() => {
                                         setShowPassword((prev) => !prev);

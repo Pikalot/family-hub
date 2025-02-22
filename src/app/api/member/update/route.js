@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth/AuthOptions";
-import { updateMemberInfo, updateUserDetails } from "@/database/queries/user/updateMemberInfo";
+import { updateMemberInfo } from "@/database/queries/user/updateMemberInfo";
 // import { updateUserAccountImage } from "@/database/queries/photo/updateUserProfileImage";
 // import sharp from "sharp";
 import { checkFieldAlreadyExists } from "@/database/queries/user/checkFieldAlreadyExists";
@@ -16,7 +16,15 @@ export const PATCH = async (req) => {
     try {
         // Parse the request for JSON or form-data
         const contentType = req.headers.get("content-type") || "";
-        let username, email, first_name, last_name, password, dob; // Later: image, phone,
+        let username, 
+            email, 
+            first_name, 
+            last_name, 
+            password, 
+            confirmedPassword, 
+            dob, 
+            phone,
+            description; // Later: image, phone,
 
         if (contentType.includes("application/json")) {
             const body = await req.json();
@@ -25,8 +33,10 @@ export const PATCH = async (req) => {
             first_name = body.first_name;
             last_name = body.last_name;
             password = body.password;
-            // phone = body.phone;
+            confirmedPassword = body.confirmedPassword;
+            phone = body.phone;
             dob = body.dob;
+            description = body.description;
         } else if (contentType.includes("multipart/form-data")) {
             const formData = await req.formData();
             username = formData.get("username");
@@ -34,13 +44,15 @@ export const PATCH = async (req) => {
             first_name = formData.get("first_name");
             last_name = formData.get("last_name");
             password = formData.get("password");
+            confirmedPassword = formData.get("confirmedPassword");
             // image = formData.get("file");
-            // phone = formData.get("phone");
+            phone = formData.get("phone");
             dob = formData.get("dob");
+            description = formData.get("description");
         }
 
         // Ensure only non-empty fields
-        if (!username && !email && !first_name && !last_name && !password && !dob) { // && !image && !phone
+        if (!username && !email && !first_name && !last_name && !password && !dob && !phone && !description) { // && !image 
             return NextResponse.json({ message: "No fields to update" }, { status: 400 });
         }
 
@@ -66,14 +78,19 @@ export const PATCH = async (req) => {
             return NextResponse.json({ status: "error", message: "Password must be more than 8 characters long" }, { status: 400 });
         }
 
+        if (password && password !== confirmedPassword) {
+            return NextResponse.json({ status: "error", message: "Passwords do not match" }, { status: 400});
+        }
+
         const updateData = {};
         if (username) updateData.username = username;
         if (email) updateData.email = email;
         if (first_name) updateData.first_name = first_name;
         if (last_name) updateData.last_name = last_name;
-        if (password) updateData.password = password;
-        // if (phone) updateData.phone = phone;
+        if (password && password === confirmedPassword) updateData.password = password;
+        if (phone) updateData.phone = phone;
         if (dob) updateData.dob = dob;
+        if (description) updateData.description = description;
 
         if (Object.keys(updateData).length > 0) {
             const detailsUpdated = await updateMemberInfo(session.user.mid, updateData);
