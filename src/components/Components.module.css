@@ -152,7 +152,7 @@
 .hero .profileImage {
   max-width: 100%;
   object-fit: contain;
-  height: 50vh;
+  height: auto;
   align-self: flex-end; 
 }
 
@@ -299,8 +299,7 @@
   }
 
   .footer {
-    /* background: linear-gradient(180deg, #534f5a, #181818); */
-    background: linear-gradient(to bottom, #3b4e68, #7b7f82, #8c9296, #ff8c00);
+    background: linear-gradient(180deg, #534f5a, #181818);
     color: white;
   }
 }
