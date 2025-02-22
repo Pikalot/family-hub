@@ -3,9 +3,11 @@
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import styles from "./AccountSetting.module.css";
+import { useRouter } from "next/navigation";
 
 export default function ClientAccountSettings() {
     const { data: session, update: updateSession } = useSession();
+    const router = useRouter();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [dob, setDob] = useState("");
@@ -89,9 +91,10 @@ export default function ClientAccountSettings() {
                         },
                     });
                     await new Promise((resolve) => setTimeout(resolve, 1200));
-                    window.location.reload()
+                    // window.location.reload()
+                    router.refresh();
                 }
-                window.location.reload()
+                // window.location.reload()
             } else {
                 setUpdating(false);
                 setErrorMsg(`Failed to update user: ${data.message}`);
