@@ -309,70 +309,6 @@ export default function ClientAccountSettings() {
                             </div>
                         </div>
 
-                         {/* Occupation Input */}
-                         <div className={styles["editor-block"]}>
-                            <label>Occupation</label>
-                            <div className={styles["block-container"]}>
-                                <div className={styles["field-input"]}>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5 opacity-70 stroke-black dark:stroke-current"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                        />
-                                    </svg>
-                                    <input
-                                        type="text"
-                                        value={occupation}
-                                        onChange={(e) => setOccupation(e.target.value)}
-                                        // disabled={!isEditing}
-                                        placeholder={session?.user.occupation}
-                                        className={`${styles["field"]} 
-                                            ${isEditing ? "text-white" : "text-black"}`}
-                                        autoComplete="off"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Bio Input */}
-                        <div className={styles["editor-block"]}>
-                            <label>Biography</label>
-                            <div className={styles["block-container"]}>
-                                <div className={styles["field-input"]}>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5 opacity-70 stroke-black dark:stroke-current"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                        />
-                                    </svg>
-                                                                    
-                                    <textarea
-                                        value={description}
-                                        onChange={(e) => setDescription(e.target.value)}
-                                        placeholder="Write something about yourself"
-                                        className={`${styles["field"]} 
-                                            ${isEditing ? "text-white" : "text-black"}`}
-                                        autoComplete="off"
-                                        rows={5}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
                         {/* Password Input */}
                         <div className={styles["editor-block"]}>
                             <label>Password</label>
@@ -439,6 +375,70 @@ export default function ClientAccountSettings() {
                                 >
                                     {showPassword ? "Hide" : "Show"}
                                 </button>
+                            </div>
+                        </div>
+
+                        {/* Occupation Input */}
+                        <div className={styles["editor-block"]}>
+                            <label>Occupation</label>
+                            <div className={styles["block-container"]}>
+                                <div className={styles["field-input"]}>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5 opacity-70 stroke-black dark:stroke-current"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                    <input
+                                        type="text"
+                                        value={occupation}
+                                        onChange={(e) => setOccupation(e.target.value)}
+                                        // disabled={!isEditing}
+                                        placeholder={session?.user.occupation}
+                                        className={`${styles["field"]} 
+                                            ${isEditing ? "text-white" : "text-black"}`}
+                                        autoComplete="off"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Bio Input */}
+                        <div className={styles["editor-block"]}>
+                            <label>Biography</label>
+                            <div className={styles["block-container"]}>
+                                <div className={styles["field-input"]}>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5 opacity-70 stroke-black dark:stroke-current"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                                                    
+                                    <textarea
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        placeholder="Write something about yourself"
+                                        className={`${styles["field"]} 
+                                            ${isEditing ? "text-white" : "text-black"}`}
+                                        autoComplete="off"
+                                        rows={5}
+                                    />
+                                </div>
                             </div>
                         </div>
 
