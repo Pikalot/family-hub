@@ -82,6 +82,7 @@ export default function ClientAccountSettings() {
                             dob: dob,
                             phone: phone,
                             description: description,
+                            occupation: occupation || session?.user.occupation,
                         },
                     });
                     await new Promise((resolve) => setTimeout(resolve, 1200));
