@@ -24,7 +24,8 @@ export const PATCH = async (req) => {
             confirmedPassword, 
             dob, 
             phone,
-            description; // Later: image, phone,
+            description,
+            occupation; // Later: image,
 
         if (contentType.includes("application/json")) {
             const body = await req.json();
@@ -36,7 +37,8 @@ export const PATCH = async (req) => {
             confirmedPassword = body.confirmedPassword;
             phone = body.phone;
             dob = body.dob;
-            description = body.description;
+            description = body.description,
+            occupation = body.occupation;
         } else if (contentType.includes("multipart/form-data")) {
             const formData = await req.formData();
             username = formData.get("username");
@@ -49,10 +51,19 @@ export const PATCH = async (req) => {
             phone = formData.get("phone");
             dob = formData.get("dob");
             description = formData.get("description");
+            occupation = formData.get("occupation");
         }
 
         // Ensure only non-empty fields
-        if (!username && !email && !first_name && !last_name && !password && !dob && !phone && !description) { // && !image 
+        if (!username && 
+            !email && 
+            !first_name && 
+            !last_name && 
+            !password && 
+            !dob && 
+            !phone && 
+            !description &&
+            !occupation) { // && !image 
             return NextResponse.json({ message: "No fields to update" }, { status: 400 });
         }
 
@@ -91,6 +102,7 @@ export const PATCH = async (req) => {
         if (phone) updateData.phone = phone;
         if (dob) updateData.dob = dob;
         if (description) updateData.description = description;
+        if (occupation) updateData.occupation = occupation;
 
         if (Object.keys(updateData).length > 0) {
             const detailsUpdated = await updateMemberInfo(session.user.mid, updateData);
@@ -161,6 +173,7 @@ export const PATCH = async (req) => {
                     email: email || session.user.email,
                     first_name: first_name || session.user.first_name,
                     last_name: last_name || session.user.last_name,
+                    occupation: occupation || session.user.occupation,
                 },
                 refresh: true,
             }, { status: 200 });

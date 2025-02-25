@@ -17,17 +17,11 @@ export default function ClientAccountSettings() {
     const [description, setDescription] = useState("");
     // const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [errorMsg, setErrorMsg] = useState("");
-
+    const [occupation, setOccupation] = useState("");
+    const [isEditing] = useState(false);
     const [showPassword, setShowPassword] = useState(false)
 
-    const [isEditingUsername] = useState(false);
-    const [isEditingEmail] = useState(false);
-    const [isEditingPhone] = useState(false);
-    const [isEditingDob] = useState(false);
-    const [isEditingName] = useState(false);
-    const [isEditinglast_name] = useState(false);
-    const [isEditingPassword] = useState(false);
-    const [isEditingDesc] = useState(false);
+
     // const [isEditingPhoto, setIsEditingPhoto] = useState(false);
 
     const [isUpdating, setUpdating] = useState(false);
@@ -40,7 +34,8 @@ export default function ClientAccountSettings() {
         password !== "" ||
         dob !== "" ||
         phone !== "" ||
-        description !== "";
+        description !== "" ||
+        occupation !== "" ;
         // selectedFile !== null;
 
     const handleFileChange = (event) => {
@@ -65,6 +60,7 @@ export default function ClientAccountSettings() {
         if (dob) formData.append("dob", dob);
         if (phone) formData.append("phone", phone);
         if (description) formData.append("description", description);
+        if (occupation) formData.append("occupation", occupation);
 
         try {
             const response = await fetch("/api/member/update", {
@@ -141,10 +137,10 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
-                                        // disabled={!isEditingUsername}
+                                        // disabled={!isEditing}
                                         placeholder={session?.user.username}
                                         className={`${styles["field"]} 
-                                            ${isEditingUsername ? "text-white" : "text-black"}`}
+                                            ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
@@ -173,20 +169,20 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={first_name}
                                         onChange={(e) => setfirst_name(e.target.value)}
-                                        // disabled={!isEditingName}
+                                        // disabled={!isEditing}
                                         placeholder={session?.user.first_name}
                                         className={`${styles["field"]} 
-                                            ${isEditingName ? "text-white" : "text-black"}`}
+                                            ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
                                 
                                 {/* <button
                                     type="button"
-                                    onClick={() => setIsEditingName(!isEditingName)}
+                                    onClick={() => setisEditing(!isEditing)}
                                     className={styles["editor-button"]}
                                 >
-                                    {isEditingName ? "Lock" : "Edit"}   
+                                    {isEditing ? "Lock" : "Edit"}   
                                 </button> */}
                             </div>
                         </div>
@@ -213,10 +209,10 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={last_name}
                                         onChange={(e) => setlast_name(e.target.value)}
-                                        // disabled={!isEditinglast_name}
+                                        // disabled={!isEditing}
                                         placeholder={session?.user.last_name}
                                         className={`${styles["field"]} 
-                                            ${isEditinglast_name ? "text-white" : "text-black"}`}
+                                            ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
@@ -240,10 +236,10 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        // disabled={!isEditingEmail}
+                                        // disabled={!isEditing}
                                         placeholder={session?.user.email}
                                         className={`${styles["field"]} 
-                                            ${isEditingEmail ? "text-white" : "text-black"}`}
+                                            ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
@@ -268,10 +264,10 @@ export default function ClientAccountSettings() {
                                         type="text"
                                         value={phone}
                                         onChange={(e) => setPhone(e.target.value)}
-                                        // disabled={!isEditingPhone}
+                                        // disabled={!isEditing}
                                         placeholder="(000) 000-0000"
                                         className={`${styles["field"]} 
-                                            ${isEditingPhone ? "text-white" : "text-black"}`}
+                                            ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
@@ -302,10 +298,42 @@ export default function ClientAccountSettings() {
                                         type="date" // Native date picker
                                         value={dob}
                                         onChange={(e) => setDob(e.target.value)}
-                                        // disabled={!isEditingDob}
+                                        // disabled={!isEditing}
                                         placeholder="YYYY-MM-DD"
                                         className={`${styles["field"]} 
-                                            ${isEditingDob ? "text-white" : "text-black"}`}
+                                            ${isEditing ? "text-white" : "text-black"}`}
+                                        autoComplete="off"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                         {/* Occupation Input */}
+                         <div className={styles["editor-block"]}>
+                            <label>Occupation</label>
+                            <div className={styles["block-container"]}>
+                                <div className={styles["field-input"]}>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5 opacity-70 stroke-black dark:stroke-current"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                    <input
+                                        type="text"
+                                        value={occupation}
+                                        onChange={(e) => setOccupation(e.target.value)}
+                                        // disabled={!isEditing}
+                                        placeholder={session?.user.occupation}
+                                        className={`${styles["field"]} 
+                                            ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
@@ -336,7 +364,7 @@ export default function ClientAccountSettings() {
                                         onChange={(e) => setDescription(e.target.value)}
                                         placeholder="Write something about yourself"
                                         className={`${styles["field"]} 
-                                            ${isEditingDesc ? "text-white" : "text-black"}`}
+                                            ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                         rows={5}
                                     />
@@ -364,10 +392,10 @@ export default function ClientAccountSettings() {
                                         type={showPassword ? "text" : "password"}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        // disabled={!isEditingPassword}
+                                        // disabled={!isEditing}
                                         placeholder={"Enter new password"}
                                         className={`${styles["field"]}
-                                                ${isEditingPassword ? "text-white" : "text-black"}`}
+                                                ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
@@ -393,7 +421,7 @@ export default function ClientAccountSettings() {
                                         onChange={(e) => setConfirmedPassword(e.target.value)}
                                         placeholder={"Re-enter the password"}
                                         className={`${styles["field"]}
-                                                ${isEditingPassword ? "text-white" : "text-black"}`}
+                                                ${isEditing ? "text-white" : "text-black"}`}
                                         autoComplete="off"
                                     />
                                 </div>
@@ -403,7 +431,7 @@ export default function ClientAccountSettings() {
                             <div className="pt-2 w-full">
                                 <button
                                     type="button"
-                                    className={`${isEditingPassword ? "bg-opacity-45 hover:text-white hover:bg-opacity-55" : "cursor-not-allowed bg-opacity-25"} bg-black w-full text-white dark:text-slate-200 text-md px-7 py-3 rounded-xl`}
+                                    className={`${isEditing ? "bg-opacity-45 hover:text-white hover:bg-opacity-55" : "cursor-not-allowed bg-opacity-25"} bg-black w-full text-white dark:text-slate-200 text-md px-7 py-3 rounded-xl`}
                                     onClick={() => {
                                         setShowPassword((prev) => !prev);
                                     }}

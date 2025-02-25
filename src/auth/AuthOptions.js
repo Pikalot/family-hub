@@ -54,6 +54,7 @@ export const authOptions = {
             first_name: user[0].first_name,
             last_name: user[0].last_name,
             role: user[0].role,
+            occupation: user[0].occupation,
           };
         } else {
           return null;
@@ -70,7 +71,8 @@ export const authOptions = {
               email: user.email,
               first_name: user.first_name,
               last_name: user.last_name,
-              role: user.role
+              role: user.role,
+              occupation: user.occupation,
           };
       }
   
@@ -81,7 +83,8 @@ export const authOptions = {
               email: session.user.email,
               first_name: session.user.first_name,
               last_name: session.user.last_name,
-              role: session.user.role
+              role: session.user.role,
+              occupation: session.user.occupation,
           };
       }
   
@@ -96,6 +99,7 @@ export const authOptions = {
         first_name: token.first_name,
         last_name: token.last_name,
         role: token.role,
+        occupation: token.occupation,
       };
       return session;
     },
@@ -119,6 +123,7 @@ export const authOptions = {
           user.first_name = existingUser[0].first_name;
           user.last_name = existingUser[0].last_name;
           user.role = existingUser[0].role;
+          user.occupation = existingUser[0].occupation;
           return true;
         } else {
           return false;
