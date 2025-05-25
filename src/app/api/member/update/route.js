@@ -69,7 +69,7 @@ export const PATCH = async (req) => {
 
         // Validate and process user data
         if (username) {
-            const isUsernameTaken = await checkFieldAlreadyExists("Users", "username", username);
+            const isUsernameTaken = await checkFieldAlreadyExists("Members", "username", username);
             if (isUsernameTaken[0]) {
                 return NextResponse.json({ status: "error", message: "Username is already in use by another account" }, { status: 400 });
             }
@@ -79,7 +79,7 @@ export const PATCH = async (req) => {
         }
 
         if (email) {
-            const isEmailTaken = await checkFieldAlreadyExists("Users", "email", email);
+            const isEmailTaken = await checkFieldAlreadyExists("Members", "email", email);
             if (isEmailTaken[0]) {
                 return NextResponse.json({ status: "error", message: "Email is already in use by another account" }, { status: 400 });
             }
