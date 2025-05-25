@@ -3,10 +3,11 @@
 import { signIn } from "next-auth/react";
 import React, { useRef, useState } from "react";
 import styles from "./Login.module.css"
-// import OAuthButton from "./OAuthButton";
+import OAuthButton from "@/ui/components/auth/OAuthButton";
 import CancelButton from "@/ui/components/buttons/CancelButton";
 import AcceptFormButton from "@/ui/components/buttons/AcceptFormButton";
 
+const providers = ["google", "discord", "github"];
 
 const Signin = (props) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -48,10 +49,10 @@ const Signin = (props) => {
         }
     };
 
-    // const handleOAuthSignInStart = () => {
-    //     setSuccessMsg("Signing in...");
-    //     setErrorMsg("");
-    // };
+    const handleOAuthSignInStart = () => {
+        setSuccessMsg("Signing in...");
+        setErrorMsg("");
+    };
 
     return (
         <div className={styles["login"]}>
@@ -155,11 +156,15 @@ const Signin = (props) => {
             <h2>OR</h2>
 
             {/* OAuth Buttons */}
-            {/* <div className="flex flex-col gap-4 items-center">
-                <OAuthButton callbackUrl={props.callbackUrl} provider={"google"} onSignInStart={handleOAuthSignInStart} />
-                <OAuthButton callbackUrl={props.callbackUrl} provider={"discord"} onSignInStart={handleOAuthSignInStart} />
-                <OAuthButton callbackUrl={props.callbackUrl} provider={"github"} onSignInStart={handleOAuthSignInStart} />
-            </div> */}
+            <div className={styles["provider-container"]}>
+                {providers.map((provider) => (
+                    <OAuthButton 
+                    key={provider}
+                    callbackUrl={props.callbackUrl} 
+                    provider={provider}
+                    onSignInStart={handleOAuthSignInStart} />
+                ))}
+            </div>
 
             {/* Error Message */}
             {(errorMsg || props.error) && (

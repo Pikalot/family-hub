@@ -1,8 +1,9 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import DiscordProvider from "next-auth/providers/discord";
 import GitHubProvider from "next-auth/providers/github";
-import LinkedInProvider from "next-auth/providers/linkedin";
-import AppleProvider from "next-auth/providers/apple";
+// import LinkedInProvider from "next-auth/providers/linkedin";
+// import AppleProvider from "next-auth/providers/apple";
 import { findMemberByEmail } from "@/database/queries/user/findMemberByEmail";
 import { findMemberByPassword } from "@/database/queries/user/findMemberByPassword";
 
@@ -12,18 +13,22 @@ export const authOptions = {
     maxAge: 2 * 24 * 60 * 60, // 2 Days
   },
   providers: [
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_ID,
-    //   clientSecret: process.env.GOOGLE_SECRET,
-    // }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+    }),
+    DiscordProvider({
+      clientId: process.env.DISCORD_ID,
+      clientSecret: process.env.DISCORD_SECRET,
+    }),
     // AppleProvider({
     //   clientId: process.env.APPLE_ID,
     //   clientSecret: process.env.APPLE_SECRET,
     // }),
-    // GitHubProvider({
-    //   clientId: process.env.GITHUB_ID,
-    //   clientSecret: process.env.GITHUB_SECRET,
-    // }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
     // LinkedInProvider({
     //   clientId: process.env.LINKEDIN_ID,
     //   clientSecret: process.env.LINKED_SECRET,
