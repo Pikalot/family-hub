@@ -17,7 +17,9 @@ export default async function RootLayout({ children }) {
     <html lang="en" data-lt-installed data-theme="dark">
       <body>
         <WrappedSessionProvider>
-          <Navbar userList={userList}/>
+          <header>
+            <Navbar userList={userList}/>
+          </header>
           <main>
             {children}
           </main>

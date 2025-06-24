@@ -127,7 +127,7 @@
     opacity: 1;
     transition: max-height 0.3s ease; /* Smooth transition */
   }
-  
+ 
   /* Expanded state */
   .project-content.expanded {
     position: absolute; 

@@ -83,6 +83,10 @@
   font-size: 1em;
 }
 
+.search-bar {
+  color: black;
+}
+
 /* Hamburger styling, dropdown Container */
 .dropdown {
   position: relative; 

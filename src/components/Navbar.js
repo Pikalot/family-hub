@@ -9,6 +9,7 @@ import LogoIcon from '@/public/icons/Logo.png';
 import NavButton from "@/ui/components/buttons/NavButton";
 import HamburgerMenu from "./HamburgerMenu";
 import Selecter from './Selecter';
+import SearchBar from './SearchBar';
 
 export default function Navbar({ userList }) {
     const { data: session } = useSession();
@@ -79,9 +80,9 @@ export default function Navbar({ userList }) {
                     </div>
 
                     {/* Search Bar */}
-                    {/* <div className="hidden min-[1200px]:flex flex-1 mx-4 max-w-full">
+                    <div className={styles["search-bar"]}>
                         <SearchBar actionUrl={""} />
-                    </div> */}
+                    </div>
 
                     <div className={styles["btn-panel"]}>
                         {/* Desktop Navigation */}
