@@ -1,8 +1,9 @@
-import { list } from "postcss";
+// import createRoutes from "@/app/pages/Routing";
 import { useState, useEffect } from "react"
 
 export default function SearchBar(props) {
     const [keyword, setKeyword] = useState("");
+    // const routes = await createRoutes();
 
     function handleChanges(e) {
         setKeyword(e.target.value);
@@ -26,10 +27,10 @@ export default function SearchBar(props) {
 
     return (
         <input
-        type="text"
-        value={keyword}
-        placeholder="Search here.." 
-        onChange={handleChanges}
+            type="text"
+            value={keyword}
+            placeholder="Search here.."
+            onChange={handleChanges}
         />
     )
 }

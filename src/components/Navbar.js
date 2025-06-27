@@ -17,7 +17,7 @@ export default function Navbar({ userList }) {
     const [isShrink, setIsShrink] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const hideTimeoutRef = useState(null);
-    
+
     const handleSelectMember = (member) => {
         setSelectedMember(member);
     };
@@ -30,7 +30,7 @@ export default function Navbar({ userList }) {
         if (window.scrollY > 100) {
             hideTimeoutRef.current = setTimeout(() => {
                 setIsVisible(false);
-            }, 3000); 
+            }, 3000);
         };
     };
 
@@ -51,9 +51,9 @@ export default function Navbar({ userList }) {
 
     return (
         <header
-        className={`${styles["navbar"]} ${isShrink ? styles["shrink"] : ''} ${!isVisible ? styles["hidden"] : ''}`}
-        onMouseEnter={() => setIsVisible(true)}
-        onMouseLeave={() => resetVisibility()}
+            className={`${styles["navbar"]} ${isShrink ? styles["shrink"] : ''} ${!isVisible ? styles["hidden"] : ''}`}
+            onMouseEnter={() => setIsVisible(true)}
+            onMouseLeave={() => resetVisibility()}
         >
             <div>
                 {/* Top Header Section */}
@@ -81,7 +81,7 @@ export default function Navbar({ userList }) {
 
                     {/* Search Bar */}
                     <div className={styles["search-bar"]}>
-                        <SearchBar actionUrl={""} />
+                        <SearchBar actionUrl="say something" />
                     </div>
 
                     <div className={styles["btn-panel"]}>
@@ -91,7 +91,7 @@ export default function Navbar({ userList }) {
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
                             {session?.user?.role === "admin" && (
-                               <NavButton page="Manage Member" route={`/${session?.user?.username}/view`} className={styles["nav-button"]} />
+                                <NavButton page="Manage Member" route={`/${session?.user?.username}/view`} className={styles["nav-button"]} />
                             )}
                         </div>
                         <Selecter members={userList} onSelectMember={handleSelectMember} />
