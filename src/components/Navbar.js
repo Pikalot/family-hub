@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { useSession } from "next-auth/react";
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '@/auth/WrappedAuthentication';
 import styles from "./Navbar.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,11 +12,20 @@ import Selecter from './Selecter';
 import SearchBar from './SearchBar';
 
 export default function Navbar({ userList }) {
-    const { data: session } = useSession();
+    const { session, authenticated } = useContext(AuthContext);
     const [selectedMember, setSelectedMember] = useState(userList[0]);
     const [isShrink, setIsShrink] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const hideTimeoutRef = useState(null);
+
+
+    useEffect(() => {
+        console.log("Logged-in session from Navbar:", session);
+        if (session?.user) {
+            const match = userList.find(u => u.username === session.user.username);
+            if (match) setSelectedMember(match);
+        }
+    }, [session, userList]);
 
     const handleSelectMember = (member) => {
         setSelectedMember(member);
@@ -87,7 +96,7 @@ export default function Navbar({ userList }) {
                     <div className={styles["btn-panel"]}>
                         {/* Desktop Navigation */}
                         <div className={styles["btn-container"]}>
-                            <NavButton page="Home" route="/" className={styles["nav-button"]} onClick={() => setSelectedMember(userList[0])} />
+                            <NavButton page="Home" route="/" className={styles["nav-button"]} />
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
                             {session?.user?.role === "admin" && (

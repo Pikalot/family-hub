@@ -3,13 +3,15 @@ import { executeQuery } from "@/database/MySQLDriver";
 export const findAllMembers = async () => {
     const query = `
         SELECT 
-            M.*,
+            M.username,
+            M.first_name,
+            M.last_name,
             P.source AS photo
             FROM Members M
             LEFT JOIN Photos P ON M.pid = P.pid;
     `
     try {
-        const result = await executeQuery(query, []); 
+        const result = await executeQuery(query, []);
         if (!result.length) {
             throw new Error(`No member found`);
         }

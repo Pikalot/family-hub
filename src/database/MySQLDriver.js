@@ -1,13 +1,21 @@
 import mysql from "mysql2/promise";
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT),
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  connectionLimit: 10,
-});
+let pool;
+
+if (!global._mysqlPool) {
+  global._mysqlPool = mysql.createPool({
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    connectionLimit: 10,
+    waitForConnections: true,
+    queueLimit: 0,
+  });
+}
+
+pool = global._mysqlPool;
 
 export const executeQuery = async (query, data) => {
   try {

@@ -3,7 +3,7 @@
 import React from "react";
 import { SessionProvider } from "next-auth/react";
 
-const WrappedSessionProvider = ({ children }) => {
+function WrappedSessionProvider({ children }) {
   return <SessionProvider>{children}</SessionProvider>;
 };
 

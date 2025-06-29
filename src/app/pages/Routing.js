@@ -5,7 +5,7 @@ import { getSkills } from "@/database/queries/user/getSkills";
 import { getExp, getSchools } from "@/database/queries/user/GetExperience";
 import { getProjects, getResumes } from "@/database/queries/user/getProjects";
 
-export default async function createRoutes({ username, userId, member }) {
+export async function signedOutRoutes({ username, userId, member }) {
     // const member = await findMemberByUsername(username);
     // const userId = member[0].mid;
     const skills = await getSkills(userId);

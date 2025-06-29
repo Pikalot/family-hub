@@ -1,16 +1,18 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import React , { useState } from "react";
+import React, { useContext, useState } from "react";
 import NavButton from "@/ui/components/buttons/NavButton";
 // import LoginButton from "@/ui/components/auth/LoginButton";
 // import SignOutButton from "@/ui/components/auth/SignOutButton";
 import styles from "@/components/Navbar.module.css";
 import { signOut } from "next-auth/react";
+import { AuthContext } from "@/auth/WrappedAuthentication";
 
 export default function HamburgerMenu() {
-    const { data: session } = useSession();
-    const [ isOpen, setIsOpen ] = useState(false);
+    // const { data: session } = useSession();
+    const { session } = useContext(AuthContext);
+    const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -18,9 +20,9 @@ export default function HamburgerMenu() {
         // auto close the dropdown menu
         if (!isOpen) {
             setTimeout(() => {
-                    setIsOpen(false);
-                }, 3000
-            ); 
+                setIsOpen(false);
+            }, 3000
+            );
         };
     }
 
@@ -47,7 +49,7 @@ export default function HamburgerMenu() {
                     />
                 </svg>
             </button>
-            
+
             <ul
                 tabIndex={0}
                 className={`${styles["dropdown-content"]} ${isOpen ? "block" : "hidden"}`}
@@ -55,10 +57,10 @@ export default function HamburgerMenu() {
                 {session && session.user ? (
                     <>
                         <li>
-                            <NavButton 
-                                page="Logout" 
-                                route="" 
-                                className={styles["nav-button"]} 
+                            <NavButton
+                                page="Logout"
+                                route=""
+                                className={styles["nav-button"]}
                                 onClick={() => signOut({ callbackUrl: '/login' })}
                             />
                         </li>
@@ -94,7 +96,7 @@ export default function HamburgerMenu() {
                     <NavButton page="Projects" route="#content" className={styles["nav-button"]} />
                 </li>
                 <hr className="opacity-25 my-2 border-base-content" />
-                
+
                 {/* {session?.user?.role === "customer" && (
                     <>
                         <li>

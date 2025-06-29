@@ -7,7 +7,7 @@ import { findMemberByUsername, findMemberById } from "@/database/queries/Navbar/
 // import { getProjects, getResumes } from "@/database/queries/user/getProjects";
 import Footer from "@/components/Footer";
 import { getSocialMedia } from "@/database/queries/user/getSocialMedia";
-import createRoutes from "./Routing";
+import { signedOutRoutes } from "./Routing";
 
 
 export default async function Home({ username }) {
@@ -24,8 +24,8 @@ export default async function Home({ username }) {
   const twitter = await getSocialMedia(userId, 'Twitter');
   const linkedin = await getSocialMedia(userId, 'LinkedIn');
   // const resumes = await getResumes(userId);
-  const routes = await createRoutes({ username, userId, member });
-  console.log(routes);
+  const routes = await signedOutRoutes({ username, userId, member });
+  console.log('username in Home is ', username);
 
   // const routes = [
   //   {
