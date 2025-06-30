@@ -7,15 +7,12 @@ import { getProjects, getResumes } from "@/database/queries/user/getProjects";
 import MemberPage from "./MemberPage";
 import ClientAccountSettings from "../(site)/account-settings/ClientAccountSettings";
 
-export async function signedOutRoutes({ username, userId, member }) {
-    // const member = await findMemberByUsername(username);
-    // const userId = member[0].mid;
+export async function homeRoutes({ username, userId, member }) {
     const skills = await getSkills(userId);
     const exp = await getExp(userId);
     const education = await getSchools(userId);
     const projects = await getProjects(userId);
     const resumes = await getResumes(userId);
-    console.log('id ', member[0].first_name);
 
     return [
         {
@@ -50,13 +47,18 @@ export function adminSignedInRoutes({ username }) {
             path: `/${username}/view`,
             props: { username },
             Component: MemberPage
-        },
+        }
+    ]
+}
+
+export function signedInRoutes({ username }) {
+    return [
         {
             id: "Account Settings",
             page: "Account Settings",
             path: "/account-settings",
             props: { username },
             Component: ClientAccountSettings
-        }
+        },
     ]
 }

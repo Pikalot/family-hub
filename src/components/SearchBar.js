@@ -1,13 +1,20 @@
 // import createRoutes from "@/app/pages/Routing";
 // import { adminSignedInRoutes, signedOutRoutes } from "@/app/pages/Routing";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
-export default function SearchBar({ routes }) {
+export default function SearchBar({ inRoutes, adminRoutes, outRoutes }) {
+    const inputRef = useRef(null);
     const [keyword, setKeyword] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     // const inRoutes = adminSignedInRoutes();
     // const outRoutes = await signedOutRoutes();
-    // const routes = [...inRoutes, ...outRoutes];
+    // const routes = [...inRoutes, ...outRoutes, ...adminRoutes];
+    const routes = [...inRoutes, ...adminRoutes];
+    console.log(inRoutes);
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, []);
+
 
     /**
    * An effect that instantly shows all hardcoded routes.
@@ -17,12 +24,17 @@ export default function SearchBar({ routes }) {
         // if (!open) return;
 
         // Instantly display for the hardcoded page recommendations
-        const routeMatches = routes.filter((r) =>
-            r.page?.toLowerCase().includes(keyword.toLowerCase())
-        );
-        setSuggestions(routeMatches);
-    }, [keyword, routes]);
-    console.log(suggestions, routes, keyword);
+        if (keyword === "") {
+            setSuggestions([]);
+        }
+        else {
+            const routeMatches = routes.filter((r) =>
+                r.page?.toLowerCase().includes(keyword.toLowerCase())
+            );
+            setSuggestions(routeMatches);
+        }
+    }, [keyword]);
+    // console.log(suggestions, routes, keyword);
 
     function handleChanges(e) {
         setKeyword(e.target.value);
@@ -48,6 +60,7 @@ export default function SearchBar({ routes }) {
         <div>
             <input
                 type="text"
+                ref={inputRef}
                 value={keyword}
                 placeholder="Search here.."
                 onChange={handleChanges}
