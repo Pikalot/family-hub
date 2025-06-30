@@ -1,11 +1,14 @@
 // import createRoutes from "@/app/pages/Routing";
 // import { adminSignedInRoutes, signedOutRoutes } from "@/app/pages/Routing";
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react";
+import styles from "./Navbar.module.css";
+import NavButton from "@/ui/components/buttons/NavButton";
 
 export default function SearchBar({ inRoutes, adminRoutes, outRoutes }) {
     const inputRef = useRef(null);
     const [keyword, setKeyword] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(0);
     // const inRoutes = adminSignedInRoutes();
     // const outRoutes = await signedOutRoutes();
     // const routes = [...inRoutes, ...outRoutes, ...adminRoutes];
@@ -14,7 +17,6 @@ export default function SearchBar({ inRoutes, adminRoutes, outRoutes }) {
     useEffect(() => {
         inputRef.current?.focus();
     }, []);
-
 
     /**
    * An effect that instantly shows all hardcoded routes.
@@ -38,6 +40,7 @@ export default function SearchBar({ inRoutes, adminRoutes, outRoutes }) {
 
     function handleChanges(e) {
         setKeyword(e.target.value);
+        setSelectedItem(0);
     }
 
     function handleSearch() {
@@ -57,7 +60,7 @@ export default function SearchBar({ inRoutes, adminRoutes, outRoutes }) {
     })
 
     return (
-        <div>
+        <div className={styles["dropdown"]}>
             <input
                 type="text"
                 ref={inputRef}
@@ -67,14 +70,18 @@ export default function SearchBar({ inRoutes, adminRoutes, outRoutes }) {
             />
             {
                 suggestions.length > 0 && (
-                    <ul>
+                    <ul className={styles["dropdown-content"]}>
                         {suggestions.map((r, id) => (
-                            <li
-                                key={id}
-                                onClick={() => {
-                                    window.location.href = r.path;
-                                }}>
-                                {r.page}
+                            <li key={id}>
+                                <NavButton
+                                    // className={styles["nav-button"]}
+                                    page={r.page}
+                                    route={r.path}
+                                    onClick={() => {
+                                        window.location.href = r.path;
+                                    }} >
+                                    {/* {r.page} */}
+                                </NavButton>
                             </li>
                         ))}
                     </ul>

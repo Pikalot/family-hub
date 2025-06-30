@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import React, { useContext, useState } from "react";
 import NavButton from "@/ui/components/buttons/NavButton";
 // import LoginButton from "@/ui/components/auth/LoginButton";
