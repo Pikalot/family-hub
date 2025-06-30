@@ -4,6 +4,10 @@ import Navbar from "@/components/Navbar";
 import WrappedSessionProvider from "@/auth/WrappedSessionProvider"
 import { findCachedMembers } from "./utilities/cachedUsers";
 import WrappedAuthentication from "@/auth/WrappedAuthentication";
+import { adminSignedInRoutes, signedOutRoutes } from "./pages/Routing";
+import { findMemberByUsername } from "@/database/queries/Navbar/findMember";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth/AuthOptions";
 // import createRoutes from "./pages/Routing";
 
 export const metadata = {
@@ -14,6 +18,25 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const userList = await findCachedMembers();
+  const session = await getServerSession(authOptions);
+  // const username = userList[0].username;
+
+  // console.log("root", username);
+  // const member = await findMemberByUsername(username);
+  // const userId = member[0].mid;
+  // const inRoutes = adminSignedInRoutes({ username });
+  // const outRoutes = await signedOutRoutes({ username, userId, member });
+  // const routes = [...inRoutes, ...outRoutes];
+
+  let routes = [];
+  if (session?.user?.username) {
+    const username = session.user.username;
+    const member = await findMemberByUsername(username);
+    const userId = member[0].mid;
+    const inRoutes = adminSignedInRoutes({ username });
+    const outRoutes = await signedOutRoutes({ username, userId, member });
+    routes = [...inRoutes, ...outRoutes];
+  }
 
   return (
     <html lang="en" data-lt-installed data-theme="dark">
@@ -21,7 +44,7 @@ export default async function RootLayout({ children }) {
         <WrappedSessionProvider>
           <WrappedAuthentication>
             <header>
-              <Navbar userList={userList} />
+              <Navbar userList={userList} routes={routes} />
             </header>
             <main>
               {children}

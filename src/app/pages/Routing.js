@@ -4,6 +4,8 @@ import Projects from "@/components/Projects";
 import { getSkills } from "@/database/queries/user/getSkills";
 import { getExp, getSchools } from "@/database/queries/user/GetExperience";
 import { getProjects, getResumes } from "@/database/queries/user/getProjects";
+import MemberPage from "./MemberPage";
+import ClientAccountSettings from "../(site)/account-settings/ClientAccountSettings";
 
 export async function signedOutRoutes({ username, userId, member }) {
     // const member = await findMemberByUsername(username);
@@ -36,6 +38,25 @@ export async function signedOutRoutes({ username, userId, member }) {
             path: `/${username}#Projects`,
             props: { projects },
             Component: Projects
+        }
+    ]
+}
+
+export function adminSignedInRoutes({ username }) {
+    return [
+        {
+            id: "Members View",
+            page: "Manage Member",
+            path: `/${username}/view`,
+            props: { username },
+            Component: MemberPage
+        },
+        {
+            id: "Account Settings",
+            page: "Account Settings",
+            path: "/account-settings",
+            props: { username },
+            Component: ClientAccountSettings
         }
     ]
 }

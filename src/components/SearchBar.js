@@ -1,9 +1,28 @@
 // import createRoutes from "@/app/pages/Routing";
+// import { adminSignedInRoutes, signedOutRoutes } from "@/app/pages/Routing";
 import { useState, useEffect } from "react"
 
-export default function SearchBar(props) {
+export default function SearchBar({ routes }) {
     const [keyword, setKeyword] = useState("");
-    // const routes = await createRoutes();
+    const [suggestions, setSuggestions] = useState([]);
+    // const inRoutes = adminSignedInRoutes();
+    // const outRoutes = await signedOutRoutes();
+    // const routes = [...inRoutes, ...outRoutes];
+
+    /**
+   * An effect that instantly shows all hardcoded routes.
+   * @dependencies keyword, routes, open
+   */
+    useEffect(() => {
+        // if (!open) return;
+
+        // Instantly display for the hardcoded page recommendations
+        const routeMatches = routes.filter((r) =>
+            r.page?.toLowerCase().includes(keyword.toLowerCase())
+        );
+        setSuggestions(routeMatches);
+    }, [keyword, routes]);
+    console.log(suggestions, routes, keyword);
 
     function handleChanges(e) {
         setKeyword(e.target.value);
@@ -26,11 +45,28 @@ export default function SearchBar(props) {
     })
 
     return (
-        <input
-            type="text"
-            value={keyword}
-            placeholder="Search here.."
-            onChange={handleChanges}
-        />
+        <div>
+            <input
+                type="text"
+                value={keyword}
+                placeholder="Search here.."
+                onChange={handleChanges}
+            />
+            {
+                suggestions.length > 0 && (
+                    <ul>
+                        {suggestions.map((r, id) => (
+                            <li
+                                key={id}
+                                onClick={() => {
+                                    window.location.href = r.path;
+                                }}>
+                                {r.page}
+                            </li>
+                        ))}
+                    </ul>
+                )
+            }
+        </div>
     )
 }

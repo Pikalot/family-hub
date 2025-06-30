@@ -11,7 +11,7 @@ import HamburgerMenu from "./HamburgerMenu";
 import Selecter from './Selecter';
 import SearchBar from './SearchBar';
 
-export default function Navbar({ userList }) {
+export default function Navbar({ userList, routes }) {
     const { session, authenticated } = useContext(AuthContext);
     const [selectedMember, setSelectedMember] = useState(userList[0]);
     const [isShrink, setIsShrink] = useState(false);
@@ -20,7 +20,7 @@ export default function Navbar({ userList }) {
 
 
     useEffect(() => {
-        console.log("Logged-in session from Navbar:", session);
+        console.log("routes from Navbar:", routes);
         if (session?.user) {
             const match = userList.find(u => u.username === session.user.username);
             if (match) setSelectedMember(match);
@@ -90,7 +90,7 @@ export default function Navbar({ userList }) {
 
                     {/* Search Bar */}
                     <div className={styles["search-bar"]}>
-                        <SearchBar actionUrl="say something" />
+                        <SearchBar routes={routes} />
                     </div>
 
                     <div className={styles["btn-panel"]}>

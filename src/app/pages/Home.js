@@ -7,7 +7,8 @@ import { findMemberByUsername, findMemberById } from "@/database/queries/Navbar/
 // import { getProjects, getResumes } from "@/database/queries/user/getProjects";
 import Footer from "@/components/Footer";
 import { getSocialMedia } from "@/database/queries/user/getSocialMedia";
-import { signedOutRoutes } from "./Routing";
+import { adminSignedInRoutes, signedOutRoutes } from "./Routing";
+import NotFound from "./NotFoundPage";
 
 
 export default async function Home({ username }) {
@@ -25,7 +26,9 @@ export default async function Home({ username }) {
   const linkedin = await getSocialMedia(userId, 'LinkedIn');
   // const resumes = await getResumes(userId);
   const routes = await signedOutRoutes({ username, userId, member });
-  console.log('username in Home is ', username);
+  // const inRoutes = adminSignedInRoutes({ username })
+  // const routes = [...inRoutes, ...outRoutes];
+  console.log('username in Home is ', routes);
 
   // const routes = [
   //   {
@@ -53,19 +56,22 @@ export default async function Home({ username }) {
       {/* <Hero member={member} resume={resumes? resumes[0] : ""}/>
         <Content member={member} skills={skills} exp={exp} education={education}/>
         <Projects projects={projects} /> */}
-      {routes.length > 0 && routes.map(
-        ({
-          id,
-          props,
-          Component
-        }) => (
-          <section
-            id={id}
-            key={id}>
-            <Component {...props} />
-          </section>
-        )
-      )}
+      {routes.length > 0 ?
+        routes.map(
+          ({
+            id,
+            props,
+            Component
+          }) => (
+            <section
+              id={id}
+              key={id}>
+              <Component {...props} />
+            </section>
+          )
+        ) :
+        <NotFound />
+      }
       <Footer
         member={member[0]}
         github={github ? github[0] : ''}

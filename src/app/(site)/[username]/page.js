@@ -1,9 +1,9 @@
 import Home from "@/app/pages/Home";
 import "@/app/globals.css"
 
-export default async function MemberPage({params}) {
+export default async function MemberPage({ params }) {
     const delayedParams = await params;
-    const {username} = delayedParams;
+    const { username } = delayedParams;
 
     return (
         <div>

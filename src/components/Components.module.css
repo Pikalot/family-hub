@@ -1,6 +1,6 @@
 /* Hero Section */
 .hero {
-  height: clamp(35rem, 65dvh, 65dvh); 
+  height: clamp(35rem, 65dvh, 65dvh);
   background: linear-gradient(180deg, #0059b3, #87ceeb);
   color: white;
   text-align: center;
@@ -10,19 +10,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  overflow: hidden; /* Prevent content from overflowing */
+  overflow: hidden;
+  /* Prevent content from overflowing */
   position: relative;
 }
 
 /* [data-theme="dark"] .hero { */
-  /* Brighter dawn */
-  /* background: linear-gradient(180deg, #000a4c, #ffa07a); */
+/* Brighter dawn */
+/* background: linear-gradient(180deg, #000a4c, #ffa07a); */
 
-  /* Night time dark */
-  /* background: linear-gradient(180deg, #332941, #000a4c);  */
+/* Night time dark */
+/* background: linear-gradient(180deg, #332941, #000a4c);  */
 
-  /* Sunset or dawn time */
-  /* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42); */
+/* Sunset or dawn time */
+/* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42); */
 /* } */
 
 .hero-content {
@@ -30,7 +31,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   max-width: 40%;
   transform: translateX(150px);
 }
@@ -42,12 +43,14 @@
 }
 
 .hero h2 {
-  font-size: clamp(1rem, 3.5vw, 1.85rem); /* Greeting font size */
+  font-size: clamp(1rem, 3.5vw, 1.85rem);
+  /* Greeting font size */
   margin: 0;
   text-align: center;
   font-style: italic;
   font-weight: normal;
-  color: #d1d5db; /* Lighter shade for greeting */
+  color: #d1d5db;
+  /* Lighter shade for greeting */
 }
 
 .dialogue-box {
@@ -59,22 +62,30 @@
   padding: 1.5rem;
   color: #111827;
   text-align: center;
-  position: relative; /* Required for pseudo-element positioning */
-  margin-bottom: 1rem; /* Add space above the name */
-  transition: background-color 0.3s; /* Smooth background color change */
+  position: relative;
+  /* Required for pseudo-element positioning */
+  margin-bottom: 1rem;
+  /* Add space above the name */
+  transition: background-color 0.3s;
+  /* Smooth background color change */
 }
 
 .dialogue-box::after {
   content: '';
   position: absolute;
-  bottom: -10px; /* Position the arrow just below the box */
-  left: 35%; /* Center the arrow horizontally */
+  bottom: -10px;
+  /* Position the arrow just below the box */
+  left: 35%;
+  /* Center the arrow horizontally */
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 10px solid transparent; /* Create the left side of the arrow */
-  border-right: 10px solid transparent; /* Create the right side of the arrow */
-  border-top: 10px solid #ffffff; /* Create the top part of the arrow (box color) */
+  border-left: 10px solid transparent;
+  /* Create the left side of the arrow */
+  border-right: 10px solid transparent;
+  /* Create the right side of the arrow */
+  border-top: 10px solid #ffffff;
+  /* Create the top part of the arrow (box color) */
 }
 
 .dialogue-box:hover {
@@ -83,11 +94,25 @@
 
 /* Keyframes for Vibrating Effect */
 @keyframes vibrate {
-  0% { transform: translate(1px, 1px); }
-  25% { transform: translate(-1px, -1px); }
-  50% { transform: translate(1px, -1px); }
-  75% { transform: translate(-1px, 1px); }
-  100% { transform: translate(1px, 1px); }
+  0% {
+    transform: translate(1px, 1px);
+  }
+
+  25% {
+    transform: translate(-1px, -1px);
+  }
+
+  50% {
+    transform: translate(1px, -1px);
+  }
+
+  75% {
+    transform: translate(-1px, 1px);
+  }
+
+  100% {
+    transform: translate(1px, 1px);
+  }
 }
 
 .dialogue-box h1 {
@@ -98,7 +123,7 @@
 .dialogue-box h2 {
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-style: italic;
-  color: #6b7280; 
+  color: #6b7280;
   margin: 0;
 }
 
@@ -106,14 +131,15 @@
   font-size: clamp(1rem, 3vw, 1.25rem);
   margin: 0.5rem;
   align-self: center;
-  text-align: right; 
+  text-align: right;
   /* Line clamp for p */
   display: -webkit-box;
-  display: box; 
-  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  display: box;
+  -webkit-line-clamp: 3;
+  /* Limit to 3 lines */
   line-clamp: 3;
   -webkit-box-orient: vertical;
-  box-orient: vertical; 
+  box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -131,21 +157,26 @@
   border-radius: 0.5rem;
   text-decoration: none;
   font-weight: bold;
-  transition: all 0.2s ease-in-out; /* Matches hover:ease-in and duration-100 */
+  transition: all 0.2s ease-in-out;
+  /* Matches hover:ease-in and duration-100 */
 }
 
 .hero .buttons a:hover {
   background: #003060;
-  transform: scale(1.1); /* Enlarge the button to 110% of its original size */
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Adds a pop-up shadow effect */
+  transform: scale(1.1);
+  /* Enlarge the button to 110% of its original size */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  /* Adds a pop-up shadow effect */
 }
 
 /* Image Section */
 .hero .imageContainer {
-  flex: 1; /* Take up equal space */
+  flex: 1;
+  /* Take up equal space */
   display: flex;
   justify-content: center;
-  align-self: flex-end; /* Align the image at the bottom */
+  align-self: flex-end;
+  /* Align the image at the bottom */
   height: clamp(30rem, 60vh, 35rem);
 }
 
@@ -153,7 +184,7 @@
   max-width: 100%;
   object-fit: contain;
   height: 50vh;
-  align-self: flex-end; 
+  align-self: flex-end;
 }
 
 /* Footer */
@@ -163,7 +194,7 @@
   background: #e5e6e8;
   color: #555;
   border-top: 1px solid #ddd;
-  height: clamp(5rem, 14vh, 12rem); 
+  height: clamp(5rem, 14vh, 12rem);
 }
 
 /* 
@@ -175,8 +206,9 @@
 .footer-container {
   font-size: 18px;
   display: flex;
-  justify-content: space-between; 
-  flex-wrap: wrap; /* Wrap items on smaller screens */
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* Wrap items on smaller screens */
 }
 
 .footer-copyright {
@@ -206,18 +238,20 @@
   width: 24px;
   height: 24px;
 }
+
 .social-icon a:hover {
   opacity: 0.60;
 }
 
 .signin {
   background: url('./Photo/Love.jpg') no-repeat center center;
-  background-size: contain; /* Shrinks image to fit within screen */
+  background-size: contain;
+  /* Shrinks image to fit within screen */
   background-position: left;
   background-repeat: no-repeat;
-  height: 100vh; 
-  width: 100vw; 
-  position: fixed; 
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
   top: 0;
   left: 0;
 }
@@ -225,10 +259,11 @@
 
 /* Phone screen */
 @media (max-width: 480px) {
+
   .container,
   .content,
   .footer {
-    padding: 0.5rem; 
+    padding: 0.5rem;
   }
 
   .hero {
@@ -242,19 +277,20 @@
     max-width: 100%;
     transform: translateX(0px);
   }
-  
+
   .dialogue-box::after {
-    left: 70%; /* Center the arrow horizontally */
+    left: 70%;
+    /* Center the arrow horizontally */
   }
-    
+
   .dialogue-box h2 {
-    color: #6b7280; 
+    color: #6b7280;
   }
-  
+
   .hero p {
     text-align: left;
   }
-  
+
   .hero .buttons {
     align-self: center;
   }
@@ -266,6 +302,7 @@
 
 /* Tablet screen */
 @media (max-width: 1366px) and (orientation: landscape) {
+
   .container,
   .content {
     padding: 1vw;
@@ -285,7 +322,7 @@
   .hero {
     padding-left: 1rem;
     padding-right: 1rem;
-    height: clamp(35rem, 50dvh, 45rem); 
+    height: clamp(35rem, 50dvh, 45rem);
   }
 
   .imageContainer {

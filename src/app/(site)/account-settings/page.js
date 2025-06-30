@@ -9,21 +9,18 @@ import DeepStarfield from "@/components/visual-effect/DeepStarfield";
 import CherryBlossomField from "@/components/visual-effect/CherryBlossomField";
 import SummerBreeze from "@/components/visual-effect/SummerBreeze";
 import AutumnLeaves from "@/components/visual-effect/AutumnLeaves";
+import { redirect } from "next/navigation";
 // import Avatar from "@/app/ui/components/auth/Avatar";
 // import AccountSettingsPageWrapper from "./AccountSettingsWrapper";
 // import SignOutButton from "@/ui/components/auth/SignOutButton";
 // import { getUser } from "@/database/queries/user/getUser";
 
 export default async function AccountSettingsPage() {
-    const session = await getServerSession(authOptions);   
+    const session = await getServerSession(authOptions);
     const season = new Date().getMonth();
 
     if (!session?.user) {
-        return (
-            <p className="text-center text-error text-xl">
-                You need to be logged in to access account settings.
-            </p>
-        );
+        redirect('/notfound');
     }
 
     const thisUser = await findMemberById(session.user.mid);
@@ -39,7 +36,7 @@ export default async function AccountSettingsPage() {
             <div className={styles["account-setting"]}>
                 {/* Background effect by season */}
                 {(season > 1 && season <= 4) && <CherryBlossomField />}
-                {(season > 4 && season <= 7) && <SummerBreeze />} 
+                {(season > 4 && season <= 7) && <SummerBreeze />}
                 {(season > 7 && season <= 10) && <AutumnLeaves />}
                 {(season > 10 || season <= 1) && <DeepStarfield />}
                 <div className={styles["container"]}>
@@ -81,19 +78,19 @@ export default async function AccountSettingsPage() {
                             </div>
                         </div>
                         {/* Client Component for Upload */}
-                        
+
                         <WrapperPage />
-                        
+
                     </div>
                 </div>
             </div>
-            
+
             <Footer
-            member={thisUser[0]} 
-            github={github? github[0] : ''} 
-            facebook={facebook? facebook[0] : ''}
-            twitter={twitter? twitter[0] : ''}
-            linkedin={linkedin? linkedin[0] : ''}
+                member={thisUser[0]}
+                github={github ? github[0] : ''}
+                facebook={facebook ? facebook[0] : ''}
+                twitter={twitter ? twitter[0] : ''}
+                linkedin={linkedin ? linkedin[0] : ''}
             />
         </div>
     );

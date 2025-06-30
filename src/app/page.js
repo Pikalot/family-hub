@@ -1,8 +1,8 @@
-import { findMemberByUsername } from "@/database/queries/Navbar/findMember";
-import { signedOutRoutes } from "./pages/Routing";
+// import { findMemberByUsername } from "@/database/queries/Navbar/findMember";
+// import { signedOutRoutes } from "./pages/Routing";
 // import PageRenderer from "./pages/(removing) PageRenderer";
 // import { useContext } from "react";
-import { AuthContext } from "@/auth/WrappedAuthentication";
+// import { AuthContext } from "@/auth/WrappedAuthentication";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth/AuthOptions";
 
@@ -33,12 +33,13 @@ import "./globals.css"
 //   )
 // }
 
-export default async function App({ searchParams }) {
+export default async function App(props) {
+  const searchParams = await props.searchParams;
   const session = await getServerSession(authOptions);
   const username = searchParams?.user || session?.user?.username || "admin1";
-  console.log('page username ', session.user?.username);
-  const member = await findMemberByUsername(username);
-  const userId = member[0].mid;
+  // console.log('page username ', session.user?.username);
+  // const member = await findMemberByUsername(username);
+  // const userId = member[0].mid;
 
   return (
     <div>
