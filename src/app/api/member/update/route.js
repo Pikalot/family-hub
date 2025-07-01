@@ -16,13 +16,13 @@ export const PATCH = async (req) => {
     try {
         // Parse the request for JSON or form-data
         const contentType = req.headers.get("content-type") || "";
-        let username, 
-            email, 
-            first_name, 
-            last_name, 
-            password, 
-            confirmedPassword, 
-            dob, 
+        let username,
+            email,
+            first_name,
+            last_name,
+            password,
+            confirmedPassword,
+            dob,
             phone,
             description,
             occupation; // Later: image,
@@ -38,7 +38,7 @@ export const PATCH = async (req) => {
             phone = body.phone;
             dob = body.dob;
             description = body.description,
-            occupation = body.occupation;
+                occupation = body.occupation;
         } else if (contentType.includes("multipart/form-data")) {
             const formData = await req.formData();
             username = formData.get("username");
@@ -55,13 +55,13 @@ export const PATCH = async (req) => {
         }
 
         // Ensure only non-empty fields
-        if (!username && 
-            !email && 
-            !first_name && 
-            !last_name && 
-            !password && 
-            !dob && 
-            !phone && 
+        if (!username &&
+            !email &&
+            !first_name &&
+            !last_name &&
+            !password &&
+            !dob &&
+            !phone &&
             !description &&
             !occupation) { // && !image 
             return NextResponse.json({ message: "No fields to update" }, { status: 400 });
@@ -90,7 +90,7 @@ export const PATCH = async (req) => {
         }
 
         if (password && password !== confirmedPassword) {
-            return NextResponse.json({ status: "error", message: "Passwords do not match" }, { status: 400});
+            return NextResponse.json({ status: "error", message: "Passwords do not match" }, { status: 400 });
         }
 
         const updateData = {};
@@ -164,7 +164,6 @@ export const PATCH = async (req) => {
 
         // Update the session manually
         const updatedSession = await getServerSession(authOptions);
-        // console.log(updatedSession)
         if (updatedSession) {
             return NextResponse.json({
                 message: "User details updated successfully",

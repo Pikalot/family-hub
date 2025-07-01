@@ -10,17 +10,18 @@ import NavButton from "@/ui/components/buttons/NavButton";
 import HamburgerMenu from "./HamburgerMenu";
 import Selecter from './Selecter';
 import SearchBar from './SearchBar';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar({ userList, inRoutes, adminRoutes }) {
-    const { session, authenticated } = useContext(AuthContext);
+    const { session } = useContext(AuthContext);
     const [selectedMember, setSelectedMember] = useState(userList[0]);
     const [isShrink, setIsShrink] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const hideTimeoutRef = useState(null);
-
+    const pathname = usePathname();
+    const username = pathname.split("/")[1];
 
     useEffect(() => {
-        // console.log("routes from Navbar:", routes);
         if (session?.user) {
             const match = userList.find(u => u.username === session.user.username);
             if (match) setSelectedMember(match);
@@ -90,7 +91,12 @@ export default function Navbar({ userList, inRoutes, adminRoutes }) {
 
                     {/* Search Bar */}
                     <div className={styles["search-bar"]}>
-                        <SearchBar inRoutes={inRoutes} adminRoutes={adminRoutes} />
+                        <SearchBar
+                            members={userList}
+                            inRoutes={inRoutes}
+                            adminRoutes={adminRoutes}
+                            onSelectMember={handleSelectMember}
+                        />
                     </div>
 
                     <div className={styles["btn-panel"]}>

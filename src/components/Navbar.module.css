@@ -91,15 +91,33 @@
 
 /* Search bar styling */
 .search-bar {
-  /* display: flex; */
-  margin-left: 1.25rem;
+  min-width: 150px;
+  max-width: 600px;
 }
 
 .search-bar input {
-  width: 12rem;
+  width: 100%;
   color: black;
   border-radius: 0.25rem;
   padding: 0.35rem 0.75rem;
+}
+
+.search-item {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.05s ease-in-out;
+  font-style: italic;
+}
+
+.hidden-tab {
+  font-size: small;
+  color: #192035;
+}
+
+.active-btn {
+  text-decoration: underline;
+  background-color: bisque;
+  color: #192035;
 }
 
 /* Hamburger styling, dropdown Container */
