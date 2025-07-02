@@ -137,7 +137,7 @@ export default function SearchBar({ members, inRoutes, adminRoutes, onSelectMemb
                                     </span>
                                     {r.page}
                                     <div className={styles['hidden-tab']}>
-                                        {selectedItem === id && r.path}
+                                        {selectedItem === id && `${window.location.origin}${r.path}`}
                                     </div>
                                 </li>
                             </Link>
