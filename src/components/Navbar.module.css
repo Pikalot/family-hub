@@ -277,7 +277,6 @@
   .search-bar input {
     color: black;
     border-radius: 0.25rem;
-    padding: 0.35rem 0;
     width: 270%;
     position: relative;
     z-index: 10;
