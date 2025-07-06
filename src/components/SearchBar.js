@@ -24,7 +24,7 @@ export default function SearchBar({ members, inRoutes, adminRoutes, onSelectMemb
             }
         };
 
-        handleResize;
+        handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     },[])
