@@ -91,7 +91,7 @@
 
 /* Search bar styling */
 .search-bar {
-  min-width: 150px;
+  min-width: 75px;
   max-width: 600px;
 }
 
@@ -267,17 +267,18 @@
   }
 
   .search-bar {
-    margin-left: 6rem;   
+    margin-left: 6rem;
+    max-width: 10px;
     margin-right: auto; 
     display: flex;
     align-items: center;
   }
 
   .search-bar input {
-    width: 85%;
     color: black;
     border-radius: 0.25rem;
     padding: 0.35rem 0;
+    width: 270%;
   } 
 
   .search-icon svg:hover {
