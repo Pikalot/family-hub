@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import styles from './Components.module.css';
 import Image from 'next/image';
 import fadeInVariant from '@/utilities/fadeInVariant';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import CherryBlossomField from './visual-effect/CherryBlossomField';
 import AutumnLeaves from './visual-effect/AutumnLeaves';
 import DeepStarfield from './visual-effect/DeepStarfield';
@@ -23,13 +23,17 @@ export default function Hero({member, resume}) {
     }
   }, [control, inView]);
 
+  const showSeason = useMemo(() => {
+    if (season > 1 && season <= 4) return <CherryBlossomField />;
+    if (season > 7 && season <= 10) return <AutumnLeaves />;
+    if (season > 10 || season <= 1) return <DeepStarfield />;
+    return <></>;
+  }, [season]);
+
   return (
     <div id="hero" className={styles.hero}>
       {/* Background effect by season */}
-      {(season > 1 && season <= 4) && <CherryBlossomField />}
-      {/* {(season > 4 && season <= 7) && <SummerBreeze />}  */}
-      {(season > 7 && season <= 10) && <AutumnLeaves />}
-      {(season > 10 || season <= 1) && <DeepStarfield />}
+      {showSeason}
       <div className = {styles["hero-content"]}>
         <div className={styles["dialogue-box"]}>
           <h2>Hi! You’ve found</h2>

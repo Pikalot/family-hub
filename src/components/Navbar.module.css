@@ -265,6 +265,26 @@
   .dropdown-content {
     transform: translateX(-70%);
   }
+
+  .search-bar {
+    margin-left: 5rem;   
+    margin-right: auto; 
+    display: flex;
+    align-items: center;
+  }
+
+.search-icon svg:hover {
+  transform: scale(1.25);
+  filter: drop-shadow(0 0 3px white);
+  transition: 0.2s ease-in-out;
+}
+
+  .search-icon {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
