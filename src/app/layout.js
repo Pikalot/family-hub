@@ -7,6 +7,7 @@ import { signedInRoutes, adminSignedInRoutes } from "./pages/Routing";
 import { findMemberByUsername } from "@/database/queries/Navbar/findMember";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth/AuthOptions";
+import UserProvider from "@/components/context/UserProvider";
 
 export const metadata = {
   title: "Family Hub",
@@ -17,29 +18,44 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const userList = await findCachedMembers();
   const session = await getServerSession(authOptions);
+  let userId = null;
+  const user = session?.user || { username: "admin1" };
 
   let inRoutes = [];
   let adminRoutes = [];
-  if (session?.user?.username) {
-    const username = session.user.username;
+  // if (session?.user?.username) {
+  if (user?.username) {
+    const username = user.username;
     const member = await findMemberByUsername(username);
-    const userId = member[0].mid;
+    userId = member[0].mid;
     inRoutes = signedInRoutes({ username });
     adminRoutes = adminSignedInRoutes({ username });
   }
+
+  // Value passed to context (accessible via useUser())
+  const userContextValue = {
+    user,
+    userId,
+    inRoutes,
+    adminRoutes,
+    userList,
+  };
 
   return (
     <html lang="en" data-lt-installed data-theme="dark">
       <body>
         <WrappedSessionProvider>
           <WrappedAuthentication>
+            <UserProvider value={ userContextValue }>
             <header>
-              <Navbar userList={userList} inRoutes={inRoutes} adminRoutes={adminRoutes} />
+              {/* <Navbar userList={userList} inRoutes={inRoutes} adminRoutes={adminRoutes} /> */}
+              <Navbar />
             </header>
             <main>
               {children}
             </main>
             {/* <Footer /> */}
+            </UserProvider>
           </WrappedAuthentication>
         </WrappedSessionProvider>
       </body>

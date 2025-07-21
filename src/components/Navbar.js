@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '@/auth/WrappedAuthentication';
+// import { AuthContext } from '@/auth/WrappedAuthentication';
 import styles from "./Navbar.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,23 +10,26 @@ import NavButton from "@/ui/components/buttons/NavButton";
 import HamburgerMenu from "./HamburgerMenu";
 import Selecter from './Selecter';
 import SearchBar from './SearchBar';
-import { usePathname } from 'next/navigation';
+import { useUser } from './context/UserContext';
+// import { usePathname } from 'next/navigation';
 
-export default function Navbar({ userList, inRoutes, adminRoutes }) {
-    const { session } = useContext(AuthContext);
+export default function Navbar() {
+    // const { session } = useContext(AuthContext);
+    const {user, userList, inRoutes, adminRoutes } = useUser();
+
     const [selectedMember, setSelectedMember] = useState(userList[0]);
     const [isShrink, setIsShrink] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const hideTimeoutRef = useState(null);
-    const pathname = usePathname();
-    const username = pathname.split("/")[1];
+    // const pathname = usePathname();
+    // const username = pathname.split("/")[1];
 
     useEffect(() => {
-        if (session?.user) {
-            const match = userList.find(u => u.username === session.user.username);
+        if (user) {
+            const match = userList.find(u => u.username === user.username);
             if (match) setSelectedMember(match);
         }
-    }, [session, userList]);
+    }, [user, userList]);
 
     const handleSelectMember = (member) => {
         setSelectedMember(member);
@@ -105,8 +108,8 @@ export default function Navbar({ userList, inRoutes, adminRoutes }) {
                             <NavButton page="Home" route="/" className={styles["nav-button"]} />
                             <NavButton page="About" route="#content" className={styles["nav-button"]} />
                             <NavButton page="Projects" route="#project" className={styles["nav-button"]} />
-                            {session?.user?.role === "admin" && (
-                                <NavButton page="Manage Member" route={`/${session?.user?.username}/view`} className={styles["nav-button"]} />
+                            {user?.role === "admin" && (
+                                <NavButton page="Manage Member" route={`/${user?.username}/view`} className={styles["nav-button"]} />
                             )}
                         </div>
                         <Selecter members={userList} onSelectMember={handleSelectMember} />
