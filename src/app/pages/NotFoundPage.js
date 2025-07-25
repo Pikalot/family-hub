@@ -1,4 +1,5 @@
-import style from '../../components/Components.module.css'
+import style from '../../components/Components.module.css';
+import Link from 'next/link';
 
 export default function NotFound() {
     return (
@@ -8,7 +9,7 @@ export default function NotFound() {
                     Nothing here
                 </h1>
                 <h1>
-                    <a href='/'>U turn now</a>
+                    <Link href='/'>U turn now</Link>
                 </h1>
             </div>
         </div >

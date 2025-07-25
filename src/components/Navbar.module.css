@@ -12,6 +12,7 @@
   color: white;
   background: transparent;
   visibility: visible;
+  z-index: 100;
 }
 
 .navbar.shrink {
@@ -125,6 +126,7 @@
   position: relative;
   display: inline-block;
   /* Allows the dropdown trigger to align inline */
+  
 }
 
 /* Dropdown Content (Default Styles) */
@@ -143,7 +145,7 @@
   padding: 0.75rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   /* Subtle shadow */
-  z-index: 100;
+  /* z-index: 100; */
   /* Keep above other elements */
 }
 

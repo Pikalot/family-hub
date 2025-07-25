@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, useContext } from 'react';
-// import { AuthContext } from '@/auth/WrappedAuthentication';
+import { useState, useEffect } from 'react';
 import styles from "./Navbar.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,18 +10,15 @@ import HamburgerMenu from "./HamburgerMenu";
 import Selecter from './Selecter';
 import SearchBar from './SearchBar';
 import { useUser } from './context/UserContext';
-// import { usePathname } from 'next/navigation';
+import { useList } from './context/UserListContext';
 
 export default function Navbar() {
-    // const { session } = useContext(AuthContext);
-    const {user, userList, inRoutes, adminRoutes } = useUser();
-
+    const userList = useList();
+    const {user} = useUser();
     const [selectedMember, setSelectedMember] = useState(userList[0]);
     const [isShrink, setIsShrink] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const hideTimeoutRef = useState(null);
-    // const pathname = usePathname();
-    // const username = pathname.split("/")[1];
 
     useEffect(() => {
         if (user) {
@@ -95,9 +91,6 @@ export default function Navbar() {
                     {/* Search Bar */}
                     <div className={styles["search-bar"]}>
                         <SearchBar
-                            members={userList}
-                            inRoutes={inRoutes}
-                            adminRoutes={adminRoutes}
                             onSelectMember={handleSelectMember}
                         />
                     </div>

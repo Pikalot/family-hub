@@ -1,18 +1,28 @@
-import { useState, useEffect, useRef, useMemo, useContext } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import styles from "./Navbar.module.css";
-import { AuthContext } from "@/auth/WrappedAuthentication";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useList } from "./context/UserListContext";
+import { useRoute } from "./context/RoutesContext";
+import { useUser } from "./context/UserContext";
 
-export default function SearchBar({ members, inRoutes, adminRoutes, onSelectMember }) {
+export default function SearchBar({ onSelectMember }) {
+    const members = useList();
+    const {inRoutes, adminRoutes} = useRoute();
     const inputRef = useRef(null);
     const [keyword, setKeyword] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [selectedItem, setSelectedItem] = useState(0);
     const [isFocused, setIsFocused] = useState(false);
     const [isOpen, setIsOpen] = useState(true);
-    const { session } = useContext(AuthContext);
+    const { user } = useUser();
     const router = useRouter();
+
+    const resetSearch = useCallback(() => {
+        setKeyword("");
+        setSuggestions([]);
+        if (window.innerWidth <= 480) setIsOpen(false);
+    },[]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -30,10 +40,10 @@ export default function SearchBar({ members, inRoutes, adminRoutes, onSelectMemb
     },[])
 
     const routes = useMemo(() => {
-        if (session?.user.role === 'admin')
+        if (user?.role === 'admin')
             return [...inRoutes, ...adminRoutes];
-        return [...inRoutes]
-    }, [session?.user.role, inRoutes, adminRoutes]);
+        return [...inRoutes];
+    }, [user?.role, inRoutes, adminRoutes]);
 
     useEffect(() => {
         inputRef.current?.focus();
@@ -138,10 +148,10 @@ export default function SearchBar({ members, inRoutes, adminRoutes, onSelectMemb
                 resetSearch();
             }
         };
-        window.addEventListener('mousedown', clickOut);
+        window.addEventListener('click', clickOut);
         
         return () => {
-            window.removeEventListener('mousedown', clickOut);
+            window.removeEventListener('click', clickOut);
         };
     }, [resetSearch]);
 
@@ -154,37 +164,34 @@ export default function SearchBar({ members, inRoutes, adminRoutes, onSelectMemb
         return (
             <ul className={styles["dropdown-content"]}>
                 {suggestions.map((r, id) => (
-                    <Link href={r.path} key={r.path}>
-                        <li
+                    <Link 
+                        href={r.path} 
+                        key={r.path}>
+                        <div
                             className={`${styles["search-item"]} ${id === selectedItem ? styles["active-btn"] : ""}`}
                             onMouseEnter={() => setSelectedItem(id)}
-                            onClick={() => {
+                            onMouseDown={() => {
                                 if (r.type === "user" && onSelectMember) {
                                     const user = members.find((m) => `/${m.username}` === r.path);
                                     if (user) onSelectMember(user);
                                 }
                                 resetSearch();
                                 inputRef.current.blur();
+                                router.push(r.path);
                             }}
                         >
                             <span style={{ marginRight: "0.5rem" }}>
-                                {r.type === "user" ? "🧑‍🦰" : "📄"}
+                                {r.type === "user" ? "🧑" : "📄"}
                             </span>
                             {r.page}
                             <div className={styles['hidden-tab']}>
                                 {selectedItem === id && `${window.location.origin}${r.path}`}
                             </div>
-                        </li>
+                        </div>
                     </Link>
                 ))}
             </ul>
         )
-    }
-
-    function resetSearch() {
-        setKeyword("");
-        setSuggestions([]);
-        if (window.innerWidth <= 480) setIsOpen(false);
     }
 
     return (

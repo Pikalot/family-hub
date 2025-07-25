@@ -8,6 +8,8 @@ import { findMemberByUsername } from "@/database/queries/Navbar/findMember";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth/AuthOptions";
 import UserProvider from "@/components/context/UserProvider";
+import RouteProvider from "@/components/context/RouteProvider";
+import UserListProvider from "@/components/context/UserListProvider";
 
 export const metadata = {
   title: "Family Hub",
@@ -23,7 +25,6 @@ export default async function RootLayout({ children }) {
 
   let inRoutes = [];
   let adminRoutes = [];
-  // if (session?.user?.username) {
   if (user?.username) {
     const username = user.username;
     const member = await findMemberByUsername(username);
@@ -36,9 +37,11 @@ export default async function RootLayout({ children }) {
   const userContextValue = {
     user,
     userId,
+  };
+
+  const routeContextValue = {
     inRoutes,
     adminRoutes,
-    userList,
   };
 
   return (
@@ -46,16 +49,18 @@ export default async function RootLayout({ children }) {
       <body>
         <WrappedSessionProvider>
           <WrappedAuthentication>
-            <UserProvider value={ userContextValue }>
-            <header>
-              {/* <Navbar userList={userList} inRoutes={inRoutes} adminRoutes={adminRoutes} /> */}
-              <Navbar />
-            </header>
-            <main>
-              {children}
-            </main>
-            {/* <Footer /> */}
-            </UserProvider>
+            <UserListProvider value={ userList }>
+              <UserProvider value={ userContextValue }>
+                <RouteProvider value={ routeContextValue }>
+                  <header>
+                    <Navbar />
+                  </header>
+                  <main>
+                    {children}
+                  </main>
+                </RouteProvider>
+              </UserProvider>
+            </UserListProvider>
           </WrappedAuthentication>
         </WrappedSessionProvider>
       </body>
