@@ -5,11 +5,8 @@ import Footer from "@/components/Footer";
 import styles from "./AccountSetting.module.css";
 import WrapperPage from "./WrapperPage";
 import { getSocialMedia } from "@/database/queries/user/getSocialMedia";
-import DeepStarfield from "@/components/visual-effect/DeepStarfield";
-import CherryBlossomField from "@/components/visual-effect/CherryBlossomField";
-import SummerBreeze from "@/components/visual-effect/SummerBreeze";
-import AutumnLeaves from "@/components/visual-effect/AutumnLeaves";
 import { redirect } from "next/navigation";
+
 // import Avatar from "@/app/ui/components/auth/Avatar";
 // import AccountSettingsPageWrapper from "./AccountSettingsWrapper";
 // import SignOutButton from "@/ui/components/auth/SignOutButton";
@@ -17,7 +14,6 @@ import { redirect } from "next/navigation";
 
 export default async function AccountSettingsPage() {
     const session = await getServerSession(authOptions);
-    const season = new Date().getMonth();
 
     if (!session?.user) {
         redirect('/notfound');
@@ -35,10 +31,6 @@ export default async function AccountSettingsPage() {
         <div>
             <div className={styles["account-setting"]}>
                 {/* Background effect by season */}
-                {(season > 1 && season <= 4) && <CherryBlossomField />}
-                {(season > 4 && season <= 7) && <SummerBreeze />}
-                {(season > 7 && season <= 10) && <AutumnLeaves />}
-                {(season > 10 || season <= 1) && <DeepStarfield />}
                 <div className={styles["container"]}>
                     <div className={styles["title"]}>
                         <h1>

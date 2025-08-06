@@ -1,0 +1,46 @@
+/* Member container */
+.project-page {
+  /* height: clamp(35rem, 65dvh, 65dvh); */
+  background: linear-gradient(180deg, #0059b3, #87ceeb);
+  color: white;
+  text-align: center;
+  padding-top: clamp(6rem, 12vw, 11rem);
+  padding-left: 20vw;
+  padding-right: 20vw;
+  /* display: block;
+  align-items: flex-start; */
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  /* Prevent content from overflowing */
+  position: relative;
+  table-layout: fixed;
+}
+
+/* Table Styling */
+.project-table {
+  width: 100%;
+  background: darkgray;
+  color: #004466;
+}
+
+/* Table Headers */
+.project-table th {
+  background: #004466;
+  color: white;
+  padding: 25px;
+}
+
+/* Table Rows */
+.project-table td {
+  padding: 18px;
+  border-bottom: 2px solid #ccc;
+  text-align: left;
+  max-width: 300px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .project-page {
+    background: linear-gradient(180deg, #332941, #000a4c);
+  }
+}

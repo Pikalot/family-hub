@@ -24,7 +24,6 @@ export default async function ViewPage({ params }) {
     const twitter = await getSocialMedia(userId, 'Twitter');
     const linkedin = await getSocialMedia(userId, 'LinkedIn');
     const members = await findAllMembersHigherSecurity();
-    // console.log("in view: ", members);
 
     return (
         <div>

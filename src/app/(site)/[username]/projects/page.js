@@ -1,29 +1,23 @@
-import { findMemberByUsername } from "@/database/queries/Navbar/findMember";
 import Footer from "@/components/Footer";
+import { findMemberByUsername } from "@/database/queries/Navbar/findMember";
 import { getSocialMedia } from "@/database/queries/user/getSocialMedia";
-import { homeRoutes } from "./Routing";
-import NotFound from "./NotFoundPage";
+import { getProjects } from "@/database/queries/user/getProjects";
+import ProjectPage from "@/app/pages/ProjectPage";
 
-export default async function Home({ username }) {
+export default async function Project({ params }) {
+  const delayedParams = await params;
+  const { username } = delayedParams;
   const member = await findMemberByUsername(username);
   const userId = member[0].mid;
   const github = await getSocialMedia(userId, "GitHub");
   const facebook = await getSocialMedia(userId, "Facebook");
   const twitter = await getSocialMedia(userId, "Twitter");
   const linkedin = await getSocialMedia(userId, "LinkedIn");
-  const routes = await homeRoutes({ username, userId, member });
+  const projects = await getProjects(userId);
 
   return (
     <div>
-      {routes.length > 0 ? (
-        routes.map(({ id, props, Component }) => (
-          <section id={id} key={id}>
-            <Component {...props} />
-          </section>
-        ))
-      ) : (
-        <NotFound />
-      )}
+      <ProjectPage projects={projects} />
       <Footer
         member={member[0]}
         github={github ? github[0] : ""}

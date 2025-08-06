@@ -1,5 +1,5 @@
 .account-setting {
-    min-height: 85dvh; 
+    min-height: 85dvh;
     background: linear-gradient(180deg, #0059b3, #87ceeb);
     color: white;
     text-align: center;
@@ -9,13 +9,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
 }
 
 /* [data-theme="dark"] .account-setting { */
-    /* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42) */
-    /* background: linear-gradient(180deg, #332941, #000a4c); 
+/* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42) */
+/* background: linear-gradient(180deg, #332941, #000a4c); 
 } */
 
 
@@ -30,18 +30,23 @@
 
 .title {
     width: 90%;
-    max-width: 56rem; /* 4xl in Tailwind is 56rem (896px) */
+    max-width: 56rem;
+    /* 4xl in Tailwind is 56rem (896px) */
     background: linear-gradient(to bottom, #d1d5db, #afb3be);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
-    border-radius: 0.5rem; /* rounded-lg */
-    padding: 2rem; /* p-8 */
-    user-select: none; /* select-none */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* shadow-lg */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+    padding: 2rem;
+    /* p-8 */
+    user-select: none;
+    /* select-none */
 }
 
 .title h1 {
-    font-size: 1.875rem; 
+    font-size: 1.875rem;
     font-weight: bold;
-    color: #003060; 
+    color: #003060;
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -53,14 +58,15 @@
 
 .bold-paragraph {
     width: 100%;
-    font-size: 1.25rem; 
-    font-weight: 600; /* font-semibold */
-    margin-bottom: 0.5rem; 
+    font-size: 1.25rem;
+    font-weight: 600;
+    /* font-semibold */
+    margin-bottom: 0.5rem;
 }
 
 .content p {
-    color: black; 
-    font-size: 1.25rem; 
+    color: black;
+    font-size: 1.25rem;
 
 }
 
@@ -68,7 +74,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem; /* space-y-6 */
+    gap: 1.5rem;
+    /* space-y-6 */
 }
 
 .editor-container {
@@ -76,29 +83,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0.5rem; /* rounded-lg */
+    border-radius: 0.5rem;
+    /* rounded-lg */
     width: 100%;
     user-select: none;
 }
 
 .editor-overlay {
     position: absolute;
-    inset: 0; /* Equivalent to top: 0; right: 0; bottom: 0; left: 0; */
-    background-color: rgba(0, 0, 0, 0.5); /* bg-black bg-opacity-50 */
+    inset: 0;
+    /* Equivalent to top: 0; right: 0; bottom: 0; left: 0; */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* bg-black bg-opacity-50 */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10;
-    border-radius: 0.5rem; /* rounded-lg */
+    border-radius: 0.5rem;
+    /* rounded-lg */
 }
 
 @keyframes loading-bars {
     0% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.5;
     }
+
     100% {
         opacity: 1;
     }
@@ -107,32 +120,42 @@
 .editor-loading {
     display: flex;
     gap: 0.25rem;
-    color: white; /* text-white */
+    color: white;
+    /* text-white */
 }
 
 .editor-loading span {
     width: 8px;
-    height: 24px; /* Adjust for loading-lg */
+    height: 24px;
+    /* Adjust for loading-lg */
     background: currentColor;
     animation: loading-bars 1s infinite ease-in-out;
 }
 
 /* Delay animations for bar effect */
-.editor-loading span:nth-child(1) { animation-delay: 0s; }
-.editor-loading span:nth-child(2) { animation-delay: 0.2s; }
-.editor-loading span:nth-child(3) { animation-delay: 0.4s; }
+.editor-loading span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.editor-loading span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.editor-loading span:nth-child(3) {
+    animation-delay: 0.4s;
+}
 
 .editor-box {
-    width: 100%; 
-    border-radius: 0.5rem; 
-    padding: 0.15rem; 
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.15rem;
     transition: opacity 200ms ease-in-out;
 }
 
 .editor-box h2 {
-    font-size: 1.875rem; 
+    font-size: 1.875rem;
     font-weight: bold;
-    color: #003060; 
+    color: #003060;
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -144,9 +167,9 @@
 
 .editor-block label {
     font-size: 0.875rem;
-    font-weight: 500; 
-    color: #111827; 
-    font-size: 1rem; 
+    font-weight: 500;
+    color: #111827;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -159,11 +182,16 @@
 .field-input {
     display: flex;
     align-items: center;
-    gap: 0.5rem; /* gap-2 */
-    width: 100%; /* w-full */
-    background-color: #9ea6b3; /* bg-slate-700 */
-    border-radius: 0.5rem; /* rounded-lg */
-    border: 1px solid #ccc; /* input-bordered equivalent */
+    gap: 0.5rem;
+    /* gap-2 */
+    width: 100%;
+    /* w-full */
+    background-color: #9ea6b3;
+    /* bg-slate-700 */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+    border: 1px solid #ccc;
+    /* input-bordered equivalent */
     padding: 0.125rem;
     color: white;
 }
@@ -177,7 +205,8 @@
 }
 
 .field::placeholder {
-    color: #6b7280; /* placeholder-gray-500 */
+    color: #6b7280;
+    /* placeholder-gray-500 */
 }
 
 .editor-button {
@@ -193,6 +222,17 @@
     background-color: #2563eb;
 }
 
+.season-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
 @media (min-width: 768px) {
     .editor-button {
         margin-top: 0;
@@ -203,36 +243,41 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
     .title {
-        background: linear-gradient(to bottom, #1f2937, #111827); 
-    } 
+        background: linear-gradient(to bottom, #1f2937, #111827);
+    }
 
     .title h1,
     .editor-box h2 {
-    color: rgb(229, 171, 124);
+        color: rgb(229, 171, 124);
     }
-    
+
     .bold-paragraph {
-        color: #ffffff; /* text-white */
+        color: #ffffff;
+        /* text-white */
     }
 
     .content p {
-        color: #d1d5db; /* text-gray-300 */
+        color: #d1d5db;
+        /* text-gray-300 */
     }
 
     .content-container {
         flex-direction: row;
         align-items: flex-start;
-        gap: 0 1.5rem; /* space-x-6 */
+        gap: 0 1.5rem;
+        /* space-x-6 */
     }
 
     .editor-block label {
-        color: #ffffff; /* text-white */
+        color: #ffffff;
+        /* text-white */
     }
 
     .block-container {
         flex-direction: row;
         align-items: center;
-        gap: 0 0.75rem; /* md:space-x-3 */
+        gap: 0 0.75rem;
+        /* md:space-x-3 */
     }
 
     .field {
@@ -240,11 +285,12 @@
     }
 
     .field::placeholder {
-        color: rgb(10, 2, 62);; 
+        color: rgb(10, 2, 62);
+        ;
     }
 
-    .account-setting { 
+    .account-setting {
         /* background: linear-gradient(180deg, #1a1a68, #6a3093, #ff8c42) */
-        background: linear-gradient(180deg, #332941, #000a4c); 
-    } 
+        background: linear-gradient(180deg, #332941, #000a4c);
+    }
 }

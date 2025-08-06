@@ -1,14 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import ClientAccountSettings from "./ClientAccountSettings";
 import styles from "./AccountSetting.module.css";
+import changeSeason from '@/app/utilities/changeSeason';
 
 export default function WrapperPage() {
     const [isEditing, setIsEditing] = useState(false);
+    const season = 8; //new Date().getMonth();
+    const showSeason = useMemo(() => {
+        return changeSeason({ season });
+    }, [season]);
 
     return (
         <div className={styles["content"]}>
+            {/* Background seasonal effect */}
+            <div className={styles["season-wrapper"]}>
+                {showSeason}
+            </div>
+
             {!isEditing ? (
                 <button
                     onClick={() => setIsEditing(true)}

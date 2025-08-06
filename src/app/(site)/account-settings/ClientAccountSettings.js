@@ -35,14 +35,14 @@ export default function ClientAccountSettings() {
         dob !== "" ||
         phone !== "" ||
         description !== "" ||
-        occupation !== "" ;
-        // selectedFile !== null;
+        occupation !== "";
+    // selectedFile !== null;
 
-    const handleFileChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            setSelectedFile(event.target.files[0]);
-        }
-    };
+    // const handleFileChange = (event) => {
+    //     if (event.target.files && event.target.files[0]) {
+    //         setSelectedFile(event.target.files[0]);
+    //     }
+    // };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -177,7 +177,7 @@ export default function ClientAccountSettings() {
                                         autoComplete="off"
                                     />
                                 </div>
-                                
+
                                 {/* <button
                                     type="button"
                                     onClick={() => setisEditing(!isEditing)}
@@ -230,10 +230,10 @@ export default function ClientAccountSettings() {
                                         className="h-4 w-4 opacity-70 fill-black dark:fill-current"
                                         viewBox="0 0 16 16"
                                     >
-                                        
+
                                         <path d="M3.654 1.328a.678.678 0 0 1 .58-.326h2.678c.252 0 .49.15.581.38l.894 2.21c.096.238.017.513-.189.66l-1.298.939a.678.678 0 0 0-.175.746c.304.773.849 1.78 1.522 2.454.673.674 1.68 1.219 2.454 1.522a.678.678 0 0 0 .746-.175l.94-1.298a.678.678 0 0 1 .66-.189l2.21.894c.231.091.38.329.38.581v2.678a.678.678 0 0 1-.326.58l-2.488 1.672c-.66.442-1.478.568-2.225.37a11.354 11.354 0 0 1-3.849-2.172 11.354 11.354 0 0 1-2.172-3.849c-.198-.747-.072-1.566.37-2.225L3.654 1.328Z" />
                                     </svg>
-                                    
+
                                     <input
                                         type="text"
                                         value={phone}
@@ -351,7 +351,7 @@ export default function ClientAccountSettings() {
                                             clipRule="evenodd"
                                         />
                                     </svg>
-                                  
+
                                     <input
                                         type={showPassword ? "text" : "password"}
                                         value={confirmedPassword}
@@ -428,7 +428,7 @@ export default function ClientAccountSettings() {
                                             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                                         />
                                     </svg>
-                                                                    
+
                                     <textarea
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
