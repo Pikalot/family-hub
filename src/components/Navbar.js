@@ -71,7 +71,7 @@ export default function Navbar() {
         <div className={styles["navbar"]}>
           {/* Logo */}
           <div>
-            <Link href="/#hero">
+            <Link href={`/${selectedMember.username}/#hero`}>
               <div className={styles["logo"]}>
                 <Image
                   src={LogoIcon}
@@ -105,12 +105,12 @@ export default function Navbar() {
               />
               <NavButton
                 page="About"
-                route="/#content"
+                route={`/${selectedMember.username}/#content`}
                 className={styles["nav-button"]}
               />
               <NavButton
                 page="Projects"
-                route="/#project"
+                route={`/${selectedMember.username}/#project`}
                 className={styles["nav-button"]}
               />
               {user?.role === "admin" && (
