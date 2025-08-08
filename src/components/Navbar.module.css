@@ -126,7 +126,6 @@
   position: relative;
   display: inline-block;
   /* Allows the dropdown trigger to align inline */
-  
 }
 
 /* Dropdown Content (Default Styles) */
@@ -137,7 +136,7 @@
   left: 0;
   /* Align to the left by default */
   min-width: 150px;
-  background-color: #34495E;
+  background-color: #34495e;
   color: inherit;
   /* Inherit text color */
   border-radius: 0.5rem;
@@ -203,7 +202,6 @@
   border: none;
   color: inherit;
 }
-
 
 /* Tablet and laptop screen */
 @media (max-width: 1366px) and (orientation: landscape) {
@@ -271,7 +269,7 @@
   .search-bar {
     margin-left: 6rem;
     max-width: 10px;
-    margin-right: auto; 
+    margin-right: auto;
     display: flex;
     align-items: center;
   }
@@ -282,7 +280,7 @@
     width: 270%;
     position: relative;
     z-index: 10;
-  } 
+  }
 
   .search-icon svg:hover {
     transform: scale(1.25);

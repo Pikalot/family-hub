@@ -11,7 +11,7 @@ export async function homeRoutes({ username, userId, member }) {
   const skills = await getSkills(userId);
   const exp = await getExp(userId);
   const education = await getSchools(userId);
-  const projects = await getProjects(userId);
+  const projects = await getProjects(userId, { limit: 4 });
   const resumes = await getResumes(userId);
 
   return [

@@ -71,7 +71,7 @@
 }
 
 .dialogue-box::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   /* Position the arrow just below the box */
@@ -226,7 +226,7 @@
   background-color: gray;
   color: white;
   font-weight: bold;
-  opacity: 0.70;
+  opacity: 0.7;
 }
 
 .social-icon {
@@ -240,11 +240,11 @@
 }
 
 .social-icon a:hover {
-  opacity: 0.60;
+  opacity: 0.6;
 }
 
 .signin {
-  background: url('./Photo/Love.jpg') no-repeat center center;
+  background: url("./Photo/Love.jpg") no-repeat center center;
   background-size: contain;
   /* Shrinks image to fit within screen */
   background-position: left;
@@ -256,10 +256,8 @@
   left: 0;
 }
 
-
 /* Phone screen */
 @media (max-width: 480px) {
-
   .container,
   .content,
   .footer {
@@ -302,7 +300,6 @@
 
 /* Tablet screen */
 @media (max-width: 1366px) and (orientation: landscape) {
-
   .container,
   .content {
     padding: 1vw;

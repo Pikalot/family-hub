@@ -28,19 +28,123 @@
 .project-table th {
   background: #004466;
   color: white;
-  padding: 25px;
+  padding: 1rem;
 }
 
 /* Table Rows */
 .project-table td {
-  padding: 18px;
+  padding: 1rem;
   border-bottom: 2px solid #ccc;
   text-align: left;
   max-width: 300px;
 }
 
+.project-table tbody tr:hover {
+  background-color: #000a4c;
+  color: white;
+  opacity: 0.5;
+}
+
+.name-column {
+  font-weight: bold;
+  text-decoration: underline;
+  width: 10rem;
+}
+
+.image-column,
+.skills-column {
+  width: 10rem;
+}
+
+.description-column {
+  width: 35rem;
+}
+
+.created-at-column {
+  width: 7rem;
+  font-style: italic;
+}
+
 @media (prefers-color-scheme: dark) {
   .project-page {
     background: linear-gradient(180deg, #332941, #000a4c);
+  }
+}
+
+/* Tablet Screen */
+@media (max-width: 1180px) {
+  .project-page {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+/* Tablet Screen */
+@media (max-width: 820px) {
+  .project-page {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Hide name(2), description(3), created-at(4) by default */
+  .project-table td:nth-child(3),
+  .project-table td:nth-child(4),
+  .project-table th:nth-child(3),
+  .project-table th:nth-child(4) {
+    display: none;
+  }
+
+  .image-column {
+    width: 30%;
+  }
+  .name-column {
+    width: 25%;
+  }
+
+  .skills-column,
+  .description-column {
+    width: 45%;
+  }
+
+  /* When a row is "expanded", show the hidden columns over the name columns */
+  .expanded td:nth-child(3) {
+    display: table-cell;
+  }
+  .expanded td:nth-child(5) {
+    display: none;
+  }
+}
+
+/* Phone Screen */
+@media (max-width: 480px) {
+  .project-page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Hide name(2), description(3), created-at(4) by default */
+  .project-table td:nth-child(1),
+  .project-table td:nth-child(3),
+  .project-table td:nth-child(4),
+  .project-table th:nth-child(1),
+  .project-table th:nth-child(3),
+  .project-table th:nth-child(4) {
+    display: none;
+  }
+
+  .name-column {
+    width: 40%;
+  }
+
+  .skills-column {
+    width: 60%;
+  }
+
+  /* When a row is "expanded", show the hidden columns over the name columns */
+  .expanded td:nth-child(1) {
+    display: flex;
+  }
+  .expanded td:nth-child(2) {
+    display: none;
   }
 }

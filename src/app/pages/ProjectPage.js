@@ -1,9 +1,8 @@
 "use client";
 import styles from "./ProjectPage.module.css";
 import Image from "next/image";
-import { motion, useAnimation } from "framer-motion";
+import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import fadeInVariant from "../../utilities/fadeInVariant";
 import { useEffect, useState } from "react";
 
 export default function ProjectPage({ projects }) {
@@ -49,16 +48,26 @@ export default function ProjectPage({ projects }) {
         </thead>
         <tbody>
           {projects.map((project, index) => (
-            <tr key={index}>
-              <td>
-                <Image
-                  src={project.source}
-                  alt={project.name}
-                  width={150}
-                  height={150}
-                />
+            <tr
+              key={index}
+              onClick={() => toggleExpand(index)}
+              className={expandedIndex === index ? styles.expanded : ""}
+            >
+              <td className={styles["image-column"]}>
+                <a
+                  href={project.repository}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={project.source}
+                    alt={project.name}
+                    width={150}
+                    height={150}
+                  />
+                </a>
               </td>
-              <td>
+              <td className={styles["name-column"]}>
                 <a
                   href={project.repository}
                   target="_blank"
@@ -67,7 +76,14 @@ export default function ProjectPage({ projects }) {
                   {project.name}
                 </a>
               </td>
-              <td>{project.description}</td>
+              <td className={styles["description-column"]}>
+                {project.description}
+              </td>
+              <td className={styles["created-at-column"]}>
+                {project.createdAt &&
+                  new Date(project.createdAt).toLocaleDateString()}
+              </td>
+              <td className={styles["skills-column"]}>{project.skills}</td>
             </tr>
           ))}
         </tbody>
