@@ -26,7 +26,7 @@ export const getProjects = async (memberId, { limit = null } = {}) => {
           ) AS US
           ON P.id = US.project_id
           WHERE O.mid = ?
-          ORDER BY O.owned_date
+          ORDER BY O.owned_date DESC
     `;
   if (limit) {
     query += ` LIMIT ${limit}`;

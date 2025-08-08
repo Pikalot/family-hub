@@ -1,12 +1,13 @@
-"use client"
+"use client";
 import styles from "./Projects.module.css";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import fadeInVariant from "../utilities/fadeInVariant";
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
-export default function Project({projects}) {
+export default function Project({ projects }) {
   const control = useAnimation();
   const [ref, inView] = useInView();
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -14,10 +15,13 @@ export default function Project({projects}) {
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
+  // let username = "admin1";
+  const params = useParams();
+  const username = params?.username || "admin1";
 
   useEffect(() => {
     const handleResize = () => {
-      setIsPhoneScreen(window.innerWidth <= 1194); 
+      setIsPhoneScreen(window.innerWidth <= 1194);
     };
 
     handleResize(); // Run on mount
@@ -25,7 +29,6 @@ export default function Project({projects}) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
- 
   useEffect(() => {
     if (isPhoneScreen) {
       control.start("visible"); // Skip animation for phone screens
@@ -39,25 +42,37 @@ export default function Project({projects}) {
   return (
     <section id="project" className={styles["project"]}>
       <div>
-        <h1>Lastest Projects</h1>
+        <a href={`/${username}/projects`}>
+          <h1>Lastest Projects</h1>
+        </a>
         <motion.div
           className={styles["projects-container"]}
           variants={fadeInVariant}
           initial="hidden"
           animate={control}
           ref={ref}
-          >
+        >
           {projects.map((project, index) => (
             <div key={index} className={styles["project-block"]}>
-              <Image src={project.source} 
-              alt={project.name} 
-              width={800}
-              height={800}/>
-              <div className={`${styles["project-content"]} 
+              <Image
+                src={project.source}
+                alt={project.name}
+                width={800}
+                height={800}
+              />
+              <div
+                className={`${styles["project-content"]} 
               ${expandedIndex === index ? styles.expanded : ""}`}
-              onClick= {() => toggleExpand(index)}>
+                onClick={() => toggleExpand(index)}
+              >
                 <h3 className={styles["project-title"]}>
-                  <a href={project.repository} target="_blank" rel="noopener noreferrer">{project.name}</a>
+                  <a
+                    href={project.repository}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.name}
+                  </a>
                 </h3>
                 <p className={styles["project-description"]}>
                   {project?.description}
@@ -65,8 +80,8 @@ export default function Project({projects}) {
               </div>
             </div>
           ))}
-        </motion.div> 
+        </motion.div>
       </div>
-    </section> 
+    </section>
   );
 }
