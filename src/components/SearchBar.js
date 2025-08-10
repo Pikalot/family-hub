@@ -17,16 +17,17 @@ export default function SearchBar({ onSelectMember }) {
   const [isOpen, setIsOpen] = useState(true);
   const { user } = useUser();
   const router = useRouter();
+  const [errorMsg, setErrorMsg] = useState("");
+  const SMALL_SCREEN = 1366;
 
   const resetSearch = useCallback(() => {
     setKeyword("");
     setSuggestions([]);
-    if (window.innerWidth <= 480) setIsOpen(false);
   }, []);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 480) {
+      if (window.innerWidth <= SMALL_SCREEN) {
         setIsOpen(false);
       } else {
         setIsOpen(true);
@@ -52,7 +53,12 @@ export default function SearchBar({ onSelectMember }) {
    * @dependencies keyword, routes, open
    */
   useEffect(() => {
-    if (!isFocused) return;
+    if (!isFocused) {
+      if (window.innerWidth <= SMALL_SCREEN) {
+        setIsOpen(false);
+      }
+      return;
+    }
 
     // Instantly display for the hardcoded page recommendations
     if (keyword === "") {
@@ -126,7 +132,8 @@ export default function SearchBar({ onSelectMember }) {
       if (e.key === "ArrowDown") {
         e.preventDefault();
         if (suggestions.length > 0) {
-          setSelectedItem((prev) => Math.min(prev + 1, suggestions.length - 1));
+          const minLength = Math.min(suggestions.length - 1, 4);
+          setSelectedItem((prev) => Math.min(prev + 1, minLength));
         }
       }
       if (e.key === "ArrowUp") {
@@ -138,6 +145,36 @@ export default function SearchBar({ onSelectMember }) {
     window.addEventListener("keydown", listener);
     return () => window.removeEventListener("keydown", listener);
   });
+
+  const getProjects = async (keyword) => {
+    if (!keyword) return;
+
+    const query = keyword.trim();
+    try {
+      const res = await fetch(
+        `/api/search?query=${encodeURIComponent(query)}`,
+        {
+          method: "GET",
+        }
+      );
+
+      if (res.error) return;
+      const projectData = await res.json();
+
+      if (!projectData || projectData.length === 0) return;
+      let projectMatches = [];
+      projectMatches = projectData.map((p) => ({
+        id: p.id,
+        page: p.name,
+        path: `/${p.username}/projects?id=${p.id}`,
+        type: "project",
+      }));
+
+      setSuggestions((prev) => [...prev, ...projectMatches]);
+    } catch (error) {
+      setErrorMsg("Error fetching projects: " + error.message);
+    }
+  };
 
   /**
    * Function handles mouse click
@@ -155,15 +192,24 @@ export default function SearchBar({ onSelectMember }) {
     };
   }, [resetSearch]);
 
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      getProjects(keyword);
+    }, 400);
+
+    return () => clearTimeout(debounce);
+  }, [keyword]);
+
   /**
    * Component renders suggestions
    * @returns a component
    */
   function SuggestionsList() {
     if (suggestions.length === 0) return <></>;
+    const topFiveItems = suggestions.slice(0, 5);
     return (
       <ul className={styles["dropdown-content"]}>
-        {suggestions.map((r, id) => (
+        {topFiveItems.map((r, id) => (
           <Link href={r.path} key={r.path}>
             <div
               className={`${styles["search-item"]} ${
@@ -196,51 +242,54 @@ export default function SearchBar({ onSelectMember }) {
 
   return (
     <div className={styles["dropdown"]}>
-      {isOpen ? (
-        <input
-          type="text"
-          ref={inputRef}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          value={keyword}
-          placeholder="Search here.."
-          onChange={handleChanges}
-        />
-      ) : (
-        <button
-          onClick={() => {
-            setIsOpen(true);
-            setTimeout(() => inputRef.current?.focus(), 100);
-          }}
-          className={styles["search-icon"]}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="28"
-            height="28"
+      <div>
+        {isOpen ? (
+          <input
+            type="text"
+            ref={inputRef}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            value={keyword}
+            placeholder="Search here.."
+            onChange={handleChanges}
+          />
+        ) : (
+          <button
+            onClick={() => {
+              setIsOpen(true);
+              setTimeout(() => inputRef.current?.focus(), 100);
+            }}
+            className={styles["search-icon"]}
           >
-            <circle
-              cx="11"
-              cy="11"
-              r="6"
-              stroke="#ccc"
-              strokeWidth="2"
-              fill="white"
-            />
-            <line
-              x1="15.5"
-              y1="15.5"
-              x2="21"
-              y2="21"
-              stroke="#ccc"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
-      )}
-      <SuggestionsList />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="28"
+              height="28"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="6"
+                stroke="#ccc"
+                strokeWidth="2"
+                fill="white"
+              />
+              <line
+                x1="15.5"
+                y1="15.5"
+                x2="21"
+                y2="21"
+                stroke="#ccc"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+        )}
+        <SuggestionsList />
+      </div>
+      <div>{errorMsg && <p>{errorMsg}</p>}</div>
     </div>
   );
 }

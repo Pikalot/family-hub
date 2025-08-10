@@ -21,6 +21,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const hideTimeoutRef = useState(null);
   const params = useParams();
+  const SCROLL_DISTANCE = 10;
 
   // Pick member from URL first, then from logged-in user
   useEffect(() => {
@@ -45,17 +46,17 @@ export default function Navbar() {
     if (hideTimeoutRef.current) {
       clearTimeout(hideTimeoutRef.current);
     }
-    if (window.scrollY > 100) {
+    if (window.scrollY > SCROLL_DISTANCE) {
       hideTimeoutRef.current = setTimeout(() => {
         setIsVisible(false);
-      }, 3000);
+      }, 2000);
     }
   };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleScroll = () => {
-        setIsShrink(window.scrollY > 100);
+        setIsShrink(window.scrollY > SCROLL_DISTANCE);
         resetVisibility();
       };
 

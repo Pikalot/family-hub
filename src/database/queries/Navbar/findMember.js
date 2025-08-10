@@ -1,7 +1,7 @@
 import { executeQuery } from "@/database/MySQLDriver";
 
 export const findMemberById = async (mid) => {
-    const query = `
+  const query = `
         SELECT 
             M.*,
             P.source AS photo
@@ -10,21 +10,21 @@ export const findMemberById = async (mid) => {
         ON P.pid = M.pid
         WHERE mid = ?;
     `;
-    try {
-        const result = await executeQuery(query, [mid]); 
-        if (!result.length) {
-            throw new Error(`No member found with id ${mid}`);
-        }
-
-        return result; // Return the first member
-    } catch (error) {
-        console.error("Error in findMemberById:", error.message, error);
-        throw error;
+  try {
+    const result = await executeQuery(query, [mid]);
+    if (!result.length) {
+      throw new Error(`No member found with id ${mid}`);
     }
+
+    return result; // Return the first member
+  } catch (error) {
+    console.error("Error in findMemberById:", error.message, error);
+    throw error;
+  }
 };
 
 export const findMemberByUsername = async (username) => {
-    const query = `
+  const query = `
         SELECT 
             M.*,
             P.source AS photo
@@ -33,16 +33,12 @@ export const findMemberByUsername = async (username) => {
         ON P.pid = M.pid
         WHERE username = ?;
     `;
-    try {
-        const result = await executeQuery(query, [username]); 
-        if (!result.length) {
-            throw new Error(`No member found with username ${username}`);
-        }
+  try {
+    const result = await executeQuery(query, [username]);
 
-        return result; // Return the first member
-    } catch (error) {
-        console.error("Error in findMemberByUsername:", error.message, error);
-        throw error;
-    }
+    return result; // Return the first member
+  } catch (error) {
+    console.error("Error in findMemberByUsername:", error.message, error);
+    throw error;
+  }
 };
-

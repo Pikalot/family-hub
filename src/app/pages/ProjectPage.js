@@ -49,6 +49,8 @@ export default function ProjectPage({ projects }) {
       params.set("query", query);
     } else params.delete("query");
 
+    params.delete("id");
+
     router.push(params.toString() ? `${pathname}?${params}` : pathname);
     inputRef.current?.blur();
   };
@@ -61,25 +63,27 @@ export default function ProjectPage({ projects }) {
 
   return (
     <div className={styles["project-page"]}>
-      <form onSubmit={handleSearch} className={styles["search-form"]}>
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Search projects..."
-          className={styles["search-input"]}
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              handleSearch(e);
-            }
-          }}
-        />
-        <button type="submit" className={styles["search-button"]}>
-          Search
-        </button>
-      </form>
+      <div className={styles["sticky-search-bar"]}>
+        <form onSubmit={handleSearch} className={styles["search-form"]}>
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Search projects..."
+            className={styles["search-input"]}
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleSearch(e);
+              }
+            }}
+          />
+          <button type="submit" className={styles["search-button"]}>
+            Search
+          </button>
+        </form>
+      </div>
       <table className={styles["project-table"]}>
         <thead>
           <tr>

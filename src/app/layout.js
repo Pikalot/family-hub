@@ -10,6 +10,7 @@ import { authOptions } from "@/auth/AuthOptions";
 import UserProvider from "@/components/context/UserProvider";
 import RouteProvider from "@/components/context/RouteProvider";
 import UserListProvider from "@/components/context/UserListProvider";
+import NotFound from "./pages/NotFoundPage";
 
 export const metadata = {
   title: "Family Hub",
@@ -26,13 +27,20 @@ export default async function RootLayout({ children }) {
 
   let inRoutes = [];
   let adminRoutes = [];
-  if (user?.username) {
-    const username = user.username;
-    const member = await findMemberByUsername(username);
-    userId = member[0].mid;
-    inRoutes = signedInRoutes({ username });
-    adminRoutes = adminSignedInRoutes({ username });
+
+  if (!user) {
+    return <NotFound />;
   }
+
+  const username = user.username;
+  const member = await findMemberByUsername(username);
+  if (!member || !member.length) {
+    return <NotFound />;
+  }
+
+  userId = member[0].mid;
+  inRoutes = signedInRoutes({ username });
+  adminRoutes = adminSignedInRoutes({ username });
 
   // Value passed to context (accessible via useUser())
   const userContextValue = {

@@ -6,6 +6,10 @@ import NotFound from "./NotFoundPage";
 
 export default async function Home({ username }) {
   const member = await findMemberByUsername(username);
+  if (!member || !member.length) {
+    return <NotFound />;
+  }
+
   const userId = member[0].mid;
   const github = await getSocialMedia(userId, "GitHub");
   const facebook = await getSocialMedia(userId, "Facebook");
