@@ -11,6 +11,7 @@ import Selecter from "./Selecter";
 import SearchBar from "./SearchBar";
 import { useUser } from "./context/UserContext";
 import { useList } from "./context/UserListContext";
+import { useParams } from "next/navigation";
 
 export default function Navbar() {
   const userList = useList();
@@ -19,13 +20,21 @@ export default function Navbar() {
   const [isShrink, setIsShrink] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const hideTimeoutRef = useState(null);
+  const params = useParams();
 
+  // Pick member from URL first, then from logged-in user
   useEffect(() => {
-    if (user) {
-      const match = userList.find((u) => u.username === user.username);
-      if (match) setSelectedMember(match);
+    const fromUrl =
+      params?.username && userList.find((u) => u.username === params.username);
+    if (fromUrl) {
+      setSelectedMember(fromUrl);
+      return;
     }
-  }, [user, userList]);
+    if (user) {
+      const fromUser = userList.find((u) => u.username === user.username);
+      if (fromUser) setSelectedMember(fromUser);
+    }
+  }, [params?.username, user, userList]);
 
   const handleSelectMember = (member) => {
     setSelectedMember(member);
@@ -44,7 +53,7 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    if (typeof window !== undefined) {
+    if (typeof window !== "undefined") {
       const handleScroll = () => {
         setIsShrink(window.scrollY > 100);
         resetVisibility();
@@ -75,7 +84,7 @@ export default function Navbar() {
               <div className={styles["logo"]}>
                 <Image
                   src={LogoIcon}
-                  alt="Game Trees Logo"
+                  alt="House Logo"
                   width={500}
                   height={500}
                   quality={100}

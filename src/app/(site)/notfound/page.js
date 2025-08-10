@@ -1,9 +1,9 @@
-import NotFound from "@/app/pages/NotFoundPage"
+import NotFound from "@/app/pages/NotFoundPage";
 
 export default function NotFoundPage() {
-    return (
-        <div>
-            <NotFound />
-        </div>
-    )
+  return (
+    <div>
+      <NotFound />
+    </div>
+  );
 }

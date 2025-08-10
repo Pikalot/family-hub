@@ -3,7 +3,8 @@ import styles from "./ProjectPage.module.css";
 import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function ProjectPage({ projects }) {
   const control = useAnimation();
@@ -13,6 +14,11 @@ export default function ProjectPage({ projects }) {
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
+  const [keyword, setKeyword] = useState("");
+  const inputRef = useRef(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const current = useSearchParams();
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,8 +40,46 @@ export default function ProjectPage({ projects }) {
     }
   }, [control, inView, isPhoneScreen]);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = keyword.trim();
+    const params = new URLSearchParams(current.toString());
+
+    if (query) {
+      params.set("query", query);
+    } else params.delete("query");
+
+    router.push(params.toString() ? `${pathname}?${params}` : pathname);
+    inputRef.current?.blur();
+  };
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <div className={styles["project-page"]}>
+      <form onSubmit={handleSearch} className={styles["search-form"]}>
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search projects..."
+          className={styles["search-input"]}
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSearch(e);
+            }
+          }}
+        />
+        <button type="submit" className={styles["search-button"]}>
+          Search
+        </button>
+      </form>
       <table className={styles["project-table"]}>
         <thead>
           <tr>
@@ -88,6 +132,13 @@ export default function ProjectPage({ projects }) {
           ))}
         </tbody>
       </table>
+      {projects.length === 0 && (
+        <div className="flex flex-row w-100 justify-center">
+          <p className="text-lg text-slate-800 dark:text-white/70 mt-5 mb-5">
+            No results found!
+          </p>
+        </div>
+      )}
     </div>
   );
 }
